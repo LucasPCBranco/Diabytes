@@ -1,11 +1,14 @@
 package com.example.nerds.tcctest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,6 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Atribui o valor do listView ao que será exibido na tela
         listView = (ListView) findViewById(R.id.listView_alimentos);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            //Baseado na posição em i do Banco de Dados no onResume(), chegamos a:
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Cria um Bundle que salva as info's da posição para ser enviado para outra Activity
+                Bundle b = new Bundle();
+                /* A posição passada como parâmetro é atribuído ao Bundle*/
+                b.putInt("posicao", position);
+
+                //Cria a transição entre a MainActivity com a tela de transição (A MUDAR)
+                Intent i = new Intent(MainActivity.this, NewAlimentoActivity.class);
+                //Insere no intent o Bundle
+                i.putExtras(b);
+
+                //Chama a nova Activity (A MUDAR)
+                startActivity(i);
+
+            }
+        });
     }
 
     @Override
