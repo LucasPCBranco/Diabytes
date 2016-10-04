@@ -30,25 +30,7 @@ public class NewAlimentoActivity extends AppCompatActivity {
             }
         });
 
-        //Para conseguir as informações para RECEBER A POSIÇÃO CLICADA, é necessário:
-        Bundle bMain = getIntent().getExtras();
-
-        if(bMain != null) {
-            /*Caso consiga encontrar algo na Bundle, ou seja, se for derivada de um click em um
-            item, conseguimos a posição no item que foi clicado*/
-            int posicao = bMain.getInt("posicao");
-            DBLocal bd = new DBLocal(this);
-
-            //Atribue os valores relativos a posição
-            editName.setText(bd.selectAlimentos().get(posicao).getNome());
-            editPorcao.setText(bd.selectAlimentos().get(posicao).getPorcao());
-            //Sistema extenso de conversão Float para String
-            editCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
-
-            //Por se tratar de apenas uma visualização, mantemos o botão salvar invisível
-            buttonSalvar.setVisibility(View.INVISIBLE);
-
-        }
+        /* Tinha um código aqui que foi transferido para a CalcActivity*/
     }
 
     //Método para internamento fazer o salvamento das informações da tela

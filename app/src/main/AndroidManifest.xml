@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewAlimentoActivity"></activity>
+        <activity android:name=".NewAlimentoActivity" />
+        <activity android:name=".CalcActivity"></activity>
     </application>
 
 </manifest>

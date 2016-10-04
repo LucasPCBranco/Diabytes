@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 /* A posição passada como parâmetro é atribuído ao Bundle*/
                 b.putInt("posicao", position);
 
-                //Cria a transição entre a MainActivity com a tela de transição (A MUDAR)
-                Intent i = new Intent(MainActivity.this, NewAlimentoActivity.class);
+                //Cria a transição entre a MainActivity com a tela de transição (TESTE COM nova)
+                Intent i = new Intent(MainActivity.this, CalcActivity.class);
                 //Insere no intent o Bundle
                 i.putExtras(b);
 
