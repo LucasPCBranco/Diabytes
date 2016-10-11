@@ -23,7 +23,7 @@
         android:inputType="textPersonName" />
 
     <TextView
-        android:text="Tipo de Porção"
+        android:text="@string/tipo_porcao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editName"
@@ -64,7 +64,7 @@
         android:layout_alignStart="@+id/editPorcao" />
 
     <TextView
-        android:text="Carboidratos (g)"
+        android:text="@string/carb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewCarboidratos"
@@ -75,7 +75,7 @@
         android:textColor="@android:color/black" />
 
     <Button
-        android:text="Salvar"
+        android:text="@string/salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSalvar"

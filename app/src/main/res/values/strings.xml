@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TCCTest</string>
+    <string name="tipo_porcao">Tipo de porção</string>
+    <string name="carb">Carboidratos (g)</string>
+    <string name="porcao">Porção</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

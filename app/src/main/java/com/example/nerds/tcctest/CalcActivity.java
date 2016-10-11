@@ -8,6 +8,7 @@ import android.widget.TextView;
 public class CalcActivity extends AppCompatActivity {
 
     private TextView textNome, textPorcao, textCarb;
+    public double calc; //Variável que armazenará o cálculo de carboidratos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class CalcActivity extends AppCompatActivity {
         textNome = (TextView) findViewById(R.id.textNome);
         textPorcao = (TextView) findViewById(R.id.textPorcao);
         textCarb = (TextView) findViewById(R.id.textCarb);
-        
+
         //Para conseguir as informações para RECEBER A POSIÇÃO CLICADA, é necessário:
         Bundle bMain = getIntent().getExtras();
 
@@ -33,6 +34,8 @@ public class CalcActivity extends AppCompatActivity {
             //Sistema extenso de conversão Float para String
             textCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
 
+            //Adiciona o valor de carboidratos da refeição.
+            calc = calc + bd.selectAlimentos().get(posicao).getgCarb();
 
         }
 
