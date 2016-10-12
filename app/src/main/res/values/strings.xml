@@ -5,4 +5,9 @@
     <string name="porcao">Porção</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="tbTitle">Diabytes</string>
+    <string name="menu_1">Opcao</string>
+    <string name="menu_2">Opcao2</string>
+    <string name="searchable">searchable</string>
+    <string name="menu_search">Search</string>
 </resources>
