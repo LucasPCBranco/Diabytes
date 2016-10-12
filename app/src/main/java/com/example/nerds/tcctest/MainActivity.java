@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         //Criação de uma ArrayList do SELECT
         ArrayList<String> listaAlimentos = new ArrayList<String>();
         //Usando for, vai criando uma posição ArrayList para cada Select presente
-            for (int i = 0; i < bd.selectAlimentos().size(); i++)
-                listaAlimentos.add(bd.selectAlimentos().get(i).getNome());
+        for (int i = 0; i < bd.selectAlimentos().size(); i++)
+            listaAlimentos.add(bd.selectAlimentos().get(i).getNome());
         //Irá adaptar a entrada de um item na listView através de um Array
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
         //Adapta os valores do listView baseado no ArrayList

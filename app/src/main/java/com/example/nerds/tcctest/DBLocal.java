@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
-/* IMPORTANTE: ESSE APP SÓ FUNCIONOU DO ANDROID 5.0 API 23 PARA CIMA!!*/
 public class DBLocal extends SQLiteOpenHelper{
 
     //Variáveis final para uso no DB
