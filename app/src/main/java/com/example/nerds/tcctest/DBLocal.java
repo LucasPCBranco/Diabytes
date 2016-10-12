@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -82,6 +83,33 @@ public class DBLocal extends SQLiteOpenHelper{
     }catch(Exception e){
             Log.e(TAG, "selectAlimentos: " + e.getMessage());
             return lista;
+        }
+    }
+
+    public ArrayList<Alimento> searchAlimentos(String param){
+        /* Esquema próximo ao do selelctAlimentos, mas especificado */
+
+        SQLiteDatabase sqlite = this.getReadableDatabase();
+        ArrayList<Alimento> lista = new ArrayList<Alimento>();
+        try{
+            //Cursor concatenado para se adequar ao parâmetro inserido pelo usuário
+            Cursor cur = sqlite.rawQuery("SELECT " + param + " FROM" + TABLE, null);
+            cur.moveToFirst();
+
+            while(cur.isAfterLast() == false){
+                Alimento a = new Alimento();
+                a.setId(cur.getInt(cur.getColumnIndex("id"))); //Pega o ID da coluna
+            /* Seta de acordo com o cursor*/
+                a.setNome(cur.getString(cur.getColumnIndex(NOME)));
+                a.setPorcao(cur.getString(cur.getColumnIndex(PORCAO)));
+                a.setgCarb(cur.getFloat(cur.getColumnIndex(CARB)));
+                lista.add(a);
+                cur.moveToNext(); //Após o fim das informações, move-se à próxima
+            }
+            return lista;
+        }catch(SQLiteException e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

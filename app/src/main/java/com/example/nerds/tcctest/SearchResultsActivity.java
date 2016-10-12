@@ -32,11 +32,16 @@ public class SearchResultsActivity extends AppCompatActivity {
             Toast.makeText(SearchResultsActivity.this, query,Toast.LENGTH_SHORT).show();
         }
 
-        String[] refeicoes = /*AQUI VAI A O "GET" DO ARRAY DA LIST VIEW -- getResources().getStringArray(R.array.[nome da string - listaAlimentos(?)])*/;
+        //Sincronizando - Usando BDLocal do projeto
+
+
         ArrayList<String> searchResults = new ArrayList<String>();
-        for(int i = 0; i < refeicoes.length; i++){
-            if(refeicoes[i].toLowerCase().contains(query.toLowerCase()))
-                searchResults.add(refeicoes[i]);
+        /* Criando um BD para sincronizar a busca*/
+        DBLocal bd = new DBLocal(this);
+        for(int i = 0; i < bd.searchAlimentos(query).size(); i++){
+            String pesquisa = bd.searchAlimentos(query).get(i).getNome();
+            if(pesquisa.toLowerCase().contains(query.toLowerCase()))
+                searchResults.add(pesquisa);
         }
 
         ListView listView = (ListView) findViewById(R.id.listView_searchResults);
