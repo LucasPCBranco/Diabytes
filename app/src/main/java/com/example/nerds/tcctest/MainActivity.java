@@ -1,16 +1,20 @@
 package com.example.nerds.tcctest;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -18,12 +22,23 @@ import java.util.StringTokenizer;
 public class MainActivity extends AppCompatActivity {
 
     //Chamando o ListView que servirá como base
-    private ListView listView;
+    public ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Definindo a toolbar
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+
+        //Titulo e icone que fica na toolbar
+        getSupportActionBar().setTitle(R.string.tbTitle);
+        getSupportActionBar().setIcon(R.drawable.ic_toolbar);
+
+
+
 
         //Atribui o valor do listView ao que será exibido na tela
         listView = (ListView) findViewById(R.id.listView_alimentos);
@@ -53,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_new, menu); //Insere menu_new ao Menu da Activity principal
 
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -64,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.newAlimento:
                 startActivity(new Intent(MainActivity.this, NewAlimentoActivity.class));
                 break;
+
+            //case R.id.menu_1:
+
 
         }
 
