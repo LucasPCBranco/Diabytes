@@ -11,16 +11,19 @@ import android.util.Log;
 import java.util.ArrayList;
 public class DBLocal extends SQLiteOpenHelper{
 
-    //Variáveis final para uso no DB
     private static final String DB = "mydb";
+    //Tabela Alimentos
     private static final String TABLE = "alimento";
-    //Variáveis final para uso como referência nos inserts
     private static final String NOME = "nome";
     private static final String PORCAO = "porcao";
     private static final String CARB = "gcarb";
     private static final String TAG = "DBLocal";
-
-
+    //Table Usuario
+    private static final String TB_USER = "usuario";
+    //Fatores de sensibilidade (manhã, tarde, noite)
+    private static final String MANHA = "sensibilidadeM";
+    private static final String TARDE = "sensibilidadeT";
+    private static final String NOITE = "sensibilidadeN";
     public DBLocal(Context context) {
         /* Normalmente, os parâmetros são context, name, factory e version.
         * Porém, nesse caso, só será necessário usar o context como parâmetro, sendo assim:*/
@@ -30,9 +33,14 @@ public class DBLocal extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //Mais para fins de teste, eu concatenei o valor da tabela.
+        //Mais para fins de teste, eu concatenei os valores das tabelas.
+
+        //tbAlimento
         db.execSQL("CREATE TABLE " + TABLE + "(id INTEGER PRIMARY KEY, nome TEXT, "
                 +"porcao TEXT, gcarb REAL) ");
+        //tbUsuario
+        db.execSQL("CREATE TABLE "+ TB_USER + "(id INTEGER PRIMARY KEY, " +
+                MANHA + " REAL, " + TARDE + " REAL, " + NOITE + " REAL) ");
     }
 
     @Override
@@ -93,7 +101,7 @@ public class DBLocal extends SQLiteOpenHelper{
         ArrayList<Alimento> lista = new ArrayList<Alimento>();
         try{
             //Cursor concatenado para se adequar ao parâmetro inserido pelo usuário
-            Cursor cur = sqlite.rawQuery("SELECT " + param + " FROM" + TABLE, null);
+            Cursor cur = sqlite.rawQuery("SELECT * FROM" + TABLE + "WHERE " + NOME + "LIKE = '%" + param + "%'", null);
             cur.moveToFirst();
 
             while(cur.isAfterLast() == false){
