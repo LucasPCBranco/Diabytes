@@ -23,9 +23,16 @@ public class MainActivity extends AppCompatActivity {
 
     //Chamando o ListView que servirá como base
     public ListView listView;
+    public boolean firstAcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Se for 1º acesso, abre a activity para configurações iniciais
+        if(firstAcess == true){
+            Intent firstconf = new Intent(MainActivity.this, FirstAccess.class);
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

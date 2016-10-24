@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TCCTest</string>
+    <string name="app_name">Diabytes</string>
     <string name="tipo_porcao">Tipo de porção</string>
     <string name="carb">Carboidratos (g)</string>
     <string name="porcao">Porção</string>
@@ -10,4 +10,8 @@
     <string name="menu_2">Opcao2</string>
     <string name="searchable">searchable</string>
     <string name="menu_search">Search</string>
+    <string name="continuar">Continuar</string>
+    <string name="txtfatorsensiManha">Insira seu fator de sensibilidade(manhã)</string>
+    <string name="txtfatorsensiTarde">Insira seu fator de sensibilidade(tarde)</string>
+    <string name="txtfatorsensiNoite">Insira seu fator de sensibilidade(noite)</string>
 </resources>
