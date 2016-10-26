@@ -20,7 +20,7 @@ public class DBLocal extends SQLiteOpenHelper{
     private static final String TAG = "DBLocal";
 
     //Antes tinha aqui um tbUsuario, mas é desnecessário
-    
+
     public DBLocal(Context context) {
         /* Normalmente, os parâmetros são context, name, factory e version.
         * Porém, nesse caso, só será necessário usar o context como parâmetro, sendo assim:*/
