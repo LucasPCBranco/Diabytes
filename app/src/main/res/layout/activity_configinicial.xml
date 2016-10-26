@@ -1,78 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/activity_configinicial"
-    tools:context="com.example.nerds.tcctest.FirstAccess"
-    android:weightSum="1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/my_toolbar"/>
-
-    <TextView
-        android:text="@string/txtfatorsensiManha"
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ci_textViewM"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="10sp"/>
+        android:layout_height="match_parent"
+        android:id="@+id/activity_configinicial"
+        tools:context="com.example.nerds.tcctest.FirstAccess"
+        android:weightSum="1">
 
-    <EditText
-        android:layout_width="231dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/txtBox_fatorsensiM" />
+        <include layout="@layout/toolbar"
+            android:id="@+id/my_toolbar"/>
 
-    <TextView
-        android:text="@string/txtfatorsensiTarde"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ci_textViewT"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="20sp"/>
+        <!--Campos fator sensibilidade-->
+        <!--Manhã-->
+        <TextView
+            android:text="@string/txtfatorsensiManha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ci_textViewM"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="2sp"/>
 
-    <EditText
-        android:layout_width="231dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/txtBox_fatorsensiT" />
+        <EditText
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtBox_fatorsensiM" />
 
-    <TextView
-        android:text="@string/txtfatorsensiNoite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ci_textViewN"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="20sp"/>
+        <!--Tarde-->
+        <TextView
+            android:text="@string/txtfatorsensiTarde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ci_textViewT"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10sp"/>
 
-    <EditText
-        android:layout_width="231dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/txtBox_fatorsensiN" />
+        <EditText
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtBox_fatorsensiT" />
 
-    <Button
-        android:text="@string/continuar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_cfg"
-        android:onClick="gotoMain"
-        android:layout_gravity="bottom"/>
-</LinearLayout>
+        <!--Noite-->
+        <TextView
+            android:text="@string/txtfatorsensiNoite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ci_textViewN"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10sp"/>
+
+        <EditText
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtBox_fatorsensiN" />
+
+        <!--Campos Insulina por Carboidrato-->
+        <!--Manhã-->
+        <TextView
+            android:text="@string/txt_UIporCHO_M"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtUIporCHO_M"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtbox_UIporCHO_M" />
+
+        <!--Tarde-->
+        <TextView
+            android:text="@string/txt_UIporCHO_T"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_UIporCHO_T"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtbox_UIporCHO_T" />
+
+        <!--Noite-->
+        <TextView
+            android:text="@string/txt_UIporCHO_N"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_UIporCHO_N"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/txtbox_UIporCHO_N" />
+
+        <Button
+            android:text="@string/continuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cfg"
+            android:onClick="gotoMain"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+</ScrollView>

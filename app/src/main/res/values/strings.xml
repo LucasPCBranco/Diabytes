@@ -11,7 +11,11 @@
     <string name="searchable">searchable</string>
     <string name="menu_search">Search</string>
     <string name="continuar">Continuar</string>
-    <string name="txtfatorsensiManha">Insira seu fator de sensibilidade(manhã)</string>
-    <string name="txtfatorsensiTarde">Insira seu fator de sensibilidade(tarde)</string>
-    <string name="txtfatorsensiNoite">Insira seu fator de sensibilidade(noite)</string>
+    <string name="txtfatorsensiManha">Insira seu fator de sensibilidade(Manhã)</string>
+    <string name="txtfatorsensiTarde">Insira seu fator de sensibilidade(Tarde)</string>
+    <string name="txtfatorsensiNoite">Insira seu fator de sensibilidade(Noite)</string>
+    <string name="txt_UIporCHO_M">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Manhã)</string>
+    <string name="txt_UIporCHO_T">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Tarde)</string>
+    <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
+    <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
 </resources>
