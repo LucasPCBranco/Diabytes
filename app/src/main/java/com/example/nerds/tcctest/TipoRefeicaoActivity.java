@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
  * Created by Wallace on 26/10/2016.
  */
 
-public class NewAlimentoiiActivity extends AppCompatActivity {
+public class TipoRefeicaoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
