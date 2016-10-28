@@ -26,25 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Chamando o ListView que servirá como base
     public ListView listView;
-    public boolean firstAcess;
-
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted =  false;
-        //Se for 1º acesso, abre a activity para configurações iniciais
-        /* if(!previouslyStarted){
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(String.valueOf(previouslyStarted), Boolean.TRUE);
-            edit.commit();
-            Intent firstconf = new Intent(MainActivity.this, FirstAccess.class);
-            startActivity(firstconf);
-        } */
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -114,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
+        /* ESSA PARTE ABAIXO IRÁ PERTENCER A OUTRA ACTIVITY EM BREVE.*/
+
         //Chamará o recurso do DB (insert, select, etc)
         DBLocal bd = new DBLocal(this);
         //Criação de uma ArrayList do SELECT
@@ -125,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
         //Adapta os valores do listView baseado no ArrayList
         listView.setAdapter(arrayAdapter);
+
         super.onResume();
+
     }
 }

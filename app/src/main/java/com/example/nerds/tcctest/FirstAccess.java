@@ -32,9 +32,9 @@ public class FirstAccess extends AppCompatActivity {
         EditText fatorsensiM = (EditText) findViewById(R.id.txtBox_fatorsensiM);
         EditText fatorsensiT = (EditText) findViewById(R.id.txtBox_fatorsensiT);
         EditText fatorsensiN = (EditText) findViewById(R.id.txtBox_fatorsensiN);
-        EditText UIporCHOm = (EditText) findViewById(R.id.txtbox_UIporCHO_M);
-        EditText UIporCHOt = (EditText) findViewById(R.id.txtbox_UIporCHO_T);
-        EditText UIporCHOn = (EditText) findViewById(R.id.txtbox_UIporCHO_N);
+        EditText UIporCHOm = (EditText) findViewById(R.id.txtbox_CHOporUI_M);
+        EditText UIporCHOt = (EditText) findViewById(R.id.txtbox_CHOporUI_T);
+        EditText UIporCHOn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
     }
 
     public void gotoMain(View view){
