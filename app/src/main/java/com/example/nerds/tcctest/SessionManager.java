@@ -1,6 +1,7 @@
 package com.example.nerds.tcctest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.*;
 
@@ -11,7 +12,7 @@ public class SessionManager {
 
     //Constantes
     private static final String PREF_NAME = "DiabytesPref";
-    private static final String IS_CONFIG = "IsConfig"; //Questiona se já fora configurado
+    private static final String IS_CONFIG = "isConfig"; //Questiona se já fora configurado
 
     public static final String SENS_M = "fatorSensM";
     public static final String SENS_T = "fatorSensT";
@@ -39,7 +40,7 @@ public class SessionManager {
                             float chouiM, float chouiT, float chouiN){
         //Atribuíndo valores ao Editor
 
-        editor.putBoolean(IS_CONFIG, true);
+        editor.putBoolean("IS_CONFIG", true);
 
         editor.putFloat(SENS_M, sensM);
         editor.putFloat(SENS_T, sensT);
@@ -63,6 +64,24 @@ public class SessionManager {
         user.put(CHOPORUI_N, pref.getFloat(CHOPORUI_N, 0));
 
         return user;
+    }
+
+    //Método para verficação - Se é ou não a primeira vez que o app abre
+    public void verificaAcesso(){
+        if(!this.isConfig()){
+            //Se não estiver configurado, vai para a primeira tela
+            Intent i = new Intent(contexto, FirstAccess.class);
+             //Como vai inicialmente abrir a MainActivity, primeiro limpa-se caso tenha uma aberta
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //Flag para iniciar a task
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            contexto.startActivity(i);
+        }
+    }
+
+    public boolean isConfig(){
+        return pref.getBoolean(IS_CONFIG, false);
     }
 
 
