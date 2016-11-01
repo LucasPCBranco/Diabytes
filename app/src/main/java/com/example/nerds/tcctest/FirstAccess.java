@@ -37,7 +37,9 @@ public class FirstAccess extends AppCompatActivity {
         EditText UIporCHOn = (EditText) findViewById(R.id.txtbox_UIporCHO_N);
     }
 
+    //Metodo usado no botão, manda o usuário de volta pro Main
     public void gotoMain(View view){
         Intent i = new Intent(FirstAccess.this, MainActivity.class);
+        startActivity(i);
     }
 }

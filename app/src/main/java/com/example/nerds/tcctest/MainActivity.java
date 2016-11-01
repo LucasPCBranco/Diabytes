@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //TENTATIVA FALHA DE PRIMEIRO ACESSO
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean previouslyStarted =  false;
         //Se for 1º acesso, abre a activity para configurações iniciais
@@ -45,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(firstconf);
         } */
 
-
+        //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
+        //Intent firstconf = new Intent(this, FirstAccess.class);
+        //startActivity(firstconf);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -83,10 +87,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //EDIT Colocar esse método em comentários para utilizar da ATPSNA para testar outras telas diretamente
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_new, menu); //Insere menu_new ao Menu da Activity principal
+
+         getMenuInflater().inflate(R.menu.menu_new, menu); //Insere menu_new ao Menu da Activity principal
 
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);

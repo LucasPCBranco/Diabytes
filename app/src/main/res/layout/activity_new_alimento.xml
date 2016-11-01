@@ -51,17 +51,17 @@
         android:hint="Ex.: Colher de Sopa" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:layout_marginTop="22dp"
-        android:id="@+id/editCarb"
-        android:textSize="12sp"
-        android:hint="Ex.: 10,5"
-        android:layout_below="@+id/editPorcao"
-        android:layout_alignLeft="@+id/editPorcao"
-        android:layout_alignStart="@+id/editPorcao" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:inputType="numberDecimal"
+    android:ems="10"
+    android:layout_marginTop="22dp"
+    android:id="@+id/editCarb"
+    android:textSize="12sp"
+    android:hint="Ex.: 10,5"
+    android:layout_below="@+id/editPorcao"
+    android:layout_alignLeft="@+id/editPorcao"
+    android:layout_alignStart="@+id/editPorcao" />
 
     <TextView
         android:text="@string/carb"
@@ -69,6 +69,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewCarboidratos"
         android:layout_alignBaseline="@+id/editCarb"
+        android:layout_alignBottom="@+id/editCarb"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginTop="22dp"
+        android:id="@+id/editCarb2"
+        android:textSize="12sp"
+        android:text="Manhã"
+        android:layout_below="@+id/editCarb"
+        android:layout_alignLeft="@+id/editPorcao"
+        android:layout_alignStart="@+id/editPorcao" />
+
+    <TextView
+        android:text="Período"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewCarboidratos2"
+        android:layout_alignBaseline="@+id/editCarb2"
         android:layout_alignBottom="@+id/editCarb"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

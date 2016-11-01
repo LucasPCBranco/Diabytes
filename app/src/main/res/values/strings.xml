@@ -17,5 +17,6 @@
     <string name="txt_UIporCHO_M">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Manhã)</string>
     <string name="txt_UIporCHO_T">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Tarde)</string>
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
-    <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
+    <string name="txttipoRefeic">Selecione o período da Refeição</string>
+    <string name="ci_txtMsg">Olá caro amigo, ficamos muito felizes que tenha optado por utilizar nosso app mas antes de tudo precisamos de algumas informações que seu médico lhe passou para que possamos te ajudar, por favor preencha os campos abaixo de acordo com o que se pede c:</string>
 </resources>
