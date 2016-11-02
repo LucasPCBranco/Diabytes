@@ -77,6 +77,9 @@ public class SessionManager {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             contexto.startActivity(i);
+        }else{
+            Intent i = new Intent(contexto, MainActivity.class);
+            contexto.startActivity(i);
         }
     }
 

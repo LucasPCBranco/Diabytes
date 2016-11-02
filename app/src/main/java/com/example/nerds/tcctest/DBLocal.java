@@ -101,7 +101,7 @@ public class DBLocal extends SQLiteOpenHelper{
             while(cur.isAfterLast() == false){
                 Alimento a = new Alimento();
                 a.setId(cur.getInt(cur.getColumnIndex("id"))); //Pega o ID da coluna
-            /* Seta de acordo com o cursor*/
+                /* Seta de acordo com o cursor*/
                 a.setNome(cur.getString(cur.getColumnIndex(NOME)));
                 a.setPorcao(cur.getString(cur.getColumnIndex(PORCAO)));
                 a.setgCarb(cur.getFloat(cur.getColumnIndex(CARB)));
