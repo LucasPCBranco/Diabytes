@@ -18,4 +18,5 @@
     <string name="txt_UIporCHO_T">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Tarde)</string>
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
     <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
+    <string name="textDetalhes">Detalhes</string>
 </resources>
