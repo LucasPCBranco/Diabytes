@@ -1,14 +1,19 @@
 package com.example.nerds.tcctest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 public class CalcActivity extends AppCompatActivity {
 
     private TextView textNome, textPorcao, textCarb;
     public double calc; //Variável que armazenará o cálculo de carboidratos
+    private Button botaoCancelar, botaoSalvar;
+    private NumberPicker numPorcao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,18 @@ public class CalcActivity extends AppCompatActivity {
         textNome = (TextView) findViewById(R.id.textNome);
         textPorcao = (TextView) findViewById(R.id.textPorcao);
         textCarb = (TextView) findViewById(R.id.textCarb);
+
+        botaoCancelar = (Button) findViewById(R.id.botaoCancelar);
+        botaoSalvar = (Button) findViewById(R.id.botaoSalvar);
+
+        numPorcao = (NumberPicker) findViewById(R.id.numPorcao);
+
+        /*Mínimo de porções para serem calculadas: 1
+         Valor máximo decorativo: 100 */
+        numPorcao.setMinValue(1);
+        numPorcao.setMaxValue(100);
+
+        numPorcao.setWrapSelectorWheel(true);
 
         //Para conseguir as informações para RECEBER A POSIÇÃO CLICADA, é necessário:
         Bundle bMain = getIntent().getExtras();
@@ -34,10 +51,28 @@ public class CalcActivity extends AppCompatActivity {
             //Sistema extenso de conversão Float para String
             textCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
 
-            //Adiciona o valor de carboidratos da refeição.
-            calc = calc + bd.selectAlimentos().get(posicao).getgCarb();
-
         }
+
+        botaoCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* Futuramente, aqui será apenas para a AlimentoActivity (assim que não der merda*/
+                Intent i = new Intent(CalcActivity.this, MainActivity.class);
+                getApplicationContext().startActivity(i);
+            }
+        });
+
+        botaoSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* Quando clicado em salvar, o usuário retornará a tela Main, que no caso, seria a
+                   de refeições*/
+                Intent i = new Intent(CalcActivity.this, MainActivity.class);
+                getApplicationContext().startActivity(i);
+            }
+        });
+
+
 
     }
 }
