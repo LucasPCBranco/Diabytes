@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+>>>>>>> upstream/master
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:xlmns="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_main"
+<<<<<<< HEAD
         android:layout_width="match_parent"
+=======
+        android:layout_width="wrap_content"
+>>>>>>> upstream/master
         android:layout_height="wrap_content"
         tools:context="com.example.nerds.tcctest.MainActivity">
 
@@ -13,11 +25,19 @@
 
         <ListView
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+=======
+            android:layout_height="match_parent"
+>>>>>>> upstream/master
             android:id="@+id/listView_alimentos"
             android:layout_below="@+id/my_toolbar" />
 
 
+<<<<<<< HEAD
+=======
+    </RelativeLayout>
+>>>>>>> upstream/master
     </RelativeLayout>

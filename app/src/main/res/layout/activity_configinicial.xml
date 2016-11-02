@@ -94,8 +94,13 @@
             android:text="@string/txt_UIporCHO_M"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:id="@+id/txtUIporCHO_M"
             android:textSize="19sp"
+=======
+            android:id="@+id/txtCHOporUI_M"
+            android:textSize="20sp"
+>>>>>>> upstream/master
             android:textStyle="normal|bold"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -106,15 +111,20 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/txtbox_UIporCHO_M" />
+            android:id="@+id/txtbox_CHOporUI_M" />
 
         <!--Tarde-->
         <TextView
             android:text="@string/txt_UIporCHO_T"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:id="@+id/txt_UIporCHO_T"
             android:textSize="19sp"
+=======
+            android:id="@+id/txt_CHOporUI_T"
+            android:textSize="20sp"
+>>>>>>> upstream/master
             android:textStyle="normal|bold"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -125,15 +135,20 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/txtbox_UIporCHO_T" />
+            android:id="@+id/txtbox_CHOporUI_T" />
 
         <!--Noite-->
         <TextView
             android:text="@string/txt_UIporCHO_N"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:id="@+id/txt_UIporCHO_N"
             android:textSize="19sp"
+=======
+            android:id="@+id/txt_CHOporUI_N"
+            android:textSize="20sp"
+>>>>>>> upstream/master
             android:textStyle="normal|bold"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -144,7 +159,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/txtbox_UIporCHO_N" />
+            android:id="@+id/txtbox_CHOporUI_N" />
 
         <Button
             android:text="@string/continuar"

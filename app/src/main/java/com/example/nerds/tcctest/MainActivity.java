@@ -2,6 +2,7 @@ package com.example.nerds.tcctest;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
     //Chamando o ListView que servirá como base
     public ListView listView;
-    public boolean firstAcess;
-
 
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
+<<<<<<< HEAD
         //TENTATIVA FALHA DE PRIMEIRO ACESSO
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean previouslyStarted =  false;
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
             Intent firstconf = new Intent(MainActivity.this, FirstAccess.class);
             startActivity(firstconf);
         } */
+=======
+        SessionManager session = new SessionManager(getApplicationContext());
+        /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
+>>>>>>> upstream/master
 
         //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
         //Intent firstconf = new Intent(this, FirstAccess.class);
@@ -52,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
+=======
+        //session.verificaAcesso();
+>>>>>>> upstream/master
 
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -120,17 +129,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
+        /* ESSA PARTE ABAIXO IRÁ PERTENCER A OUTRA ACTIVITY EM BREVE.*/
+
         //Chamará o recurso do DB (insert, select, etc)
         DBLocal bd = new DBLocal(this);
         //Criação de uma ArrayList do SELECT
         ArrayList<String> listaAlimentos = new ArrayList<String>();
         //Usando for, vai criando uma posição ArrayList para cada Select presente
-        for (int i = 0; i < bd.selectAlimentos().size(); i++)
+        for (int i = 0; i < bd.selectAlimentos().size(); i++) {
             listaAlimentos.add(bd.selectAlimentos().get(i).getNome());
-        //Irá adaptar a entrada de um item na listView através de um Array
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
-        //Adapta os valores do listView baseado no ArrayList
-        listView.setAdapter(arrayAdapter);
+            //Irá adaptar a entrada de um item na listView através de um Array
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
+            //Adapta os valores do listView baseado no ArrayList
+            listView.setAdapter(arrayAdapter);
+        }
         super.onResume();
-    }
+}
 }

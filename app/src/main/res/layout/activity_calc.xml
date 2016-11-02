@@ -7,6 +7,26 @@
     tools:context="com.example.nerds.tcctest.CalcActivity">
 
 
+<<<<<<< HEAD
+=======
+    <TextView
+        android:text="Carboidratos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPorcao"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="37dp"
+        android:id="@+id/textCarb"
+        android:textColor="@android:color/primary_text_light" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numPorcao"
+        android:layout_below="@id/textCarb"
+        android:layout_centerInParent="true" />
+>>>>>>> upstream/master
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
@@ -21,7 +41,7 @@
             android:text="@string/cancelar">
         </Button>
         <Button
-            android:id="@+id/Button03"
+            android:id="@+id/botaoSalvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

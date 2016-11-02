@@ -18,12 +18,9 @@ public class DBLocal extends SQLiteOpenHelper{
     private static final String PORCAO = "porcao";
     private static final String CARB = "gcarb";
     private static final String TAG = "DBLocal";
-    //Table Usuario
-    private static final String TB_USER = "usuario";
-    //Fatores de sensibilidade (manhã, tarde, noite)
-    private static final String MANHA = "sensibilidadeM";
-    private static final String TARDE = "sensibilidadeT";
-    private static final String NOITE = "sensibilidadeN";
+
+    //Antes tinha aqui um tbUsuario, mas é desnecessário
+
     public DBLocal(Context context) {
         /* Normalmente, os parâmetros são context, name, factory e version.
         * Porém, nesse caso, só será necessário usar o context como parâmetro, sendo assim:*/
@@ -38,9 +35,6 @@ public class DBLocal extends SQLiteOpenHelper{
         //tbAlimento
         db.execSQL("CREATE TABLE " + TABLE + "(id INTEGER PRIMARY KEY, nome TEXT, "
                 +"porcao TEXT, gcarb REAL) ");
-        //tbUsuario
-        db.execSQL("CREATE TABLE "+ TB_USER + "(id INTEGER PRIMARY KEY, " +
-                MANHA + " REAL, " + TARDE + " REAL, " + NOITE + " REAL) ");
     }
 
     @Override
@@ -107,7 +101,7 @@ public class DBLocal extends SQLiteOpenHelper{
             while(cur.isAfterLast() == false){
                 Alimento a = new Alimento();
                 a.setId(cur.getInt(cur.getColumnIndex("id"))); //Pega o ID da coluna
-            /* Seta de acordo com o cursor*/
+                /* Seta de acordo com o cursor*/
                 a.setNome(cur.getString(cur.getColumnIndex(NOME)));
                 a.setPorcao(cur.getString(cur.getColumnIndex(PORCAO)));
                 a.setgCarb(cur.getFloat(cur.getColumnIndex(CARB)));
