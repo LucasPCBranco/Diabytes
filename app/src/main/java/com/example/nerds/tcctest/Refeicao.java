@@ -31,7 +31,7 @@ public class Refeicao {
         this.tipo = tipo;
     }
 
-    /* Set diferente - Adiciona o alimento necessário*/
+    /* Set diferente - Adiciona o alimento necessário para EXIBIÇÃO*/
     public void setAlimentos(Alimento alimento) {
         this.alimentos.add(alimento);
     }
@@ -43,4 +43,8 @@ public class Refeicao {
     public void setUi(double ui) {
         this.ui = ui;
     }
+
+    /* Método para cálculo dos carboidratods. Explicando a lógica:
+       O usuário irá selecionar os Alimentos, que no caso, estão concentrados na ArrayList<Alimentos>
+       Se esses dados forem devidamente pegos, dá para usar um cálculo simples de multiplicação*/
 }

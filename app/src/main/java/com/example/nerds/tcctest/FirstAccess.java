@@ -19,18 +19,18 @@ public class FirstAccess extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_configinicial);
-
        session = new SessionManager(getApplicationContext());
 
-    //Definindo a toolbar
-    Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-    setSupportActionBar(my_toolbar);
 
-    //Titulo e icone que fica na toolbar
-    getSupportActionBar().setTitle("Primeiro Acesso");
-    getSupportActionBar().setIcon(R.drawable.ic_toolbar);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_configinicial);
+        //Definindo a toolbar
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+
+        //Titulo e icone que fica na toolbar
+        getSupportActionBar().setTitle("Primeiro Acesso");
+        getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
         Button botao = (Button) findViewById(R.id.btn_cfg);
         final EditText fatorsensiM = (EditText) findViewById(R.id.txtBox_fatorsensiM);
@@ -51,6 +51,7 @@ public class FirstAccess extends AppCompatActivity {
                 float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
                 float uichoN = Float.parseFloat(CHOporUIn.getText().toString());
 
+                /* Esses dados são salvos graças a sessão aberta no início do código*/
                 session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN);
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
