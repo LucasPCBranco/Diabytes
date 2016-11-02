@@ -5,7 +5,7 @@
     <string name="porcao">Porção</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="tbTitle">Diabytes</string>
+    <string name="tbTitle_Alimentos">Alimentos customizados</string>
     <string name="menu_1">Opcao</string>
     <string name="menu_2">Opcao2</string>
     <string name="searchable">searchable</string>
@@ -19,4 +19,5 @@
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
     <string name="txttipoRefeic">Selecione o período da Refeição</string>
     <string name="ci_txtMsg">Olá caro amigo, ficamos muito felizes que tenha optado por utilizar nosso app mas antes de tudo precisamos de algumas informações que seu médico lhe passou para que possamos te ajudar, por favor preencha os campos abaixo de acordo com o que se pede c:</string>
+    <string name="periodo">Período não definido</string>
 </resources>

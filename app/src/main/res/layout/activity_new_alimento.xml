@@ -74,19 +74,6 @@
         android:layout_alignParentStart="true"
         android:textColor="@android:color/black" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:layout_marginTop="22dp"
-        android:id="@+id/editCarb2"
-        android:textSize="12sp"
-        android:text="Manhã"
-        android:layout_below="@+id/editCarb"
-        android:layout_alignLeft="@+id/editPorcao"
-        android:layout_alignStart="@+id/editPorcao" />
-
     <TextView
         android:text="Período"
         android:layout_width="wrap_content"
@@ -107,4 +94,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@color/colorPrimary" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:id="@+id/editCarb2"
+        android:textSize="12sp"
+        android:text="@string/periodo"
+        android:layout_below="@+id/editCarb"
+        android:layout_alignLeft="@+id/editCarb"
+        android:layout_alignStart="@+id/editCarb" />
 </RelativeLayout>
