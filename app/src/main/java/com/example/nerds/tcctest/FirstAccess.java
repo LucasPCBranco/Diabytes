@@ -19,7 +19,7 @@ public class FirstAccess extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-       session = new SessionManager(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
 
 
         super.onCreate(savedInstanceState);
@@ -31,40 +31,37 @@ public class FirstAccess extends AppCompatActivity {
         //Titulo e icone que fica na toolbar
         getSupportActionBar().setTitle("Primeiro Acesso");
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
-
-<<<<<<< HEAD
+    }
     //Metodo usado no botão, manda o usuário de volta pro Main
     public void gotoMain(View view){
         Intent i = new Intent(FirstAccess.this, MainActivity.class);
-        startActivity(i);
-=======
-        Button botao = (Button) findViewById(R.id.btn_cfg);
+        startActivity(i); }
+
+       /* Button botao = (Button) findViewById(R.id.btn_cfg);
         final EditText fatorsensiM = (EditText) findViewById(R.id.txtBox_fatorsensiM);
         final EditText fatorsensiT = (EditText) findViewById(R.id.txtBox_fatorsensiT);
         final EditText fatorsensiN = (EditText) findViewById(R.id.txtBox_fatorsensiN);
         final EditText CHOporUIm = (EditText) findViewById(R.id.txtbox_CHOporUI_M);
         final EditText CHOporUIt = (EditText) findViewById(R.id.txtbox_CHOporUI_T);
-        final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
+        final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);*/
 
-        botao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Atribuindo valores para as variáveis.
-                float sensiM = Float.parseFloat(fatorsensiM.getText().toString());
-                float sensiT = Float.parseFloat(fatorsensiT.getText().toString());
-                float sensiN = Float.parseFloat(fatorsensiN.getText().toString());
-                float uichoM = Float.parseFloat(CHOporUIm.getText().toString());
-                float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
-                float uichoN = Float.parseFloat(CHOporUIn.getText().toString());
+    /* botao.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //Atribuindo valores para as variáveis.
+            float sensiM = Float.parseFloat(fatorsensiM.getText().toString());
+            float sensiT = Float.parseFloat(fatorsensiT.getText().toString());
+            float sensiN = Float.parseFloat(fatorsensiN.getText().toString());
+            float uichoM = Float.parseFloat(CHOporUIm.getText().toString());
+            float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
+            float uichoN = Float.parseFloat(CHOporUIn.getText().toString()); */
 
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
-                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN);
+           /* session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN);
 
-                Intent i = new Intent(FirstAccess.this, MainActivity.class);
-                session.contexto.startActivity(i);
-            }
-        });
->>>>>>> upstream/master
+            Intent i = new Intent(FirstAccess.this, MainActivity.class);
+            session.contexto.startActivity(i);
+        }
+    }); */
     }
-}
 

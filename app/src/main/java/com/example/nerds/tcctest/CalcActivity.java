@@ -27,7 +27,7 @@ public class CalcActivity extends AppCompatActivity {
         setSupportActionBar(my_toolbar);
 
         //Titulo e icone que fica na toolbar
-        getSupportActionBar().setTitle(R.string.tbTitle);
+        getSupportActionBar().setTitle(R.string.tbTitle_Alimentos);
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
 

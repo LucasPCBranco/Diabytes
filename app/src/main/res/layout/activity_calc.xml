@@ -6,9 +6,30 @@
     android:layout_height="match_parent"
     tools:context="com.example.nerds.tcctest.CalcActivity">
 
+    <TextView
+        android:text="Nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:id="@+id/textNome"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-<<<<<<< HEAD
-=======
+    <TextView
+        android:text="Porção"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textPorcao"
+        android:layout_below="@+id/textNome"
+        android:layout_alignLeft="@+id/textNome"
+        android:layout_alignStart="@+id/textNome" />
+
+
     <TextView
         android:text="Carboidratos"
         android:layout_width="wrap_content"
@@ -26,7 +47,6 @@
         android:id="@+id/numPorcao"
         android:layout_below="@id/textCarb"
         android:layout_centerInParent="true" />
->>>>>>> upstream/master
 
     <LinearLayout
         android:id="@+id/LinearLayout02"

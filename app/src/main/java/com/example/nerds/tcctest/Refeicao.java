@@ -9,8 +9,10 @@ public class Refeicao {
     private ArrayList<Alimento> alimentos; //Isso aqui pode dar ruim no futuro
     private TimeUnit hora; //TimeUnit, Time
     private double ui;
+    private float glicemia;
 
     /* GETTERS E SETTERS*/
+
     public String getTipo() {
         return tipo;
     }
@@ -26,6 +28,8 @@ public class Refeicao {
     public TimeUnit getHora() {
         return hora;
     }
+
+    public float getGlicemia() { return glicemia; }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -43,6 +47,8 @@ public class Refeicao {
     public void setUi(double ui) {
         this.ui = ui;
     }
+
+    public void setGlicemia(float glicemia) { this.glicemia = glicemia; }
 
     /* Método para cálculo dos carboidratods. Explicando a lógica:
        O usuário irá selecionar os Alimentos, que no caso, estão concentrados na ArrayList<Alimentos>

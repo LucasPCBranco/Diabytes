@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
-<<<<<<< HEAD
         //TENTATIVA FALHA DE PRIMEIRO ACESSO
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean previouslyStarted =  false;
@@ -46,21 +45,18 @@ public class MainActivity extends AppCompatActivity {
             Intent firstconf = new Intent(MainActivity.this, FirstAccess.class);
             startActivity(firstconf);
         } */
-=======
+
         SessionManager session = new SessionManager(getApplicationContext());
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
->>>>>>> upstream/master
+
 
         //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
-        //Intent firstconf = new Intent(this, FirstAccess.class);
+       // Intent firstconf = new Intent(this, FirstAccess.class);
         //startActivity(firstconf);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
-=======
         //session.verificaAcesso();
->>>>>>> upstream/master
 
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
