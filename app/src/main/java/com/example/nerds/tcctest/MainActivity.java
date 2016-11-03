@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, NewAlimentoActivity.class));
                 break;
 
-            //case R.id.menu_1:
+            case R.id.menu_1:
+                /* Configurações*/
 
 
         }
