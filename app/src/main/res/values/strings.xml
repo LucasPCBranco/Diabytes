@@ -24,4 +24,7 @@
     <string name="novoFator">Novo Fator de Sensibilidade:</string>
     <string name="novoCHO">Nova relação Carboidrato/Insulina</string>
     <string name="novaMeta">Nova Meta Glicêmica</string>
+    <string name="selecionarAli">Escolha o Tipo de Alimento</string>
+    <string name="AlimentosBD">TABELA TACO</string>
+    <string name="meusAlimentos">Meus Alimentos</string>
 </resources>
