@@ -21,4 +21,7 @@
     <string name="textDetalhes">Detalhes</string>
     <string name="gPorcao">Porção (g)</string>
     <string name="metaGlicemica">Qual é a meta glicêmica indicada pelo seu médico?</string>
+    <string name="novoFator">Novo Fator de Sensibilidade:</string>
+    <string name="novoCHO">Nova relação Carboidrato/Insulina</string>
+    <string name="novaMeta">Nova Meta Glicêmica</string>
 </resources>

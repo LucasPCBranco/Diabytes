@@ -10,7 +10,98 @@
         android:textSize="35sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/config_newFator"
+        android:text="@string/novoFator"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newFatorM"
+        android:hint="@string/txtfatorsensiManha"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newFatorT"
+        android:hint="@string/txtfatorsensiTarde"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newFatorN"
+        android:hint="@string/txtfatorsensiNoite"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/config_newCHO"
+        android:text="@string/novoCHO"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCHOm"
+        android:hint="@string/txt_UIporCHO_M"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCHOt"
+        android:hint="@string/txt_UIporCHO_T"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCHOn"
+        android:hint="@string/txt_UIporCHO_N"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/config_newMeta"
+        android:text="@string/novaMeta"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newMeta"
+        android:hint="@string/metaGlicemica"
+        android:textAlignment="center"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/botaoSalvarConfig"
+        android:text="@string/salvar"
+        />
 
 
 </LinearLayout>
