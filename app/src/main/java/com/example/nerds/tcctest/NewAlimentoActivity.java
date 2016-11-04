@@ -11,6 +11,7 @@ public class NewAlimentoActivity extends AppCompatActivity {
     private EditText editName;
     private EditText editPorcao;
     private EditText editCarb;
+    private EditText editgPorcao;
     private Button buttonSalvar;
 
     @Override
@@ -21,6 +22,7 @@ public class NewAlimentoActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editName);
         editPorcao = (EditText) findViewById(R.id.editPorcao);
         editCarb = (EditText) findViewById(R.id.editCarb);
+        editgPorcao = (EditText) findViewById(R.id.editgPorcao);
         buttonSalvar = (Button) findViewById(R.id.buttonSalvar);
 
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
@@ -41,9 +43,12 @@ public class NewAlimentoActivity extends AppCompatActivity {
         novo.setNome(editName.getText().toString());
         novo.setPorcao(editPorcao.getText().toString());
 
-        //No caso específico do carboidrato, faremos uma conversão para Float;
+        //Nos casos específico do carboidrato e da porção, faremos uma conversão para Float;
         float carb = Float.valueOf(editCarb.getText().toString());
         novo.setgCarb(carb);
+
+        float porcao = Float.valueOf(editgPorcao.getText().toString());
+        novo.setgPorcao(porcao);
 
         //Insere o Aliemnto no BD
         bd.insertAlimento(novo);

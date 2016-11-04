@@ -1,13 +1,7 @@
 package com.example.nerds.tcctest;
 
-import android.app.Activity;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -18,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -29,15 +22,12 @@ public class MainActivity extends AppCompatActivity {
     public ListView listView;
 
 
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
         SessionManager session = new SessionManager(getApplicationContext());
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -98,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, NewAlimentoActivity.class));
                 break;
 
-            //case R.id.menu_1:
+            case R.id.menu_1:
+                /* Configurações*/
 
 
         }

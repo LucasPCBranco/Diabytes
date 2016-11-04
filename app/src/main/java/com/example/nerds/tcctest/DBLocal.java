@@ -17,6 +17,7 @@ public class DBLocal extends SQLiteOpenHelper{
     private static final String NOME = "nome";
     private static final String PORCAO = "porcao";
     private static final String CARB = "gcarb";
+    private static final String PORC = "gPorcao";
     private static final String TAG = "DBLocal";
 
     //Antes tinha aqui um tbUsuario, mas é desnecessário
@@ -34,7 +35,7 @@ public class DBLocal extends SQLiteOpenHelper{
 
         //tbAlimento
         db.execSQL("CREATE TABLE " + TABLE + "(id INTEGER PRIMARY KEY, nome TEXT, "
-                +"porcao TEXT, gcarb REAL) ");
+                +"porcao TEXT, gcarb REAL, gPorcao REAL) ");
     }
 
     @Override
@@ -51,6 +52,7 @@ public class DBLocal extends SQLiteOpenHelper{
             contentValues.put(NOME, alimento.getNome());
             contentValues.put(PORCAO, alimento.getPorcao());
             contentValues.put(CARB, alimento.getgCarb());
+            contentValues.put(PORC, alimento.getgPorcao());
             bd.insert(TABLE, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
             return true;
         }catch(Exception e){
@@ -78,6 +80,7 @@ public class DBLocal extends SQLiteOpenHelper{
             a.setNome(cur.getString(cur.getColumnIndex(NOME)));
             a.setPorcao(cur.getString(cur.getColumnIndex(PORCAO)));
             a.setgCarb(cur.getFloat(cur.getColumnIndex(CARB)));
+            a.setgPorcao(cur.getFloat(cur.getColumnIndex(PORC)));
             lista.add(a);
             cur.moveToNext(); //Após o fim das informações, move-se à próxima
         }
@@ -105,6 +108,7 @@ public class DBLocal extends SQLiteOpenHelper{
                 a.setNome(cur.getString(cur.getColumnIndex(NOME)));
                 a.setPorcao(cur.getString(cur.getColumnIndex(PORCAO)));
                 a.setgCarb(cur.getFloat(cur.getColumnIndex(CARB)));
+                a.setgPorcao(cur.getFloat(cur.getColumnIndex(PORC)));
                 lista.add(a);
                 cur.moveToNext(); //Após o fim das informações, move-se à próxima
             }

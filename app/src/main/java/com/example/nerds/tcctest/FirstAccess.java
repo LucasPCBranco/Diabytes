@@ -39,6 +39,7 @@ public class FirstAccess extends AppCompatActivity {
         final EditText CHOporUIm = (EditText) findViewById(R.id.txtbox_CHOporUI_M);
         final EditText CHOporUIt = (EditText) findViewById(R.id.txtbox_CHOporUI_T);
         final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
+        final EditText metaGlicemica = (EditText) findViewById(R.id.txtbox_metaGlicemica);
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +51,10 @@ public class FirstAccess extends AppCompatActivity {
                 float uichoM = Float.parseFloat(CHOporUIm.getText().toString());
                 float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
                 float uichoN = Float.parseFloat(CHOporUIn.getText().toString());
+                float glicemia = Float.parseFloat(metaGlicemica.getText().toString());
 
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
-                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN);
+                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN, glicemia);
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
                 session.contexto.startActivity(i);

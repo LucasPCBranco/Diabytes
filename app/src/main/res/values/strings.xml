@@ -6,8 +6,8 @@
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
     <string name="tbTitle">Diabytes</string>
-    <string name="menu_1">Opcao</string>
-    <string name="menu_2">Opcao2</string>
+    <string name="menu_1">Configurações</string>
+    <string name="menu_2">Sobre nós</string>
     <string name="searchable">searchable</string>
     <string name="menu_search">Search</string>
     <string name="continuar">Continuar</string>
@@ -19,4 +19,12 @@
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
     <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
     <string name="textDetalhes">Detalhes</string>
+    <string name="gPorcao">Porção (g)</string>
+    <string name="metaGlicemica">Qual é a meta glicêmica indicada pelo seu médico?</string>
+    <string name="novoFator">Novo Fator de Sensibilidade:</string>
+    <string name="novoCHO">Nova relação Carboidrato/Insulina</string>
+    <string name="novaMeta">Nova Meta Glicêmica</string>
+    <string name="selecionarAli">Escolha o Tipo de Alimento</string>
+    <string name="AlimentosBD">TABELA TACO</string>
+    <string name="meusAlimentos">Meus Alimentos</string>
 </resources>
