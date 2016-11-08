@@ -27,4 +27,6 @@
     <string name="selecionarAli">Escolha o Tipo de Alimento</string>
     <string name="AlimentosBD">TABELA TACO</string>
     <string name="meusAlimentos">Meus Alimentos</string>
+    <string name="voltar">Voltar</string>
+    <string name="excluir">EXCLUIR</string>
 </resources>

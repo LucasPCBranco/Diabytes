@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class CalcActivity extends AppCompatActivity {
 
     private TextView textNome, textPorcao, textCarb;
-    public double calc; //Variável que armazenará o cálculo de carboidratos
+    public float calc; //Variável que armazenará o cálculo de carboidratos
     private Button botaoCancelar, botaoSalvar;
     private NumberPicker numPorcao;
 
@@ -67,12 +67,16 @@ public class CalcActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* Quando clicado em salvar, o usuário retornará a tela Main, que no caso, seria a
                    de refeições*/
+                //calc = calc()
                 Intent i = new Intent(CalcActivity.this, MainActivity.class);
                 getApplicationContext().startActivity(i);
             }
         });
 
-
-
+    }
+    /* Método interno para cálculo das gramas de carboidrato baseado no NumberPicker*/
+    private float calc(float gCarb, int porcoes){
+        float carbFinal = (gCarb * porcoes);
+        return carbFinal;
     }
 }

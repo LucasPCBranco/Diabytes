@@ -8,7 +8,7 @@ public class Refeicao {
     private String tipo;
     private ArrayList<Alimento> alimentos; //Isso aqui pode dar ruim no futuro
     private TimeUnit hora; //TimeUnit, Time
-    private double ui;
+    private double ui, glicemiaAtual; //Glicemia Atual
 
     /* GETTERS E SETTERS*/
     public String getTipo() {
@@ -40,8 +40,9 @@ public class Refeicao {
         this.hora = hora;
     }
 
-    public void setUi(double ui) {
-        this.ui = ui;
+    /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição*/
+    public void calculoUi(double ui) {
+        /* Criar código adequado*/
     }
 
     /* Método para cálculo dos carboidratods. Explicando a lógica:
