@@ -8,7 +8,7 @@ public class Alimento {
     //Atributos básicos do alimento
     private int id;
     private String nome, porcao;
-    private float gCarb; //Carboidratos em gramas
+    private float gCarb, gPorcao; //Carboidratos em gramas; Porção em gramas
 
     //GETTERS E SETTERS
     public int getId() {
@@ -43,7 +43,13 @@ public class Alimento {
         this.gCarb = gCarb;
     }
 
+    public float getgPorcao(){
+        return gPorcao;
+    }
 
+    public void setgPorcao(float gPorcao){
+        this.gPorcao = gPorcao;
+    }
 
 
 }

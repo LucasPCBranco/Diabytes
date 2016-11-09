@@ -22,6 +22,8 @@ public class SessionManager {
     public static final String CHOPORUI_T = "UIporCHOt";
     public static final String CHOPORUI_N = "UIporCHOn";
 
+    public static final String GLICEMIA = "metaGlicemica";
+
 
 
 
@@ -37,7 +39,7 @@ public class SessionManager {
     }
 
     public void salvarDados(float sensM, float sensT, float sensN,
-                            float chouiM, float chouiT, float chouiN){
+                            float chouiM, float chouiT, float chouiN, float glicemia){
         //Atribuíndo valores ao Editor
 
         editor.putBoolean("IS_CONFIG", true);
@@ -48,6 +50,7 @@ public class SessionManager {
         editor.putFloat(CHOPORUI_M, chouiM);
         editor.putFloat(CHOPORUI_T, chouiT);
         editor.putFloat(CHOPORUI_N, chouiN);
+        editor.putFloat(GLICEMIA, glicemia);
 
         editor.commit();
     }
@@ -62,6 +65,8 @@ public class SessionManager {
         user.put(CHOPORUI_M, pref.getFloat(CHOPORUI_M, 0));
         user.put(CHOPORUI_T, pref.getFloat(CHOPORUI_T, 0));
         user.put(CHOPORUI_N, pref.getFloat(CHOPORUI_N, 0));
+
+        user.put(GLICEMIA, pref.getFloat(GLICEMIA, 0));
 
         return user;
     }

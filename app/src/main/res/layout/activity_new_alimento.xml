@@ -50,24 +50,51 @@
         android:layout_alignParentEnd="true"
         android:hint="Ex.: Colher de Sopa" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gPorcao"
+        android:textSize="14sp"
+        android:id="@+id/textViewgPorcao"
+        android:layout_alignLeft="@+id/textViewPorcao"
+        android:textColor="@android:color/black"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewPorcao"
+        android:layout_marginTop="32dp"/>
+
     <EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:inputType="numberDecimal"
-    android:ems="10"
-    android:layout_marginTop="22dp"
-    android:id="@+id/editCarb"
-    android:textSize="12sp"
-    android:hint="Ex.: 10,5"
-    android:layout_below="@+id/editPorcao"
-    android:layout_alignLeft="@+id/editPorcao"
-    android:layout_alignStart="@+id/editPorcao" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginTop="22dp"
+        android:id="@+id/editgPorcao"
+        android:textSize="12sp"
+        android:hint="Ex.: 10,5"
+        android:layout_below="@+id/editPorcao"
+        android:layout_alignLeft="@+id/editPorcao"
+        android:layout_alignStart="@+id/editPorcao"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_marginTop="22dp"
+        android:id="@+id/editCarb"
+        android:textSize="12sp"
+        android:hint="Ex.: 10,5"
+        android:layout_below="@+id/editgPorcao"
+        android:layout_alignLeft="@+id/editgPorcao"
+        android:layout_alignStart="@+id/editgPorcao" />
 
     <TextView
         android:text="@string/carb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewCarboidratos"
+        android:layout_below="@id/textViewgPorcao"
         android:layout_alignBaseline="@+id/editCarb"
         android:layout_alignBottom="@+id/editCarb"
         android:layout_alignParentLeft="true"
