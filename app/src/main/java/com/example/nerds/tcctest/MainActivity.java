@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         SessionManager session = new SessionManager(getApplicationContext());
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
+
+        //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
+       // Intent firstconf = new Intent(this, FirstAccess.class);
+        //startActivity(firstconf);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -67,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //EDIT Colocar esse método em comentários para utilizar da ATPSNA para testar outras telas diretamente
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_new, menu); //Insere menu_new ao Menu da Activity principal
+
+         getMenuInflater().inflate(R.menu.menu_new, menu); //Insere menu_new ao Menu da Activity principal
 
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);

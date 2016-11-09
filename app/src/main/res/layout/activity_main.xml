@@ -5,6 +5,7 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:xlmns="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_main"
@@ -17,7 +18,9 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:id="@+id/listView_alimentos"
             android:layout_below="@+id/my_toolbar" />
 

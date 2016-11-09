@@ -3,6 +3,7 @@ package com.example.nerds.tcctest;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -20,9 +21,16 @@ public class CalcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
 
-        textNome = (TextView) findViewById(R.id.textNome);
-        textPorcao = (TextView) findViewById(R.id.textPorcao);
-        textCarb = (TextView) findViewById(R.id.textCarb);
+
+        //Definindo a toolbar
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+
+        //Titulo e icone que fica na toolbar
+        getSupportActionBar().setTitle(R.string.tbTitle);
+        getSupportActionBar().setIcon(R.drawable.ic_toolbar);
+
+
 
         botaoCancelar = (Button) findViewById(R.id.botaoCancelar);
         botaoSalvar = (Button) findViewById(R.id.botaoSalvar);

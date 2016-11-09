@@ -19,7 +19,7 @@ public class FirstAccess extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-       session = new SessionManager(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
 
 
         super.onCreate(savedInstanceState);
@@ -31,7 +31,6 @@ public class FirstAccess extends AppCompatActivity {
         //Titulo e icone que fica na toolbar
         getSupportActionBar().setTitle("Primeiro Acesso");
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
-
         Button botao = (Button) findViewById(R.id.btn_cfg);
         final EditText fatorsensiM = (EditText) findViewById(R.id.txtBox_fatorsensiM);
         final EditText fatorsensiT = (EditText) findViewById(R.id.txtBox_fatorsensiT);
@@ -60,6 +59,12 @@ public class FirstAccess extends AppCompatActivity {
                 session.contexto.startActivity(i);
             }
         });
+    }
+
+    //Metodo usado no botão, manda o usuário de volta pro Main
+    public void gotoMain(View view) {
+        Intent i = new Intent(FirstAccess.this, MainActivity.class);
+        startActivity(i);
     }
 }
 
