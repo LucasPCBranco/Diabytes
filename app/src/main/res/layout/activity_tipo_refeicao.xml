@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_tipoRefeic"
-        android:textSize="29sp"
+        android:textSize="26sp"
         android:textStyle="normal|bold"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -36,23 +37,19 @@
             android:layout_margin="2dp">
 
             <Button
-                android:text="Café da Manhã"
-                android:textSize="20sp"
                 android:textAlignment="gravity"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/button8"
-                android:background="@drawable/ic_btn1_telarefii"/>
+                android:background="@drawable/manha"/>
 
             <Button
-                android:text="Almoço"
-                android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/button9"
-                android:background="@drawable/ic_btn2_telarefii" />
+                android:background="@drawable/tarde" />
         </TableRow>
 
         <TableRow
@@ -61,22 +58,18 @@
             android:layout_weight="1"  >
 
             <Button
-                android:text="Janta"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/button11"
-                android:background="@drawable/ic_btn3_telarefii" />
+                android:background="@drawable/noite" />
 
-            <Button
-                android:text="Outros"
-                android:textSize="20sp"
+           <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/button10"
-                android:background="@drawable/ic_btn4_telarefii" />
+                android:background="@drawable/voltar" />
         </TableRow>
 
     </TableLayout>
