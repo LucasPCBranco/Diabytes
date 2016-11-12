@@ -8,13 +8,19 @@ public class Refeicao {
     private String tipo;
     private ArrayList<Alimento> alimentos; //Isso aqui pode dar ruim no futuro
     private TimeUnit hora; //TimeUnit, Time
-    private float glicemia;
-    private double ui, glicemiaAtual; //Glicemia Atual
+    private float glicemia; //Glicemia Atual
+    private double ui;
+
+    //Importação classe PrimeiroAcesso
+    FirstAccess configi = new FirstAccess();
 
     /* GETTERS E SETTERS*/
 
     public String getTipo() {
         return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public double getUi() {
@@ -25,31 +31,48 @@ public class Refeicao {
         return alimentos;
     }
 
-    public TimeUnit getHora() {
-        return hora;
-    }
-
-    public float getGlicemia() { return glicemia; }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     /* Set diferente - Adiciona o alimento necessário para EXIBIÇÃO*/
     public void setAlimentos(Alimento alimento) {
         this.alimentos.add(alimento);
     }
 
+    public TimeUnit getHora() {
+        return hora;
+    }
     public void setHora(TimeUnit hora) {
         this.hora = hora;
     }
 
+    public float getGlicemia() { return glicemia; }
+    public void setGlicemia(float glicemia) { this.glicemia = glicemia; }
+
+
+
+
+
+
     /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição*/
     public void calculoUi(double ui) {
+        //A = (Glicemia Atual - Glicemia Alvo) / fatorSensi
+        //B = Carboidratos / fatorCHOporUI
+        //ui = A + B;
+
+        //Usuario escolhe Período -> M/T/N
+
+        //A =
+        //fatorSensi = configi.sensiM / configi.sensiT / configi.sensiN
+        //Glicemia Alvo = configi.metaglicemia
+        //Glicemia Atual = glicemia
+
+        //B =
+        //Carboidratos = Soma dos valores de todos os alimentos inseridos no ArrayList 'alimentos'
+        //fatorCHOporUI = configi.uichoM / configi.uichoT / configi.uichoN
+
         /* Criar código adequado*/
+
     }
 
-    public void setGlicemia(float glicemia) { this.glicemia = glicemia; }
+
 
     /* Método para cálculo dos carboidratods. Explicando a lógica:
        O usuário irá selecionar os Alimentos, que no caso, estão concentrados na ArrayList<Alimentos>
