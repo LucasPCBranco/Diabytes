@@ -38,9 +38,9 @@ public class CalcActivity extends AppCompatActivity {
         numPorcao = (NumberPicker) findViewById(R.id.numPorcao);
 
         /*Mínimo de porções para serem calculadas: 1
-         Valor máximo decorativo: 100 */
+         Valor máximo decorativo: 20 - Analisar? */
         numPorcao.setMinValue(1);
-        numPorcao.setMaxValue(100);
+        numPorcao.setMaxValue(20);
 
         numPorcao.setWrapSelectorWheel(true);
 
@@ -57,16 +57,27 @@ public class CalcActivity extends AppCompatActivity {
             textNome.setText(bd.selectAlimentos().get(posicao).getNome());
             textPorcao.setText(bd.selectAlimentos().get(posicao).getPorcao());
             //Sistema extenso de conversão Float para String
-            textCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
+            float carb = bd.selectAlimentos().get(posicao).getgCarb();
+            textCarb.setText(String.valueOf(carb));
 
         }
 
         botaoCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* Futuramente, aqui será apenas para a AlimentoActivity (assim que não der merda*/
+
+                /* Futuramente, aqui será apenas para a AlimentoActivity (assim que não der merda) */
+
+                Bundle b = new Bundle();
+                //Gravando mais um Bundle - Para uso da NewRefeicao (Activity)
+                b.putString("nome", textNome.toString());
+                float carb = Float.valueOf(String.valueOf(textCarb));
+                b.putFloat("carb", carb);
+                b.putInt("porcao", numPorcao.getValue());
+
                 Intent i = new Intent(CalcActivity.this, MainActivity.class);
-                getApplicationContext().startActivity(i);
+                i.putExtras(b);
+                startActivity(i);
             }
         });
 
