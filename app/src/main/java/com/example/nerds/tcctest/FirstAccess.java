@@ -50,10 +50,10 @@ public class FirstAccess extends AppCompatActivity {
                 float uichoM = Float.parseFloat(CHOporUIm.getText().toString());
                 float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
                 float uichoN = Float.parseFloat(CHOporUIn.getText().toString());
-                float glicemia = Float.parseFloat(metaGlicemica.getText().toString());
+                float metaglicemia = Float.parseFloat(metaGlicemica.getText().toString());
 
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
-                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN, glicemia);
+                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN, metaglicemia);
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
                 session.contexto.startActivity(i);
