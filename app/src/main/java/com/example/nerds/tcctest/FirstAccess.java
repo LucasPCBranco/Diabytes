@@ -53,7 +53,6 @@ public class FirstAccess extends AppCompatActivity {
                 float metaglicemia = Float.parseFloat(metaGlicemica.getText().toString());
 
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
-                session.salvarDados(sensiM, sensiT, sensiN, uichoM, uichoT, uichoN, metaglicemia);
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
                 session.contexto.startActivity(i);

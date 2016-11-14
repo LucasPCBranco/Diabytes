@@ -1,7 +1,6 @@
 package com.example.nerds.tcctest;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.*;
 
@@ -11,21 +10,9 @@ public class SessionManager {
     //Classe para conseguir verificar se é ou não a primeira vez que o app está sendo rodada
 
     //Constantes
-    private static final String PREF_NAME = "DiabytesPref";
-    private static final String IS_CONFIG = "isConfig"; //Questiona se já fora configurado
+    private static final String PREF_NAME = "diabytes-welcome";
 
-    public static final String SENS_M = "fatorSensM";
-    public static final String SENS_T = "fatorSensT";
-    public static final String SENS_N = "fatorSensN";
-
-    public static final String CHOPORUI_M = "UIporCHOm";
-    public static final String CHOPORUI_T = "UIporCHOt";
-    public static final String CHOPORUI_N = "UIporCHOn";
-
-    public static final String GLICEMIA = "metaGlicemica";
-
-
-
+    private static final String IS_FIRST = "isFirst"; //Questiona se já fora configurado
 
     // Atributos
     SharedPreferences pref;
@@ -38,7 +25,7 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void salvarDados(float sensM, float sensT, float sensN,
+   /* public void salvarDados(float sensM, float sensT, float sensN,
                             float chouiM, float chouiT, float chouiN, float glicemia){
         //Atribuíndo valores ao Editor
 
@@ -69,9 +56,9 @@ public class SessionManager {
         user.put(GLICEMIA, pref.getFloat(GLICEMIA, 0));
 
         return user;
-    }
+    } */
 
-    //Método para verficação - Se é ou não a primeira vez que o app abre
+    /*Método para verficação - Se é ou não a primeira vez que o app abre
     public void verificaAcesso(){
         if(!this.isConfig()){
             //Se não estiver configurado, vai para a primeira tela
@@ -86,11 +73,15 @@ public class SessionManager {
             Intent i = new Intent(contexto, MainActivity.class);
             contexto.startActivity(i);
         }
+    } */
+
+    public void setConfig(boolean isConfig){
+        editor.putBoolean(IS_FIRST, isConfig);
+        editor.commit();
     }
 
     public boolean isConfig(){
-        return pref.getBoolean(IS_CONFIG, false);
+        return pref.getBoolean(IS_FIRST, true);
     }
-
 
 }

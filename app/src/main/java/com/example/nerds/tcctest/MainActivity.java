@@ -21,12 +21,20 @@ public class MainActivity extends AppCompatActivity {
     //Chamando o ListView que servirá como base
     public ListView listView;
 
+    //Puxando a classe SessionManager
+    private SessionManager sessionManager;
+
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
-        SessionManager session = new SessionManager(getApplicationContext());
+        sessionManager = new SessionManager(this);
+        if(sessionManager.isConfig()){
+            abrirPrimeiroAcesso();
+            finish();
+        }
+
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
 
         //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
@@ -121,5 +129,15 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(arrayAdapter);
         }
         super.onResume();
-}
+    }
+
+    //Método para abrir a tela de primeiro acesso, caso necessário
+    private void abrirPrimeiroAcesso(){
+        sessionManager.setConfig(false); //Torna a opção de primeira vez FALSE, e então, não abrirá essa tela;
+        Intent i = new Intent(MainActivity.this, FirstAccess.class);
+        startActivity(i);
+        finish();
+    }
+
+
 }
