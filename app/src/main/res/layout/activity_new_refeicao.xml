@@ -107,9 +107,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ref_txtAlimentos"
-        android:layout_alignLeft="@+id/ref_txtAlimentos"
-        android:layout_alignStart="@+id/ref_txtAlimentos"
         android:id="@+id/ref_listAlimentos"/>
 
     <Button

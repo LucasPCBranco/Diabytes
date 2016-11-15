@@ -49,8 +49,6 @@ public class Refeicao {
 
 
 
-
-
     /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição*/
     public void calculoUi(double ui) {
         //A = (Glicemia Atual - Glicemia Alvo) / fatorSensi

@@ -57,8 +57,7 @@ public class CalcActivity extends AppCompatActivity {
             textNome.setText(bd.selectAlimentos().get(posicao).getNome());
             textPorcao.setText(bd.selectAlimentos().get(posicao).getPorcao());
             //Sistema extenso de conversão Float para String
-            float carb = bd.selectAlimentos().get(posicao).getgCarb();
-            textCarb.setText(String.valueOf(carb));
+            textCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
 
         }
 
@@ -71,6 +70,7 @@ public class CalcActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 //Gravando mais um Bundle - Para uso da NewRefeicao (Activity)
                 b.putString("nome", textNome.toString());
+                //GAMBIARRA MASTER ABAIXO - De TextView para String para Float, sendo que a priori, é uma float mesmo
                 float carb = Float.valueOf(String.valueOf(textCarb));
                 b.putFloat("carb", carb);
                 b.putInt("porcao", numPorcao.getValue());
@@ -94,8 +94,5 @@ public class CalcActivity extends AppCompatActivity {
 
     }
     /* Método interno para cálculo das gramas de carboidrato baseado no NumberPicker*/
-    private float calc(float gCarb, int porcoes){
-        float carbFinal = (gCarb * porcoes);
-        return carbFinal;
-    }
+
 }
