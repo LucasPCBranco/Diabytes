@@ -3,6 +3,7 @@ package com.example.nerds.tcctest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -41,7 +42,6 @@ public class NewRefeicao extends AppCompatActivity{
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
 
 
-
         if(bCalc != null){
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
             1°) Nome - fica salvo justamente na ListView */
@@ -54,6 +54,10 @@ public class NewRefeicao extends AppCompatActivity{
             total =+ (carb * porc);
             
         }
+
+        //Adaptando os dados da Array na ListView
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
+        ref_ListAlimentos.setAdapter(arrayAdapter);
 
     }
 
