@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.concurrent.LinkedTransferQueue;
 
 /**
  * Created by Wallace on 02/11/2016.
@@ -13,7 +14,13 @@ import java.util.ArrayList;
 
 public class NewRefeicao extends AppCompatActivity{
 
+    //Constantes - Essas constantes serão usadas para posteriormente servirem como base para a recriação da Activity
+    static final String SOMA_CARB = "somaCarb";
+    static final String LISTA_ALI = "alimentos"; //Vai servir como base para o Alimento
+
     public ListView ref_ListAlimentos;
+    private float total; //Usado para armazenar as somas de carboidrato do usuário
+    private ArrayList<String> alimentos = null; //ArrayList que será adaptada para a ListView dos alimentos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +39,8 @@ public class NewRefeicao extends AppCompatActivity{
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
-        ArrayList<String> alimentos = null; //Aqui vai ser de onde a lista será adaptada
-        float total = 0; //De alguma forma, esse número será passado
+
+
 
         if(bCalc != null){
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
@@ -44,8 +51,31 @@ public class NewRefeicao extends AppCompatActivity{
             float carb = bCalc.getFloat("carb");
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
+            total =+ (carb * porc);
             
         }
 
+    }
+
+    /* Salvando os dados da Activity*/
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        //Atribuindo valor a instância
+        savedInstanceState.putFloat(SOMA_CARB, total);
+        savedInstanceState.putStringArrayList(LISTA_ALI, alimentos);
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    /* Verificação e utilização do sistema para recuperar dados da activity*/
+    public void onRestoredInstance(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        //Verificação - se já tem algo salvo, recupera esses valores
+        if(savedInstanceState != null){
+            //Dados a serem recuperados
+            savedInstanceState.getFloat(SOMA_CARB);
+            savedInstanceState.getStringArrayList(LISTA_ALI);
+
+        }
     }
 }
