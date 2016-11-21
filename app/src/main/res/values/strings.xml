@@ -8,7 +8,7 @@
     <string name="tbTitle">Diabytes</string>
     <string name="menu_1">Configurações</string>
     <string name="menu_2">Sobre nós</string>
-    <string name="searchable">searchable</string>
+    <string name="searchable">Search...</string>
     <string name="menu_search">Search</string>
     <string name="continuar">Continuar</string>
     <string name="txtfatorsensiManha">Insira seu fator de sensibilidade(Manhã)</string>
@@ -17,7 +17,7 @@
     <string name="txt_UIporCHO_M">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Manhã)</string>
     <string name="txt_UIporCHO_T">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Tarde)</string>
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
-    <string name="ci_txtMsg">Olá caro amigo, ficamos muito felizes que tenha optado por utilizar nosso app mas antes de tudo precisamos de algumas informações que seu médico lhe passou para que possamos te ajudar, por favor preencha os campos abaixo de acordo com o que se pede c:</string>
+    <string name="ci_txtMsg">Obrigado por escolher nosso aplicativo!Para realizar a sugestão de insulina, precisamos de algumas informações:</string>
     <string name="periodo">Período não definido</string>
     <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
     <string name="textDetalhes">Detalhes</string>
@@ -32,5 +32,4 @@
     <string name="meusAlimentos">Meus Alimentos</string>
     <string name="voltar">Voltar</string>
     <string name="excluir">EXCLUIR</string>
->>>>>>> upstream/master
 </resources>
