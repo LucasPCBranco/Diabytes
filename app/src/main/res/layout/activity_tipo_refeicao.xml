@@ -41,14 +41,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/button8"
+                android:id="@+id/button_Manha"
                 android:background="@drawable/manha"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/button9"
+                android:id="@+id/button_Tarde"
                 android:background="@drawable/tarde" />
         </TableRow>
 
@@ -61,14 +61,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/button11"
+                android:id="@+id/button_Noite"
                 android:background="@drawable/noite" />
 
            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/button10"
+                android:id="@+id/button_Voltar"
                 android:background="@drawable/voltar" />
         </TableRow>
 

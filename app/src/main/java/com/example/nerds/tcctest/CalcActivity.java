@@ -22,20 +22,14 @@ public class CalcActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calc);
 
 
-        //Definindo a toolbar
-        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(my_toolbar);
-
-        //Titulo e icone que fica na toolbar
-        getSupportActionBar().setTitle(R.string.tbTitle);
-        getSupportActionBar().setIcon(R.drawable.ic_toolbar);
-
-
+        textNome = (TextView) findViewById(R.id.textNome_Calc);
+        textPorcao = (TextView) findViewById(R.id.textPorcao_Calc);
+        textCarb = (TextView) findViewById(R.id.textCarb_Calc);
 
         botaoCancelar = (Button) findViewById(R.id.botaoCancelar);
         botaoSalvar = (Button) findViewById(R.id.botaoSalvar);
 
-        numPorcao = (NumberPicker) findViewById(R.id.numPorcao);
+        numPorcao = (NumberPicker) findViewById(R.id.numPorcao_Calc);
 
         /*Mínimo de porções para serem calculadas: 1
          Valor máximo decorativo: 20 - Analisar? */
@@ -52,7 +46,6 @@ public class CalcActivity extends AppCompatActivity {
             item, conseguimos a posição no item que foi clicado*/
             int posicao = bMain.getInt("posicao");
             DBLocal bd = new DBLocal(this);
-
             //Atribue os valores relativos a posição
             textNome.setText(bd.selectAlimentos().get(posicao).getNome());
             textPorcao.setText(bd.selectAlimentos().get(posicao).getPorcao());
@@ -61,7 +54,7 @@ public class CalcActivity extends AppCompatActivity {
 
         }
 
-        botaoCancelar.setOnClickListener(new View.OnClickListener() {
+        botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -69,26 +62,32 @@ public class CalcActivity extends AppCompatActivity {
 
                 Bundle b = new Bundle();
                 //Gravando mais um Bundle - Para uso da NewRefeicao (Activity)
-                b.putString("nome", textNome.toString());
+                String nome = textNome.getText().toString();
+                b.putString("nome", nome);
                 //GAMBIARRA MASTER ABAIXO - De TextView para String para Float, sendo que a priori, é uma float mesmo
-                float carb = Float.valueOf(String.valueOf(textCarb));
-                b.putFloat("carb", carb);
+                try {
+                    String conv = String.valueOf(textCarb);
+                    float carb = Float.parseFloat(conv);
+                    b.putFloat("carb", carb);
+                }catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                }
                 b.putInt("porcao", numPorcao.getValue());
-
-                Intent i = new Intent(CalcActivity.this, MainActivity.class);
+                //Dessa forma, a tela NewRefeicao recebe os dados. Será que funciona?
+                Intent i = new Intent(CalcActivity.this, NewRefeicao.class);
                 i.putExtras(b);
                 startActivity(i);
             }
         });
 
-        botaoSalvar.setOnClickListener(new View.OnClickListener() {
+        botaoCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /* Quando clicado em salvar, o usuário retornará a tela Main, que no caso, seria a
                    de refeições*/
                 //calc = calc()
                 Intent i = new Intent(CalcActivity.this, MainActivity.class);
-                getApplicationContext().startActivity(i);
+                startActivity(i);
             }
         });
 

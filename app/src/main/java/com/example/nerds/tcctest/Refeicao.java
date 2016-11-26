@@ -46,10 +46,17 @@ public class Refeicao {
     public float getGlicemia() { return glicemia; }
     public void setGlicemia(float glicemia) { this.glicemia = glicemia; }
 
+    public void calculoCarb(){
+
+    }
+
+    public int calculoGlicemia(int atual, int meta){
+        return (meta - atual) /* / fatorSensibilidade*/;
+    }
 
 
 
-    /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição*/
+    /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição
     public void calculoUi(double ui) {
         //A = (Glicemia Atual - Glicemia Alvo) / fatorSensi
         //B = Carboidratos / fatorCHOporUI
@@ -74,5 +81,5 @@ public class Refeicao {
 
     /* Método para cálculo dos carboidratods. Explicando a lógica:
        O usuário irá selecionar os Alimentos, que no caso, estão concentrados na ArrayList<Alimentos>
-       Se esses dados forem devidamente pegos, dá para usar um cálculo simples de multiplicação*/
-}
+       Se esses dados forem devidamente pegos, dá para usar um cálculo simples de multiplicação
+}*/

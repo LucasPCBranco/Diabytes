@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         // Intent firstconf = new Intent(this, FirstAccess.class);
         //startActivity(firstconf);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_meus_alimentos);
 
         //session.verificaAcesso();
 
@@ -87,15 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Atribui o valor do listView ao que será exibido na tela
         listView = (ListView) findViewById(R.id.listView_alimentos);
-
-        //Alterar para mRVAlimentos (RecyclerView) - corrigir erro do setOnItemClickListener no RecyclerView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
             //Baseado na posição em i do Banco de Dados no onResume(), chegamos a:
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Cria um Bundle que salva as info's da posição para ser enviado para outra Activity
                 Bundle b = new Bundle();
-                /* A posição passada como parâmetro é atribuído ao Bundle*/
+                //A posição passada como parâmetro é atribuído ao Bundle
                 b.putInt("posicao", position);
 
                 //Cria a transição entre a MainActivity com a tela de transição (TESTE COM nova)
@@ -109,9 +106,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+        /*Alterar para mRVAlimentos (RecyclerView) - corrigir erro do setOnItemClickListener no RecyclerView */
+
     //EDIT Colocar esse método em comentários para utilizar da ATPSNA para testar outras telas diretamente
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         //Insere menu_new ao Menu(toolbar) da Activity principal
@@ -146,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_1:
-                /* Configurações*/
-
+                /* Configurações. Agora, para fins de teste, vai dar lugar a outra tela*/
+                Intent i = new Intent(MainActivity.this, TipoRefeicaoActivity.class);
+                startActivity(i);
+                break;
 
         }
 
@@ -320,13 +321,17 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> listaAlimentos = new ArrayList<String>();
         //Usando for, vai criando uma posição ArrayList para cada Select presente
         for (int i = 0; i < bd.selectAlimentos().size(); i++) {
+            if(bd.selectAlimentos().size() > 0){
             listaAlimentos.add(bd.selectAlimentos().get(i).getNome());
             //Irá adaptar a entrada de um item na listView através de um Array
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
             //Adapta os valores do listView baseado no ArrayList
             listView.setAdapter(arrayAdapter);
+        }else{
+
         }
-        super.onResume();
+            super.onResume();
+        }
     }
 
     //Método para abrir a tela de primeiro acesso, caso necessário

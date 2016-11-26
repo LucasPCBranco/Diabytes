@@ -19,6 +19,7 @@ public class AdapterAlimento extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Context context;
     private LayoutInflater inflater;
+    //private final View.OnClickListener clickListener;
     List<Alimento> data= Collections.emptyList();
     Alimento current;
 
@@ -33,6 +34,7 @@ public class AdapterAlimento extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.container_alimento, parent,false);
+        //view.setOnClickListener(clickListener);
         MyHolder holder=new MyHolder(view);
         return holder;
     }
