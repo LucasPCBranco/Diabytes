@@ -113,15 +113,11 @@
 
     <Button
         android:text="Salvar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ref_listAlimentos"
-        android:layout_alignStart="@+id/ref_listAlimentos"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/ref_listAlimentos"
         android:id="@+id/ref_btnSalvar"
-        android:background="@android:color/holo_blue_dark"
-        android:layout_gravity="bottom"/>
+        android:background="@android:color/holo_blue_dark" />
 
     <TextView
         android:text="Data:"
