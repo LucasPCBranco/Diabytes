@@ -45,6 +45,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".DetalhesRefeicaoActivity"></activity>
+        <activity android:name=".TipoRefeicaoActivity"></activity>
     </application>
 
 </manifest>

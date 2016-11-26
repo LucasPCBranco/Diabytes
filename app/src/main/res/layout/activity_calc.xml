@@ -13,7 +13,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        android:id="@+id/textNome"
+        android:id="@+id/textNome_Calc"
         android:textColor="@android:color/black"
         android:textSize="36sp"
         android:layout_alignParentTop="true"
@@ -24,28 +24,28 @@
         android:text="Porção"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textPorcao"
-        android:layout_below="@+id/textNome"
-        android:layout_alignLeft="@+id/textNome"
-        android:layout_alignStart="@+id/textNome" />
+        android:id="@+id/textPorcao_Calc"
+        android:layout_below="@+id/textNome_Calc"
+        android:layout_alignLeft="@+id/textNome_Calc"
+        android:layout_alignStart="@+id/textNome_Calc" />
 
 
     <TextView
         android:text="Carboidratos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textPorcao"
+        android:layout_below="@+id/textPorcao_Calc"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="37dp"
-        android:id="@+id/textCarb"
+        android:id="@+id/textCarb_Calc"
         android:textColor="@android:color/primary_text_light" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numPorcao"
-        android:layout_below="@id/textCarb"
+        android:id="@+id/numPorcao_Calc"
+        android:layout_below="@id/textCarb_Calc"
         android:layout_centerInParent="true" />
 
     <LinearLayout

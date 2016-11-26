@@ -107,7 +107,9 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ref_listAlimentos"/>
+        android:id="@+id/ref_listAlimentos"
+        android:layout_below="@id/ref_txtAlimentos"
+        />
 
     <Button
         android:text="Salvar"

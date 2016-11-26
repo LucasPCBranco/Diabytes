@@ -21,7 +21,7 @@ public class NewRefeicao extends AppCompatActivity{
 
     public ListView ref_ListAlimentos;
     private float total; //Usado para armazenar as somas de carboidrato do usuário
-    private ArrayList<String> alimentos = null; //ArrayList que será adaptada para a ListView dos alimentos
+    private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +42,19 @@ public class NewRefeicao extends AppCompatActivity{
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
 
 
-        if(bCalc != null){
+        if(bCalc == null){
+            //Ué
+        }else{
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
             1°) Nome - fica salvo justamente na ListView */
             String nome = bCalc.getString("nome");
+            System.out.println("AQUI, Ó: " + nome);
             alimentos.add(nome);
             /*2°) gCarb - vai se juntar a soma de carboidratos */
             float carb = bCalc.getFloat("carb");
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
             total =+ (carb * porc);
-            
         }
 
         //Adaptando os dados da Array na ListView
