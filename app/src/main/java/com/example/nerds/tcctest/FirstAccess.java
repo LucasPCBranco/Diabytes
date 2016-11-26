@@ -15,6 +15,13 @@ import android.widget.EditText;
 public class FirstAccess extends AppCompatActivity {
 
     SessionManager session;
+    float sensiM;
+    float sensiT;
+    float sensiN;
+    float uichoM;
+    float uichoT;
+    float uichoN;
+    float metaglicemica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +51,13 @@ public class FirstAccess extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Atribuindo valores para as variáveis.
-                float sensiM = Float.parseFloat(fatorsensiM.getText().toString());
-                float sensiT = Float.parseFloat(fatorsensiT.getText().toString());
-                float sensiN = Float.parseFloat(fatorsensiN.getText().toString());
-                float uichoM = Float.parseFloat(CHOporUIm.getText().toString());
-                float uichoT = Float.parseFloat(CHOporUIt.getText().toString());
-                float uichoN = Float.parseFloat(CHOporUIn.getText().toString());
-                float metaglicemia = Float.parseFloat(metaGlicemica.getText().toString());
+                sensiM = Float.parseFloat(fatorsensiM.getText().toString());
+                sensiT = Float.parseFloat(fatorsensiT.getText().toString());
+                sensiN = Float.parseFloat(fatorsensiN.getText().toString());
+                uichoM = Float.parseFloat(CHOporUIm.getText().toString());
+                uichoT = Float.parseFloat(CHOporUIt.getText().toString());
+                uichoN = Float.parseFloat(CHOporUIn.getText().toString());
+                metaglicemica = Float.parseFloat(metaGlicemica.getText().toString());
 
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
 
@@ -62,7 +69,16 @@ public class FirstAccess extends AppCompatActivity {
 
     //Metodo usado no botão, manda o usuário de volta pro Main
     public void gotoMain(View view) {
+        Bundle fa = new Bundle();
+        fa.putFloat("sensiM", sensiM);
+        fa.putFloat("sensiT", sensiT);
+        fa.putFloat("sensiN", sensiN);
+        fa.putFloat("uichoM", uichoM);
+        fa.putFloat("uichoT", uichoT);
+        fa.putFloat("uichoN", uichoN);
+        fa.putFloat("metaglicemica", metaglicemica);
         Intent i = new Intent(FirstAccess.this, MainActivity.class);
+        i.putExtra("fa", fa);
         startActivity(i);
     }
 }

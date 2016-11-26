@@ -3,8 +3,13 @@ package com.example.nerds.tcctest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.LinkedTransferQueue;
@@ -20,6 +25,7 @@ public class NewRefeicao extends AppCompatActivity{
     static final String LISTA_ALI = "alimentos"; //Vai servir como base para o Alimento
 
     public ListView ref_ListAlimentos;
+    public TextView periodo;
     private float total; //Usado para armazenar as somas de carboidrato do usuário
     private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
 
@@ -27,7 +33,8 @@ public class NewRefeicao extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
 
         //Iniciando Bundle com informações pegas da CalcActivity
-        Bundle bCalc = getIntent().getExtras();
+        Bundle bCalc = getIntent().getBundleExtra("calc");
+        Bundle bTipo = getIntent().getBundleExtra("bTipo");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_refeicao);
@@ -40,6 +47,9 @@ public class NewRefeicao extends AppCompatActivity{
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
+        periodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+
+        periodo.setText(bTipo.getString("periodo"));
 
 
         if(bCalc == null){

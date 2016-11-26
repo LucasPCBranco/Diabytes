@@ -75,7 +75,7 @@ public class CalcActivity extends AppCompatActivity {
                 b.putInt("porcao", numPorcao.getValue());
                 //Dessa forma, a tela NewRefeicao recebe os dados. Será que funciona?
                 Intent i = new Intent(CalcActivity.this, NewRefeicao.class);
-                i.putExtras(b);
+                i.putExtra("calc", b);
                 startActivity(i);
             }
         });
