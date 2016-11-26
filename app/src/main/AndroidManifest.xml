@@ -46,6 +46,7 @@
         </activity>
         <activity android:name=".DetalhesRefeicaoActivity"></activity>
         <activity android:name=".TipoRefeicaoActivity"></activity>
+        <activity android:name=".SelecaoActivity"></activity>
     </application>
 
 </manifest>

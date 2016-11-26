@@ -1,9 +1,12 @@
 package com.example.nerds.tcctest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,11 +29,13 @@ public class NewRefeicao extends AppCompatActivity{
     private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
     private String periodo;
     private TextView txtPeriodo; //Texto que tem o período selecionado derivado de TipoRefeicaoActivity
+    private Button btnSalvar, btnAdd; //Botões para funcionalidades
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_refeicao);
 
         //Verificação - se já tem algo salvo, recupera esses valores
         if(savedInstanceState != null){
@@ -46,8 +51,6 @@ public class NewRefeicao extends AppCompatActivity{
         //Informações pegas da TipoRefeicaoActivity
         Bundle bTipo = getIntent().getBundleExtra("bTipo");
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_refeicao);
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(my_toolbar);
@@ -57,14 +60,13 @@ public class NewRefeicao extends AppCompatActivity{
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
-
-        String periodo = bTipo.getString("periodo");
-        System.out.println("PERÍODO:  " + periodo);
-        if(periodo != null) {
-            //Selecionando o texto da Bundle.
+        txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+        if(bTipo != null) {
+            String periodo = bTipo.getString("periodo");
+            System.out.println("PERÍODO:  " + periodo);
             txtPeriodo.setText(periodo);
         }
-        if(bCalc == null){
+        else if(bCalc == null){
             //Ué
         }else{
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
@@ -82,6 +84,25 @@ public class NewRefeicao extends AppCompatActivity{
         //Adaptando os dados da Array na ListView
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
         ref_ListAlimentos.setAdapter(arrayAdapter);
+
+        btnSalvar = (Button) findViewById(R.id.ref_btnSalvar);
+        btnAdd = (Button) findViewById(R.id.ref_btnNewAlimento);
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Salvar: Fazer o cálculo baseado nos dados do usuário, e exibir detalhes
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Add: Vai para a tela de seleção de origem dos alimentos
+                 Intent i = new Intent(NewRefeicao.this, SelecaoActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     /* Salvando os dados da Activity*/
