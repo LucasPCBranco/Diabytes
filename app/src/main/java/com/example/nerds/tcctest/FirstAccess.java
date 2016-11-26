@@ -55,7 +55,7 @@ public class FirstAccess extends AppCompatActivity {
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
-                session.contexto.startActivity(i);
+                startActivity(i);
             }
         });
     }

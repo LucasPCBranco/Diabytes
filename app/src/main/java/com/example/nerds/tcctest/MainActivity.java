@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         if(sessionManager.isConfig()){
             abrirPrimeiroAcesso();
             finish();
-        }
+        }else{
 
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
 
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        }
     }
 
         /*Alterar para mRVAlimentos (RecyclerView) - corrigir erro do setOnItemClickListener no RecyclerView */
@@ -266,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
         @Override
         protected void onPostExecute(String result) {
 
@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         /* ESSA PARTE ABAIXO IRÁ PERTENCER A OUTRA ACTIVITY EM BREVE.*/
-
+        super.onResume();
         //Chamará o recurso do DB (insert, select, etc)
         DBLocal bd = new DBLocal(this);
         //Criação de uma ArrayList do SELECT
@@ -327,10 +327,9 @@ public class MainActivity extends AppCompatActivity {
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
             //Adapta os valores do listView baseado no ArrayList
             listView.setAdapter(arrayAdapter);
-        }else{
+        }else {
 
-        }
-            super.onResume();
+            }
         }
     }
 

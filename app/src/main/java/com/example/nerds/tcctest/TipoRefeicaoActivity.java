@@ -19,14 +19,15 @@ public class TipoRefeicaoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tipo_refeicao);
+
         //Associando os botões do layout
         botaoManha = (Button) findViewById(R.id.button_Manha);
         botaoTarde = (Button) findViewById(R.id.button_Tarde);
         botaoNoite = (Button) findViewById(R.id.button_Noite);
         botaoVoltar = (Button) findViewById(R.id.button_Voltar);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tipo_refeicao);
 
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
