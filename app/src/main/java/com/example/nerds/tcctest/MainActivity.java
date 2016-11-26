@@ -89,14 +89,16 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_alimentos);
 
         //Alterar para mRVAlimentos (RecyclerView) - corrigir erro do setOnItemClickListener no RecyclerView
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+    /*     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             //Baseado na posição em i do Banco de Dados no onResume(), chegamos a:
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Cria um Bundle que salva as info's da posição para ser enviado para outra Activity
                 Bundle b = new Bundle();
                 /* A posição passada como parâmetro é atribuído ao Bundle*/
-                b.putInt("posicao", position);
+    /*            b.putInt("posicao", position);
 
                 //Cria a transição entre a MainActivity com a tela de transição (TESTE COM nova)
                 Intent i = new Intent(MainActivity.this, CalcActivity.class);
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });
+        }); */
     }
     //EDIT Colocar esse método em comentários para utilizar da ATPSNA para testar outras telas diretamente
 
