@@ -1,12 +1,16 @@
 package com.example.nerds.tcctest;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,31 +24,36 @@ import java.util.concurrent.LinkedTransferQueue;
 public class NewRefeicao extends AppCompatActivity{
 
     //Constantes - Essas constantes serão usadas para posteriormente servirem como base para a recriação da Activity
-    static final String SOMA_CARB = "somaCarb";
+    static final String SOMA_CARB = "total";
     static final String LISTA_ALI = "alimentos"; //Vai servir como base para o Alimento
     static final String PERIODO = "periodo";
 
     public ListView ref_ListAlimentos;
     private float total; //Usado para armazenar as somas de carboidrato do usuário
     private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
-    private String periodo;
+    private String periodo, nomeBundle;
     private TextView txtPeriodo; //Texto que tem o período selecionado derivado de TipoRefeicaoActivity
+    private EditText editText_nome, editText_glicemia;
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
+
+    //Pegando SharedPreferences
+    SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
+    SharedPreferences.Editor ed = sharedPreferences.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_refeicao);
+        System.out.println("onCreate() UTILIZADO");
 
-        //Verificação - se já tem algo salvo, recupera esses valores
+        /*//Verificação - se já tem algo salvo, recupera esses valores
         if(savedInstanceState != null){
+            System.out.println("ENTROU!\n" + savedInstanceState);
             //Dados a serem recuperados
-            total = savedInstanceState.getFloat(SOMA_CARB);
-            alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
-            periodo = savedInstanceState.getString(PERIODO);
+            this.onRestoreInstanceState(savedInstanceState);
 
-        }
+        } */
 
         //Iniciando Bundle com informações pegas da CalcActivity
         Bundle bCalc = getIntent().getBundleExtra("bCalc");
@@ -61,24 +70,32 @@ public class NewRefeicao extends AppCompatActivity{
 
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
         txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+
+        editText_nome = (EditText) findViewById(R.id.editText_nome);
+        editText_glicemia = (EditText) findViewById(R.id.editText_glicemia);
+
+
         if(bTipo != null) {
             String periodo = bTipo.getString("periodo");
             System.out.println("PERÍODO:  " + periodo);
-            txtPeriodo.setText(periodo);
+            this.periodo = periodo; //Para uso de recuperação
+            txtPeriodo.setText("Manhã");
         }
-        else if(bCalc == null){
-            //Ué
-        }else{
+        else if(bCalc != null){
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
             1°) Nome - fica salvo justamente na ListView */
             String nome = bCalc.getString("nome");
             System.out.println("AQUI, Ó: " + nome); //Teste para ver se a variável passa
             alimentos.add(nome);
+            nomeBundle = nome;
             /*2°) gCarb - vai se juntar a soma de carboidratos */
             float carb = bCalc.getFloat("carb");
+            System.out.println("CARBOIDRATOS de " + nome + ": " + carb);
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
+            System.out.println("NÚMEROS DE PORÇÕES: " + porc);
             total =+ (carb * porc);
+            System.out.println("PÓS PASSAGEM: " +  total);
         }
 
         //Adaptando os dados da Array na ListView
@@ -91,7 +108,37 @@ public class NewRefeicao extends AppCompatActivity{
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Salvar: Fazer o cálculo baseado nos dados do usuário, e exibir detalhes
+                /*Salvar: Fazer o cálculo baseado nos dados do usuário, e exibir detalhes - Primeiro
+                momento, meter o louco. Essa tela será posteriormente alterada*/
+
+                float ManhaF = sharedPreferences.getFloat("fatorM", 0);
+                float TardeF = sharedPreferences.getFloat("fatorT", 0);
+                float NoiteF = sharedPreferences.getFloat("fatorN", 0);
+
+                float ManhaC = sharedPreferences.getFloat("CHOporuiM", 0);
+                float TardeC = sharedPreferences.getFloat("CHOporuiT", 0);
+                float NoiteC = sharedPreferences.getFloat("CHOporuiN", 0);
+
+                float Meta = sharedPreferences.getFloat("meta", 0);
+
+                Bundle bNew = new Bundle();
+                bNew.putString("alimento", nomeBundle);
+                bNew.putString("nomeRef", editText_nome.toString());
+                bNew.putString("periodo", "Manhã");
+
+
+                //Normalmente faria um if/else, mas agora vou usar o método simples
+                float atual = Float.parseFloat(editText_glicemia.toString());
+                float calculo = (total / ManhaC) + ((atual - Meta) / ManhaF);
+
+                bNew.putFloat("calculo", calculo);
+
+
+                Intent i = new Intent(NewRefeicao.this, DetalhesRefeicaoActivity.class);
+                i.putExtra("bNew", bNew);
+                startActivity(i);
+
+
             }
         });
 
@@ -111,13 +158,16 @@ public class NewRefeicao extends AppCompatActivity{
         savedInstanceState.putFloat(SOMA_CARB, total);
         savedInstanceState.putStringArrayList(LISTA_ALI, alimentos);
         savedInstanceState.putString(PERIODO, periodo);
+
         super.onSaveInstanceState(savedInstanceState);
+
+        System.out.println("onSaveInstanceState() UTILIZADO");
     }
 
     /* Verificação e utilização do sistema para recuperar dados da activity*/
-    public void onRestoredInstance(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-
+    @Override
+    public void onRestoreInstanceState( Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
         total = savedInstanceState.getFloat(SOMA_CARB);
         alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
         periodo = savedInstanceState.getString(PERIODO);
