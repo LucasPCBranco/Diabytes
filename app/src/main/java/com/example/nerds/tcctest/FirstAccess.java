@@ -1,6 +1,9 @@
 package com.example.nerds.tcctest;
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,12 +25,17 @@ public class FirstAccess extends AppCompatActivity {
     float uichoT;
     float uichoN;
     float metaglicemica;
+    SharedPreferences sharedPreferences;
+
+    static final String PREFERENCIAS = "myPref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         session = new SessionManager(getApplicationContext());
 
+        sharedPreferences = getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor ed = sharedPreferences.edit();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configinicial);
@@ -59,10 +67,21 @@ public class FirstAccess extends AppCompatActivity {
                 uichoN = Float.parseFloat(CHOporUIn.getText().toString());
                 metaglicemica = Float.parseFloat(metaGlicemica.getText().toString());
 
+                ed.putFloat("fatorM", sensiM);
+                ed.putFloat("fatorT", sensiT);
+                ed.putFloat("fatorN", sensiN);
+
+                ed.putFloat("UIchoM", uichoM);
+                ed.putFloat("UIchoT", uichoT);
+                ed.putFloat("UIchoN", uichoN);
+
+                ed.putFloat("meta", metaglicemica);
+
+                ed.commit();
                 /* Esses dados são salvos graças a sessão aberta no início do código*/
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
-                session.contexto.startActivity(i);
+                startActivity(i);
             }
         });
     }

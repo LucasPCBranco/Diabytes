@@ -50,7 +50,8 @@ public class CalcActivity extends AppCompatActivity {
             textNome.setText(bd.selectAlimentos().get(posicao).getNome());
             textPorcao.setText(bd.selectAlimentos().get(posicao).getPorcao());
             //Sistema extenso de conversão Float para String
-            textCarb.setText(String.valueOf(bd.selectAlimentos().get(posicao).getgCarb()));
+            calc = bd.selectAlimentos().get(posicao).getgCarb();
+            textCarb.setText(String.valueOf(calc));
 
         }
 
@@ -66,16 +67,15 @@ public class CalcActivity extends AppCompatActivity {
                 b.putString("nome", nome);
                 //GAMBIARRA MASTER ABAIXO - De TextView para String para Float, sendo que a priori, é uma float mesmo
                 try {
-                    String conv = String.valueOf(textCarb);
-                    float carb = Float.parseFloat(conv);
-                    b.putFloat("carb", carb);
+                    b.putFloat("carb", calc);
                 }catch (NumberFormatException ex){
                     ex.printStackTrace();
                 }
                 b.putInt("porcao", numPorcao.getValue());
                 //Dessa forma, a tela NewRefeicao recebe os dados. Será que funciona?
                 Intent i = new Intent(CalcActivity.this, NewRefeicao.class);
-                i.putExtra("calc", b);
+
+                i.putExtra("bCalc", b);
                 startActivity(i);
             }
         });
