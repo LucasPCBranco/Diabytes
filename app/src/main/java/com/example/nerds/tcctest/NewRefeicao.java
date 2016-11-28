@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.concurrent.LinkedTransferQueue;
 
@@ -71,6 +70,11 @@ public class NewRefeicao extends AppCompatActivity{
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
+/*
+        periodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+
+        periodo.setText(bTipo.getString("periodo"));
+*/
         txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
 
         editText_nome = (EditText) findViewById(R.id.editText_nome);
@@ -130,7 +134,8 @@ public class NewRefeicao extends AppCompatActivity{
 
 
                 //Normalmente faria um if/else, mas agora vou usar o método simples
-                float atual = Float.parseFloat(editText_glicemia.toString());
+                //float atual = Float.parseFloat(editText_glicemia.toString());
+                float atual = Float.valueOf(editText_glicemia.getText().toString());
                 float calculo = (total / ManhaC) + ((atual - Meta) / ManhaF);
 
                 bNew.putFloat("calculo", calculo);
