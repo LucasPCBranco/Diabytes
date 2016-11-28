@@ -129,20 +129,24 @@ public class NewRefeicao extends AppCompatActivity{
 
                 Bundle bNew = new Bundle();
                 bNew.putString("alimento", nomeBundle);
-                bNew.putString("nomeRef", editText_nome.toString());
-                bNew.putString("periodo", "Manhã");
+                //bNew.putString("nomeRef", editText_nome.getText().toString());
+                //bNew.putString("periodo", "Manhã");
 
 
                 //Normalmente faria um if/else, mas agora vou usar o método simples
                 //float atual = Float.parseFloat(editText_glicemia.toString());
-                float atual = Float.valueOf(editText_glicemia.getText().toString());
+                /*String convAtual = editText_glicemia.getText().toString();
+                float atual = Float.parseFloat(convAtual);
+                System.out.println("GLICEMIA ATUAL: " + atual);
+                System.out.println("FATOR DE SENSIBILIDADE: " + ManhaF);
+                System.out.println("RELAÇÃO CHO/UI: " + ManhaC);
                 float calculo = (total / ManhaC) + ((atual - Meta) / ManhaF);
 
                 bNew.putFloat("calculo", calculo);
-
+                System.out.println("RESULTADO DO CÁLCULO: " + calculo);*/
 
                 Intent i = new Intent(NewRefeicao.this, DetalhesRefeicaoActivity.class);
-                i.putExtra("bNew", bNew);
+                i.putExtras(bNew);
                 startActivity(i);
 
 

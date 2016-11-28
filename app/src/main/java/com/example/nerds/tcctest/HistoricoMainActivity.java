@@ -13,7 +13,7 @@ public class HistoricoMainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meus_alimentos);
+        setContentView(R.layout.design_refeicao);
 
     }
 }

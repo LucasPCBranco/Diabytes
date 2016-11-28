@@ -11,7 +11,7 @@
     tools:context="com.example.nerds.tcctest.DetalhesRefeicaoActivity">
 
     <TextView
-        android:text="Nome"
+        android:text="Merenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         android:textSize="32sp" />
 
     <TextView
-        android:text="Tipo"
+        android:text="Manhã"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textNome"
@@ -32,14 +32,15 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
-        android:text="UI"
+        android:text="1,43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textTipo"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/textUI"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -53,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/button" />
+            android:id="@+id/detalhes_Voltar" />
 
         <Button
             android:text="@string/excluir"

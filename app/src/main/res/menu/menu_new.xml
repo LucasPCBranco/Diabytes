@@ -19,7 +19,7 @@
 
     <!-- Menu 3 pontos - opções - Opção 1 -->
     <item android:id="@+id/menu_1"
-        android:title="@string/menu_1"/>
+        android:title="Nova refeição"/>
 
     <!-- Opções extras \/
     <item android:id="@+id/menu_2"
