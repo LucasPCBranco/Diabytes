@@ -14,7 +14,7 @@ import android.widget.Button;
 public class TipoRefeicaoActivity extends AppCompatActivity {
 
     private Button botaoManha, botaoTarde, botaoNoite, botaoVoltar;
-    private String valor; //valor atribuido ao botão para ser repassado
+    public String valor; //valor atribuido ao botão para ser repassado
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
