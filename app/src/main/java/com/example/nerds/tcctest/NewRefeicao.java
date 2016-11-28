@@ -36,9 +36,7 @@ public class NewRefeicao extends AppCompatActivity{
     private EditText editText_nome, editText_glicemia;
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
 
-    //Pegando SharedPreferences
-    SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
-    SharedPreferences.Editor ed = sharedPreferences.edit();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,10 @@ public class NewRefeicao extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_refeicao);
         System.out.println("onCreate() UTILIZADO");
+
+        //Pegando SharedPreferences
+        final SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPreferences.edit();
 
         /*//Verificação - se já tem algo salvo, recupera esses valores
         if(savedInstanceState != null){
@@ -111,15 +113,15 @@ public class NewRefeicao extends AppCompatActivity{
                 /*Salvar: Fazer o cálculo baseado nos dados do usuário, e exibir detalhes - Primeiro
                 momento, meter o louco. Essa tela será posteriormente alterada*/
 
-                float ManhaF = sharedPreferences.getFloat("fatorM", 0);
-                float TardeF = sharedPreferences.getFloat("fatorT", 0);
-                float NoiteF = sharedPreferences.getFloat("fatorN", 0);
+                final float ManhaF = sharedPreferences.getFloat("fatorM", 0);
+                final float TardeF = sharedPreferences.getFloat("fatorT", 0);
+                final float NoiteF = sharedPreferences.getFloat("fatorN", 0);
 
-                float ManhaC = sharedPreferences.getFloat("CHOporuiM", 0);
-                float TardeC = sharedPreferences.getFloat("CHOporuiT", 0);
-                float NoiteC = sharedPreferences.getFloat("CHOporuiN", 0);
+                final float ManhaC = sharedPreferences.getFloat("CHOporuiM", 0);
+                final float TardeC = sharedPreferences.getFloat("CHOporuiT", 0);
+                final float NoiteC = sharedPreferences.getFloat("CHOporuiN", 0);
 
-                float Meta = sharedPreferences.getFloat("meta", 0);
+                final float Meta = sharedPreferences.getFloat("meta", 0);
 
                 Bundle bNew = new Bundle();
                 bNew.putString("alimento", nomeBundle);

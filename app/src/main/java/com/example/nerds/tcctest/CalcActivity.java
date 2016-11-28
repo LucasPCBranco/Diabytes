@@ -78,7 +78,6 @@ public class CalcActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         botaoCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
