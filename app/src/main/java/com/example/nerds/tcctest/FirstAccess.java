@@ -28,6 +28,7 @@ public class FirstAccess extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     static final String PREFERENCIAS = "myPref";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,7 +42,8 @@ public class FirstAccess extends AppCompatActivity {
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(my_toolbar);
-//Titulo e icone que fica na toolbar
+
+        //Titulo e icone que fica na toolbar
         getSupportActionBar().setTitle("Primeiro Acesso");
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
         Button botao = (Button) findViewById(R.id.btn_cfg);
@@ -52,6 +54,7 @@ public class FirstAccess extends AppCompatActivity {
         final EditText CHOporUIt = (EditText) findViewById(R.id.txtbox_CHOporUI_T);
         final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
         final EditText metaGlicemica = (EditText) findViewById(R.id.txtbox_metaGlicemica);
+
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,3 +101,4 @@ public class FirstAccess extends AppCompatActivity {
         startActivity(i);
     }
 }
+

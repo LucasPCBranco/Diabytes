@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-
         sessionManager = new SessionManager(this);
         if(sessionManager.isConfig()){
             abrirPrimeiroAcesso();
@@ -72,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
         // Intent firstconf = new Intent(this, FirstAccess.class);
         //startActivity(firstconf);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_alimentos);
 
         //session.verificaAcesso();

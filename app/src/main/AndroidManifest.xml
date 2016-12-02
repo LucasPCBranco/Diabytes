@@ -47,7 +47,6 @@
         <activity android:name=".DetalhesRefeicaoActivity"></activity>
         <activity android:name=".TipoRefeicaoActivity"></activity>
         <activity android:name=".SelecaoActivity"></activity>
-        <activity android:name=".HistoricoMainActivity"></activity>
     </application>
 
 </manifest>
