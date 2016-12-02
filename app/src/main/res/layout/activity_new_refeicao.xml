@@ -83,13 +83,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:layout_toRightOf="@+id/ref_txtGlicemia"
         android:layout_toEndOf="@+id/ref_txtGlicemia"
         android:id="@+id/editText_glicemia"
         android:layout_below="@+id/ref_txtPeriodo"
-        android:layout_alignBottom="@+id/ref_txtGlicemia"/>
+        android:layout_alignBottom="@+id/ref_txtGlicemia"
+        android:inputType="number|numberDecimal" />
 
     <TextView
         android:text="Alimentos:"
