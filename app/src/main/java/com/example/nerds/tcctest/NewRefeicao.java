@@ -44,22 +44,6 @@ public class NewRefeicao extends AppCompatActivity{
         setContentView(R.layout.activity_new_refeicao);
         System.out.println("onCreate() UTILIZADO");
 
-        //Pegando SharedPreferences
-        final SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed = sharedPreferences.edit();
-
-        /*//Verificação - se já tem algo salvo, recupera esses valores
-        if(savedInstanceState != null){
-            System.out.println("ENTROU!\n" + savedInstanceState);
-            //Dados a serem recuperados
-            this.onRestoreInstanceState(savedInstanceState);
-
-        } */
-
-        //Iniciando Bundle com informações pegas da CalcActivity
-        Bundle bCalc = getIntent().getBundleExtra("bCalc");
-        //Informações pegas da TipoRefeicaoActivity
-        Bundle bTipo = getIntent().getBundleExtra("bTipo");
 
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -69,23 +53,44 @@ public class NewRefeicao extends AppCompatActivity{
         getSupportActionBar().setTitle("Nova Refeição");
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
+        txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
+
+        editText_nome = (EditText) findViewById(R.id.editText_nome);
+        editText_glicemia = (EditText) findViewById(R.id.editText_glicemia);
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
+
+        //Pegando SharedPreferences
+        final SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPreferences.edit();
+
+        //Verificação - se já tem algo salvo, recupera esses valores
+        if(savedInstanceState == null){
+            System.out.println("ENTROU!");
+
+        }else{
+            //Dados a serem recuperados
+            periodo = savedInstanceState.getString(PERIODO);
+            txtPeriodo.setText(periodo);
+            alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
+            ref_ListAlimentos.setAdapter(arrayAdapter);
+            total = savedInstanceState.getFloat(SOMA_CARB);
+        }
 /*
         periodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
 
         periodo.setText(bTipo.getString("periodo"));
 */
-        txtPeriodo = (TextView) findViewById(R.id.ref_txtPeriodoSelec);
-
-        editText_nome = (EditText) findViewById(R.id.editText_nome);
-        editText_glicemia = (EditText) findViewById(R.id.editText_glicemia);
-
+        //Iniciando Bundle com informações pegas da CalcActivity
+        Bundle bCalc = getIntent().getBundleExtra("bCalc");
+        //Informações pegas da TipoRefeicaoActivity
+        Bundle bTipo = getIntent().getBundleExtra("bTipo");
 
         if(bTipo != null) {
             String periodo = bTipo.getString("periodo");
             System.out.println("PERÍODO:  " + periodo);
             this.periodo = periodo; //Para uso de recuperação
-            txtPeriodo.setText("Manhã");
+            txtPeriodo.setText(periodo);
         }
         else if(bCalc != null){
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO
@@ -97,6 +102,7 @@ public class NewRefeicao extends AppCompatActivity{
             /*2°) gCarb - vai se juntar a soma de carboidratos */
             float carb = bCalc.getFloat("carb");
             System.out.println("CARBOIDRATOS de " + nome + ": " + carb);
+            System.out.println("Pré-passagem: " + total);
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
             System.out.println("NÚMEROS DE PORÇÕES: " + porc);
@@ -159,24 +165,44 @@ public class NewRefeicao extends AppCompatActivity{
         });
     }
 
-    /* Salvando os dados da Activity*/
+    /* Salvando os dados da Activity para sua reconstrução */
     public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
         //Atribuindo valor a instância
         savedInstanceState.putFloat(SOMA_CARB, total);
         savedInstanceState.putStringArrayList(LISTA_ALI, alimentos);
         savedInstanceState.putString(PERIODO, periodo);
-
-        super.onSaveInstanceState(savedInstanceState);
-
         System.out.println("onSaveInstanceState() UTILIZADO");
     }
 
-    /* Verificação e utilização do sistema para recuperar dados da activity*/
+    /* Verificação e utilização do sistema para recuperar dados da activity
+    * Até segunda ordem, não será utilizado, por causa do sistema criado com OnSaveInstaceState()*/
     @Override
-    public void onRestoreInstanceState( Bundle savedInstanceState){
+    public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         total = savedInstanceState.getFloat(SOMA_CARB);
         alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
         periodo = savedInstanceState.getString(PERIODO);
+        System.out.println("onRestoreInstanceState() Criado com sucesso");
+    }
+
+    public void onPause(Bundle savedInstanceState){
+        super.onPause();
+        if(savedInstanceState == null){
+        savedInstanceState.putFloat(SOMA_CARB, total);
+        savedInstanceState.putStringArrayList(LISTA_ALI, alimentos);
+        savedInstanceState.putString(PERIODO, periodo);
+        System.out.println("onPause() criado");
+    }
+    }
+
+    public void onResume(Bundle savedInstanceState){
+        super.onResume();
+        if(savedInstanceState != null){
+            total = savedInstanceState.getFloat(SOMA_CARB);
+            alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
+            periodo = savedInstanceState.getString(PERIODO);
+            System.out.println("onResume() chamado");
+        }
     }
 }
