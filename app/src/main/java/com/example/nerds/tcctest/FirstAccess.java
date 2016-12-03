@@ -37,6 +37,7 @@ public class FirstAccess extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE);
         final SharedPreferences.Editor ed = sharedPreferences.edit();
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configinicial);
         //Definindo a toolbar
@@ -55,6 +56,8 @@ public class FirstAccess extends AppCompatActivity {
         final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
         final EditText metaGlicemica = (EditText) findViewById(R.id.txtbox_metaGlicemica);
 
+        final DadosUsuario db = new DadosUsuario(this);
+
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +70,18 @@ public class FirstAccess extends AppCompatActivity {
                 uichoN = Float.parseFloat(CHOporUIn.getText().toString());
                 metaglicemica = Float.parseFloat(metaGlicemica.getText().toString());
 
-                ed.putFloat("fatorM", sensiM);
+                Usuario u = new Usuario();
+                u.setSensM(sensiM);
+                u.setSensT(sensiT);
+                u.setSensN(sensiN);
+
+                u.setCHOuiM(uichoM);
+                u.setCHOuiT(uichoT);
+                u.setCHOuiN(uichoN);
+
+                db.insertUsuario(u);
+
+               /* ed.putFloat("fatorM", sensiM);
                 ed.putFloat("fatorT", sensiT);
                 ed.putFloat("fatorN", sensiN);
 
@@ -78,7 +92,8 @@ public class FirstAccess extends AppCompatActivity {
                 ed.putFloat("meta", metaglicemica);
 
                 ed.commit();
-                /* Esses dados são salvos graças a sessão aberta no início do código*/
+                 Esses dados são salvos graças a sessão aberta no início do código*/
+
 
                 Intent i = new Intent(FirstAccess.this, MainActivity.class);
                 startActivity(i);
@@ -86,19 +101,6 @@ public class FirstAccess extends AppCompatActivity {
         });
     }
 
-    //Metodo usado no botão, manda o usuário de volta pro Main
-    public void gotoMain(View view) {
-        Bundle fa = new Bundle();
-        fa.putFloat("sensiM", sensiM);
-        fa.putFloat("sensiT", sensiT);
-        fa.putFloat("sensiN", sensiN);
-        fa.putFloat("uichoM", uichoM);
-        fa.putFloat("uichoT", uichoT);
-        fa.putFloat("uichoN", uichoN);
-        fa.putFloat("metaglicemica", metaglicemica);
-        Intent i = new Intent(FirstAccess.this, MainActivity.class);
-        i.putExtra("fa", fa);
-        startActivity(i);
-    }
+
 }
 
