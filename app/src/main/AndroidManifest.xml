@@ -25,7 +25,8 @@
                   android:screenOrientation="portrait" />
 
         <activity android:name=".CalcActivity"
-                  android:screenOrientation="portrait" />
+                  android:screenOrientation="portrait"
+            android:parentActivityName=".NewRefeicao"/>
 
         <activity android:name=".FirstAccess"
                   android:screenOrientation="portrait" />

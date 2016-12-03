@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +53,6 @@ public class NewRefeicao extends AppCompatActivity{
         setContentView(R.layout.activity_new_refeicao);
         System.out.println("onCreate() UTILIZADO");
 
-
         //Definindo a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(my_toolbar);
@@ -69,27 +72,35 @@ public class NewRefeicao extends AppCompatActivity{
         sharedPreferences.getFloat("calculo", 0);
 
 
-        final DadosUsuario db = new DadosUsuario(this);
-/*
+        final DBLocal db = new DBLocal(this);
+
+
         //Verificação - se já tem algo salvo, recupera esses valores
         if(savedInstanceState == null){
             System.out.println("ENTROU!");
 
         }else{
             //Dados a serem recuperados
+            Log.e("Teste PERIODO", savedInstanceState.getString(PERIODO));
+            Log.e("Teste TOTAL", String.valueOf(savedInstanceState.getFloat(SOMA_CARB)));
+            Log.e("Teste LISTA", String.valueOf(savedInstanceState.getStringArrayList(LISTA_ALI)));
             periodo = savedInstanceState.getString(PERIODO);
             txtPeriodo.setText(periodo);
             alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
             ref_ListAlimentos.setAdapter(arrayAdapter);
             total = savedInstanceState.getFloat(SOMA_CARB);
-        } */
-
-        String serie = sharedPreferences.getString("alimentos", null);
-        alimentos = Arrays.asList(TextUtils.split(serie, ","));
-
+        }
+        System.out.println("TESTE:  " + savedInstanceState);
+        if(sharedPreferences != null) {
+            String serie = sharedPreferences.getString("alimentos", null);
+            if(serie != null){
+            alimentos = Arrays.asList(TextUtils.split(serie, ","));
+        }
+        }
         //Iniciando Bundle com informações pegas da CalcActivity
         Bundle bCalc = getIntent().getBundleExtra("bCalc");
+        System.out.println("BCALC, BUNDLE: " + bCalc);
         //Informações pegas da TipoRefeicaoActivity
         Bundle bTipo = getIntent().getBundleExtra("bTipo");
 
@@ -130,25 +141,26 @@ public class NewRefeicao extends AppCompatActivity{
 
 
         db.selectUsuario();
-        try{
+        for(int i = 0; i < db.selectUsuario().size(); i++) {
+            try {
             /*Explicação: parecido com o sistema de Alimentos encontrado no MainActivity,
             seta o valor de variáveis para o cálculo futuro*/
-            ManhaC = db.selectUsuario().get(1).getSensM();
-            TardeC = db.selectUsuario().get(1).getSensT();
-            NoiteC = db.selectUsuario().get(1).getSensN();
+                ManhaC = db.selectUsuario().get(i).getSensM();
+                TardeC = db.selectUsuario().get(i).getSensT();
+                NoiteC = db.selectUsuario().get(i).getSensN();
 
-            //Normalmente faria um if/else, mas agora vou usar o método simples
-            //float atual = Float.parseFloat(editText_glicemia.toString());
-            float atual = Float.valueOf(editText_glicemia.getText().toString());
-            double resDouble = (total / ManhaC) + ((atual - Meta) / ManhaF);
+                //Normalmente faria um if/else, mas agora vou usar o método simples
+                //float atual = Float.parseFloat(editText_glicemia.toString());
+                float atual = Float.valueOf(editText_glicemia.getText().toString());
+                double resDouble = (total / ManhaC) + ((atual - Meta) / ManhaF);
 
-            //Partição do processo de Double para Float
-            calculo = (float) (resDouble);
+                //Partição do processo de Double para Float
+                calculo = (float) (resDouble);
 
-        }catch(Exception e){
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
 
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -210,18 +222,33 @@ public class NewRefeicao extends AppCompatActivity{
         //Esquematização de ArrayList para String. Processo será revertido através de sistema similar
         editor.putString("alimentos", TextUtils.join(",", alimentos));
 
+        System.out.println("onPause() utilizado");
+
         }
 
     public void onStop(){
+        super.onStop();
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCIA, 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("periodo", txtPeriodo.toString());
+        editor.putFloat("calculo", calculo);
+        editor.putString("nome", editText_nome.toString());
+        //Esquematização de ArrayList para String. Processo será revertido através de sistema similar
+        editor.putString("alimentos", TextUtils.join(",", alimentos));
 
+        System.out.println("onStop() utilizado");
     }
 
-    public void onResume(Bundle savedInstanceState){
+    public void onResume(){
         super.onResume();
-        if(savedInstanceState != null){
-            total = savedInstanceState.getFloat(SOMA_CARB);
-            alimentos = savedInstanceState.getStringArrayList(LISTA_ALI);
-            periodo = savedInstanceState.getString(PERIODO);
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCIA, 0);
+        if(sharedPreferences != null){
+            total = sharedPreferences.getFloat("calculo", 0);
+            String serie = sharedPreferences.getString("alimentos", null);
+            if(serie != null) {
+                alimentos = Arrays.asList(TextUtils.split(serie, ","));
+            }
+            periodo = sharedPreferences.getString("periodo", null);
             System.out.println("onResume() chamado");
         }
     }

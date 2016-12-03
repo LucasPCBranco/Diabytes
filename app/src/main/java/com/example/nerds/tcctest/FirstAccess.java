@@ -56,7 +56,7 @@ public class FirstAccess extends AppCompatActivity {
         final EditText CHOporUIn = (EditText) findViewById(R.id.txtbox_CHOporUI_N);
         final EditText metaGlicemica = (EditText) findViewById(R.id.txtbox_metaGlicemica);
 
-        final DadosUsuario db = new DadosUsuario(this);
+        final DBLocal db = new DBLocal(this);
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override

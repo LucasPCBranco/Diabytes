@@ -58,19 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         sessionManager = new SessionManager(this);
         if(sessionManager.isConfig()){
             abrirPrimeiroAcesso();
             finish();
         }else{
-
         /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
 
-        //***Adaptação técnica para suprir necessidades adversas utilizada para testar outras telas diretamente***
-        // Intent firstconf = new Intent(this, FirstAccess.class);
-        //startActivity(firstconf);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_alimentos);
 
         //session.verificaAcesso();
