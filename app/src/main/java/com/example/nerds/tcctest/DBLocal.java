@@ -8,15 +8,21 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DBLocal extends SQLiteOpenHelper{
 
     private static final String DB = "mydb";
 
-    //Tabela Alimentos
     private static final String TABLE_A = "alimento";
     private static final String TABLE_U = "usuario";
+    private static final String TABLE_R = "refeicao";
 
+    //Tabela Alimentos
     private static final String NOME = "nome";
     private static final String PORCAO = "porcao";
     private static final String CARB = "gcarb";
@@ -33,8 +39,16 @@ public class DBLocal extends SQLiteOpenHelper{
 
     private static final String META = "metaGlicemica";
 
+    //Tabela Refeição
+    private static final String NOME_R = "nomeRef";
+    private static final String DATA = "data";
+    private static final String LIST = "stringAlimentos";
+    private static final String PERIODO = "periodo";
+    private static final String RESULTADO = "calculo";
+
     private static final String TAG_ALIMENTO = "Alimento";
     private static final String TAG_USUARIO = "Usuario";
+    private static final String TAG_REFEICAO = "Refeicao";
 
 
     public DBLocal(Context context) {
@@ -57,12 +71,16 @@ public class DBLocal extends SQLiteOpenHelper{
                 + FATORN + " REAL, " + CHOUIM + " REAL, " + CHOUIT + " REAL, " + CHOUIN + " REAL, "
                 + META + " INTEGER)");
 
+        db.execSQL("CREATE TABLE " + TABLE_R + " ( " + NOME_R + " TEXT, " + DATA + " TEXT," + LIST
+         + " TEXT, " + PERIODO + " TEXT, "  + RESULTADO + " REAL)");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_U);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_A);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_R);
         onCreate(db);
     }
 
@@ -199,5 +217,66 @@ public class DBLocal extends SQLiteOpenHelper{
             return lista;
         }
     }
+
+    //Métodos para a classe Refeição
+    public boolean insertRefeicao (Refeicao refeicao){
+
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try{
+            contentValues.put(NOME_R, refeicao.getNome());
+            contentValues.put(DATA, refeicao.getData());
+            //Conversão -> ArrayList para String
+            ArrayList<Alimento> a = refeicao.getAlimentos();
+            JSONObject json = new JSONObject();
+            json.put("uniqueArrays", new JSONArray(a));
+            String conv = json.toString();
+            contentValues.put(LIST, conv);
+            contentValues.put(PERIODO, refeicao.getPeriodo());
+            contentValues.put(RESULTADO, refeicao.getUi());
+            bd.insert(TABLE_R, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
+            return true;
+        }catch(Exception e){
+            Log.e(TAG_ALIMENTO, "insertAlimento: " +e.getMessage());
+            return false;
+        }
+
+    }
+
+    public ArrayList<Refeicao> selectRefeicoes(){
+
+        SQLiteDatabase bd = this.getReadableDatabase();
+        ArrayList<Refeicao> lista = new ArrayList<Refeicao>();
+        System.out.println(lista.size());
+        try{
+            Cursor cur = bd.rawQuery("SELECT * FROM " + TABLE_R, null);
+            //Pega o primeiro resultado
+            cur.moveToFirst();
+            //Enquanto não for o último dado
+            while(cur.isAfterLast() == false){
+                Refeicao r = new Refeicao();
+                r.setNome(cur.getString(cur.getColumnIndex(NOME_R)));
+                r.setData(cur.getString(cur.getColumnIndex(DATA)));
+                //Conversão String -> ArrayList<Alimento>
+                JSONArray jsonArray = new JSONArray(cur.getString(cur.getColumnIndex(LIST)));
+                ArrayList<Alimento> a = new ArrayList<Alimento>();
+                for(int i = 0; i < jsonArray.length(); i++){
+                    Alimento al = new Alimento();
+                    al.setNome(jsonArray.getString(i));
+                    a.add(al);
+                }
+                r.setAlimentos(a);
+                r.setPeriodo(cur.getString(cur.getColumnIndex(PERIODO)));
+                r.setUi(cur.getDouble(cur.getColumnIndex(RESULTADO)));
+                lista.add(r);
+                cur.moveToNext(); //Após o fim das informações, move-se à próxima
+            }
+            return lista;
+        }catch(Exception e){
+            Log.e(TAG_ALIMENTO, "selectAlimentos: " + e.getMessage());
+            return lista;
+        }
+    }
+
 }
 

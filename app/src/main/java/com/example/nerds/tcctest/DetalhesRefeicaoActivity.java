@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,9 +14,10 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
 
     private TextView textNome;
     private String nome, tipo;
-    private float ui;
+    private double ui;
     private TextView txtNome, txtTipo, txtUi;
     private ListView alimentoListView;
+    private Button buttonVoltar, buttonExcluir;
     ArrayList<String> listAlimentos = new ArrayList<String>();
 
 
@@ -29,19 +31,35 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
         txtTipo = (TextView) findViewById(R.id.textTipo);
         txtUi = (TextView) findViewById(R.id.textUI);
         alimentoListView = (ListView) findViewById(R.id.listView);
+        buttonVoltar = (Button) findViewById(R.id.button);
+        buttonExcluir = (Button) findViewById(R.id.button2);
 
         Bundle bDetalhe = getIntent().getExtras();
 
         if(bDetalhe!= null) {
-            txtNome.setText(bDetalhe.getString("nomeRef"));
-            txtTipo.setText(bDetalhe.getString("periodo"));
-            String convCalculo = String.valueOf(bDetalhe.getDouble("calculo"));
-            txtUi.setText(convCalculo);
+            nome = bDetalhe.getString("nomeRef");
+            tipo = bDetalhe.getString("periodo");
+            ui = bDetalhe.getDouble("calculo");
             listAlimentos = bDetalhe.getStringArrayList("alimento");
+
+            txtNome.setText(nome);
+            txtTipo.setText(tipo);
+            String convCalculo = String.valueOf(ui);
+            txtUi.setText(convCalculo);
+
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listAlimentos);
             //Adapta os valores do listView baseado no ArrayList
             alimentoListView.setAdapter(arrayAdapter);
         }
 
+        buttonVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBLocal db = new DBLocal(DetalhesRefeicaoActivity.this);
+
+            }
+        });
+
     }
+
 }
