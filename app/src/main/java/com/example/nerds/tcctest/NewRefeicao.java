@@ -41,7 +41,7 @@ public class NewRefeicao extends AppCompatActivity{
     private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
     private String periodo, nomeBundle;
     private TextView txtPeriodo; //Texto que tem o período selecionado derivado de TipoRefeicaoActivity
-    private EditText editText_nome, editText_glicemia;
+    private EditText editText_nome, editText_glicemia, editText_data;
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
 
 
@@ -64,6 +64,7 @@ public class NewRefeicao extends AppCompatActivity{
 
         editText_nome = (EditText) findViewById(R.id.editText_nome);
         editText_glicemia = (EditText) findViewById(R.id.editText_glicemia);
+        editText_data = (EditText) findViewById(R.id.editText_data);
         ref_ListAlimentos = (ListView) findViewById(R.id.ref_listAlimentos);
 
         //Pegando SharedPreferences
@@ -88,20 +89,18 @@ public class NewRefeicao extends AppCompatActivity{
             txtPeriodo.setText(periodo);
         }
         else if(bCalc != null) {
+            alimentos = bCalc.getStringArrayList("alimento");
             String nome = bCalc.getString("nomeAli");
-            if (nome != null) {
                 // 1°) Nome - fica salvo justamente na ListView
                 System.out.println("AQUI, Ó: " + nome); //Teste para ver se a variável passa
                 alimentos.add(nome);
                 nomeBundle = nome;
-            }
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO */
             editText_nome.setText(bCalc.getString("nomeRef"));
-            alimentos = bCalc.getStringArrayList("alimento");
+            editText_data.setText(bCalc.getString("data"));
+            System.out.println(bCalc.getString("data"));
             txtPeriodo.setText(bCalc.getString("periodo"));
-            total = bCalc.getDouble("total");
-
-
+            double tot = bCalc.getDouble("total");
             /*2°) gCarb - vai se juntar a soma de carboidratos */
             float carb = bCalc.getFloat("carb");
             System.out.println("CARBOIDRATOS de " + nome + ": " + carb);
@@ -109,13 +108,14 @@ public class NewRefeicao extends AppCompatActivity{
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
             System.out.println("NÚMEROS DE PORÇÕES: " + porc);
-            total = +(carb * porc);
-            System.out.println("PÓS PASSAGEM: " + total);
+            tot = (carb * porc);
+            System.out.println("PÓS PASSAGEM: " + tot);
             //Adaptando os dados da Array na ListView
             if (alimentos != null) {
                 ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
                 ref_ListAlimentos.setAdapter(arrayAdapter);
             }
+            total = total + tot;
         }
         btnSalvar = (Button) findViewById(R.id.ref_btnSalvar);
         btnAdd = (Button) findViewById(R.id.ref_btnNewAlimento);
@@ -148,10 +148,7 @@ public class NewRefeicao extends AppCompatActivity{
                     } else {
                         atual = Double.parseDouble(editText_glicemia.getText().toString());
                     }
-                    double resDouble = (total / ManhaC) + ((atual - Meta) / ManhaF);
-
-                    //Partição do processo de Double para Float
-                    calculo = (float) (resDouble);
+                    calculo = (total / ManhaC) + ((atual - Meta) / ManhaF);
                 }
             }
         }
@@ -162,7 +159,7 @@ public class NewRefeicao extends AppCompatActivity{
                 /*Salvar: Fazer o cálculo baseado nos dados do usuário, e exibir detalhes - Primeiro
                 momento, meter o louco. Essa tela será posteriormente alterada*/
                 Bundle bNew = new Bundle();
-                ArrayList<String> al = (ArrayList<String>) (alimentos);
+                ArrayList<String> al = alimentos;
                 bNew.putStringArrayList("alimento", al);
                 bNew.putString("nomeRef", editText_nome.getText().toString());
                 bNew.putString("periodo", txtPeriodo.getText().toString());
@@ -179,10 +176,12 @@ public class NewRefeicao extends AppCompatActivity{
             public void onClick(View v) {
                 //Add: Vai para a tela de seleção de origem dos alimentos
                 Bundle bNew = new Bundle();
-                ArrayList<String> al = (ArrayList<String>) (alimentos);
+                ArrayList<String> al = alimentos;
                 bNew.putStringArrayList("alimento", al);
                 bNew.putString("nomeRef", editText_nome.getText().toString());
                 bNew.putString("periodo", txtPeriodo.getText().toString());
+                bNew.putString("data", editText_data.getText().toString());
+                System.out.println("PASSADO PARA O BUNDLE " + total);
                 bNew.putDouble("total", total);
 
                  Intent i = new Intent(NewRefeicao.this, SelecaoActivity.class);
