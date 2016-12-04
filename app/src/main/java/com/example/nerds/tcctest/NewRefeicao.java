@@ -40,6 +40,7 @@ public class NewRefeicao extends AppCompatActivity{
     private double total, calculo; //Usado para armazenar as somas de carboidrato do usuário
     private ArrayList<String> alimentos = new ArrayList<String>(); //ArrayList que será adaptada para a ListView dos alimentos
     private String periodo, nomeBundle;
+    static String switchPeriodo;
     private TextView txtPeriodo; //Texto que tem o período selecionado derivado de TipoRefeicaoActivity
     private EditText editText_nome, editText_glicemia, editText_data;
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
@@ -111,6 +112,7 @@ public class NewRefeicao extends AppCompatActivity{
             System.out.println("NÚMEROS DE PORÇÕES: " + porc);
             total = (carb * porc);
             System.out.println("PÓS PASSAGEM: " + total);
+            switchPeriodo = bCalc.getString("periodo");
             //Adaptando os dados da Array na ListView
             if (alimentos != null) {
                 ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
@@ -148,7 +150,7 @@ public class NewRefeicao extends AppCompatActivity{
                     String atualT = editText_glicemia.getText().toString();
                     double atual;
 
-                    if(atualT== null || atualT.isEmpty()) {
+                    if (atualT == null || atualT.isEmpty()) {
                         atual = 0.0;
                     } else {
                         atual = Double.parseDouble(editText_glicemia.getText().toString());
@@ -156,27 +158,35 @@ public class NewRefeicao extends AppCompatActivity{
 
                     double Sensibilidade;
                     double relacaoCHO;
-                    switch(periodo){
-                        case "Manhã": Sensibilidade = ManhaF;
-                            relacaoCHO = ManhaC;
-                            break;
-                        case "Tarde": Sensibilidade = TardeF;
-                            relacaoCHO = TardeC;
-                            break;
-                        case "Noite": Sensibilidade = NoiteF;
-                            relacaoCHO = NoiteC;
-                            break;
-                        default: Sensibilidade = relacaoCHO = 0;
-                            break;
+                    if (switchPeriodo != null) {
+                        System.out.println("Período para SWITCH: " + switchPeriodo);
+                        switch (switchPeriodo) {
+                            case "Manhã":
+                                Sensibilidade = ManhaF;
+                                relacaoCHO = ManhaC;
+                                break;
+                            case "Tarde":
+                                Sensibilidade = TardeF;
+                                relacaoCHO = TardeC;
+                                break;
+                            case "Noite":
+                                Sensibilidade = NoiteF;
+                                relacaoCHO = NoiteC;
+                                break;
+                            default:
+                                Sensibilidade = relacaoCHO = 0;
+                                break;
 
+                        }
+
+                        calculo = (total / relacaoCHO) + ((atual - Meta) / Sensibilidade);
+                        System.out.println("TESTE MANHAC: " + ManhaC);
+                        System.out.println("TESTE MANHAF: " + ManhaF);
+                        System.out.println("Calculo: " + calculo);
                     }
-
-                    calculo = (total / relacaoCHO) + ((atual - Meta) / Sensibilidade);
-                    System.out.println("TESTE MANHAC: " + ManhaC);
-                    System.out.println("TESTE MANHAF: " + ManhaF);
-                    System.out.println("Calculo: " + calculo);
                 }
-        }
+
+                }
         final double CalcBundle = calculo;
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
