@@ -1,6 +1,7 @@
 package com.example.nerds.tcctest;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -73,13 +74,12 @@ public class CalcActivity extends AppCompatActivity {
                 }
                 b.putInt("porcao", numPorcao.getValue());
                 //Dessa forma, a tela NewRefeicao recebe os dados. Será que funciona?
-                Intent i = new Intent(CalcActivity.this, NewRefeicao.class);
-
+                Intent i = NavUtils.getParentActivityIntent(CalcActivity.this);
                 i.putExtra("bCalc", b);
-                startActivity(i);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                NavUtils.navigateUpTo(CalcActivity.this, i);
             }
         });
-
         botaoCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
