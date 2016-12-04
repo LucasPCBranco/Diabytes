@@ -10,19 +10,18 @@
         app:showAsAction="ifRoom|collapseActionView"
         />
 
-    <item
+   <!-- <item
         android:id="@+id/menu_search"
         android:title="@string/menu_search"
         android:icon="@drawable/ic_action_search"
         app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.support.v7.widget.SearchView"/>
+        app:actionViewClass="android.support.v7.widget.SearchView"/> -->
 
     <!-- Menu 3 pontos - opções - Opção 1 -->
     <item android:id="@+id/menu_1"
         android:title="@string/menu_1"/>
 
-    <!-- Opções extras \/
     <item android:id="@+id/menu_2"
         android:title="@string/menu_2"/>
-        -->
+
 </menu>

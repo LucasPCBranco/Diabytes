@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_new, menu);
 
         //Get Search item from action bar and Get Search service
-        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        /*MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
             searchView.setIconified(false);
-        }
+        } */
 
         return true;
         //SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
@@ -136,16 +136,21 @@ public class MainActivity extends AppCompatActivity {
         //Verifica qual a opção do menu que foi selecionado
         switch(item.getItemId()) {
             //Usamos como referência o id do item, através de um switch/case
-            case R.id.newAlimento:
+            case R.id.menu_1:
+                /* Novo Alimento*/
                 startActivity(new Intent(MainActivity.this, NewAlimentoActivity.class));
                 break;
 
-            case R.id.menu_1:
-                /* Configurações. Agora, para fins de teste, vai dar lugar a outra tela*/
+            case R.id.newAlimento:
+                //Nova Refeição
                 Intent i = new Intent(MainActivity.this, TipoRefeicaoActivity.class);
                 startActivity(i);
                 break;
 
+            case R.id.menu_2:
+                /*Configurações oficial*/
+                startActivity(new Intent(MainActivity.this, ConfiguracoesActivity.class));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
