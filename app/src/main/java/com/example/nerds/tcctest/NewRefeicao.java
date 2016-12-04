@@ -45,7 +45,6 @@ public class NewRefeicao extends AppCompatActivity{
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -88,9 +87,9 @@ public class NewRefeicao extends AppCompatActivity{
             this.periodo = periodo; //Para uso de recuperação
             txtPeriodo.setText(periodo);
         }
-        else if(bCalc != null){
+        else if(bCalc != null) {
             String nome = bCalc.getString("nomeAli");
-            if(nome!= null) {
+            if (nome != null) {
                 // 1°) Nome - fica salvo justamente na ListView
                 System.out.println("AQUI, Ó: " + nome); //Teste para ver se a variável passa
                 alimentos.add(nome);
@@ -110,14 +109,13 @@ public class NewRefeicao extends AppCompatActivity{
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
             System.out.println("NÚMEROS DE PORÇÕES: " + porc);
-            total =+ (carb * porc);
-            System.out.println("PÓS PASSAGEM: " +  total);
-        }
-
-        //Adaptando os dados da Array na ListView
-        if(alimentos != null) {
-            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
-            ref_ListAlimentos.setAdapter(arrayAdapter);
+            total = +(carb * porc);
+            System.out.println("PÓS PASSAGEM: " + total);
+            //Adaptando os dados da Array na ListView
+            if (alimentos != null) {
+                ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
+                ref_ListAlimentos.setAdapter(arrayAdapter);
+            }
         }
         btnSalvar = (Button) findViewById(R.id.ref_btnSalvar);
         btnAdd = (Button) findViewById(R.id.ref_btnNewAlimento);
@@ -126,27 +124,35 @@ public class NewRefeicao extends AppCompatActivity{
         int Meta;
         ManhaC = TardeC = NoiteC = ManhaF = TardeF = NoiteF = Meta = 0;
 
-
         db.selectUsuario();
         for(int i = 0; i < db.selectUsuario().size(); i++) {
-            try {
+            if(db.selectUsuario().size() > 0) {
             /*Explicação: parecido com o sistema de Alimentos encontrado no MainActivity,
             seta o valor de variáveis para o cálculo futuro*/
                 ManhaC = db.selectUsuario().get(i).getSensM();
                 TardeC = db.selectUsuario().get(i).getSensT();
                 NoiteC = db.selectUsuario().get(i).getSensN();
 
+                Meta =  db.selectUsuario().get(i).getMetaGlicemica();
+
                 if(ManhaC != 0) {
                     //Normalmente faria um if/else, mas agora vou usar o método simples
                     //float atual = Float.parseFloat(editText_glicemia.toString());
-                    double atual = Double.parseDouble(editText_glicemia.getText().toString());
+
+
+                    String atualT = editText_glicemia.getText().toString();
+                    double atual;
+
+                    if(atualT== null || atualT.isEmpty()) {
+                        atual = 0.0;
+                    } else {
+                        atual = Double.parseDouble(editText_glicemia.getText().toString());
+                    }
                     double resDouble = (total / ManhaC) + ((atual - Meta) / ManhaF);
 
                     //Partição do processo de Double para Float
                     calculo = (float) (resDouble);
                 }
-            }catch (Exception e) {
-                e.printStackTrace();
             }
         }
 
@@ -215,6 +221,8 @@ public class NewRefeicao extends AppCompatActivity{
 
     public void onStop(){
         super.onStop();
+
+        System.out.println("onStop() utilizado");
     }
 
     public void onResume(){
