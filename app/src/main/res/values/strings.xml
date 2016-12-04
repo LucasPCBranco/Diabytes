@@ -6,8 +6,8 @@
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
     <string name="tbTitle">Diabytes</string>
-    <string name="menu_1">Configurações</string>
-    <string name="menu_2">Sobre nós</string>
+    <string name="menu_1">Novo Alimento</string>
+    <string name="menu_2">Configurações</string>
     <string name="searchable">Search...</string>
     <string name="menu_search">Search</string>
     <string name="continuar">Continuar</string>
