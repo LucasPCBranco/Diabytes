@@ -7,115 +7,32 @@ import java.util.concurrent.TimeUnit;
 
 public class Refeicao {
     //Classe Refeicao: armazena tipo de refeição, alimentos envolvidos (?) e horário da refeição, além da insulina.
-    private String tipo;
+    private String nome, periodo, data; //Futuro? "Data" será mais preciso.
     private ArrayList<Alimento> alimentos; //Isso aqui pode dar ruim no futuro
-    private TimeUnit hora; //TimeUnit, Time
-    private float glicemia; //Glicemia Atual
     private double ui;
 
-    //Importação classe PrimeiroAcesso e TipoRefeicao
-    FirstAccess configi = new FirstAccess();
-    TipoRefeicaoActivity periodo = new TipoRefeicaoActivity();
 
     /* GETTERS E SETTERS */
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public String getPeriodo() { return periodo; }
+    public void setPeriodo(String periodo) { this.periodo = periodo; }
 
     public double getUi() { return ui; }
+    public void setUi(double ui){
+        this.ui = ui;
+    }
 
     public ArrayList<Alimento> getAlimentos() { return alimentos; }
     /* Set diferente - Adiciona o alimento necessário para EXIBIÇÃO*/
-    public void setAlimentos(Alimento alimento) { this.alimentos.add(alimento); }
+    public void setAlimentos(ArrayList<Alimento> alimento) { this.alimentos = alimento; }
 
-    public TimeUnit getHora() { return hora; }
-    public void setHora(TimeUnit hora) { this.hora = hora; }
+    public String getData() { return data; }
+    public void setData (String data) { this.data = data; }
 
-    public float getGlicemia() { return glicemia; }
-    public void setGlicemia(float glicemia) { this.glicemia = glicemia; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void calculoCarb(){
-
-    }
-
-  /* public int calculoGlicemia(int atual, int meta){
-        return (meta - atual) /* / fatorSensibilidade*/;
-//}
-    /*
-    public int calculoCarboidratos(double carboidratos) {
-        return carboidratos / fatorCHOporUi;
-    } */
-
-  /*  public void calculoUi(double ui) {
-        return calculoGlicemia() + calculoCarboidratos();
-    }
-    */
+}
 
 
-    public double calculoUi(int glicAtual, int glicMeta, double carboidratos) {
-
-        String per = periodo.valor;
-        float fatorSensi;
-        float fatorCHOporUi;
-
-
-        if (per.equals("Manhã")){
-            fatorSensi = configi.sensiM;
-        }
-        if (per.equals("Tarde")){
-            fatorSensi = configi.sensiT;
-        }
-        if (per.equals("Noite")){
-            fatorSensi = configi.sensiN;
-        }
-        else {
-            fatorSensi = 1;
-        }
-
-        if (per.equals("Manhã")){
-            fatorCHOporUi = configi.sensiM;
-        }
-        if (per.equals("Tarde")){
-            fatorCHOporUi = configi.sensiT;
-        }
-        if (per.equals("Noite")){
-            fatorCHOporUi = configi.sensiN;
-        }
-        else {
-            fatorCHOporUi = 1;
-        }
-
-        float A = (glicMeta - glicAtual) / fatorSensi;
-        double B = carboidratos / fatorCHOporUi;
-        ui = A + B;
-        return ui;
-    }
-
-    /* Ex- "getUi", vai englobar todos os cálculos relacionados a refeição*/
-    //public void calculoUi(double ui) {
-        //A = (Glicemia Atual - Glicemia Alvo) / fatorSensi
-        //B = Carboidratos / fatorCHOporUI
-        //ui = A + B;
-
-        //Usuario escolhe Período -> M/T/N
-
-        //A =
-        //fatorSensi = configi.sensiM / configi.sensiT / configi.sensiN
-        //Glicemia Alvo = configi.metaglicemia
-        //Glicemia Atual = glicemia
-
-        //B =
-        //Carboidratos = Soma dos valores de todos os alimentos inseridos no ArrayList 'alimentos'
-        //fatorCHOporUI = configi.uichoM / configi.uichoT / configi.uichoN
-
-        //Insulina = A + B
-        /* Criar código adequado*/
-
-    }
-
-
-
-    /* Método para cálculo dos carboidratods. Explicando a lógica:
-       O usuário irá selecionar os Alimentos, que no caso, estão concentrados na ArrayList<Alimentos>
-       Se esses dados forem devidamente pegos, dá para usar um cálculo simples de multiplicação*/
 
