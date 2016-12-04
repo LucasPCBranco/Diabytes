@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.tbTitle);
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
-
+        final Bundle b = getIntent().getExtras();
 
         //Atribui o valor do listView ao que será exibido na tela
         listView = (ListView) findViewById(R.id.listView_alimentos);
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             //Baseado na posição em i do Banco de Dados no onResume(), chegamos a:
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Cria um Bundle que salva as info's da posição para ser enviado para outra Activity
-                Bundle b = new Bundle();
                 //A posição passada como parâmetro é atribuído ao Bundle
                 b.putInt("posicao", position);
 
