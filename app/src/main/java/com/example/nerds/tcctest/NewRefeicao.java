@@ -129,19 +129,21 @@ public class NewRefeicao extends AppCompatActivity{
 
         db.selectUsuario();
         for(int i = 0; i < db.selectUsuario().size(); i++) {
+            System.out.println("USUÁRIOS: " + db.selectUsuario().size());
             if(db.selectUsuario().size() > 0) {
             /*Explicação: parecido com o sistema de Alimentos encontrado no MainActivity,
             seta o valor de variáveis para o cálculo futuro*/
-                ManhaC = db.selectUsuario().get(i).getSensM();
-                TardeC = db.selectUsuario().get(i).getSensT();
-                NoiteC = db.selectUsuario().get(i).getSensN();
-
+                ManhaC = db.selectUsuario().get(i).getCHOuiM();
+                TardeC = db.selectUsuario().get(i).getCHOuiT();
+                NoiteC = db.selectUsuario().get(i).getCHOuiN();
+                ManhaF = db.selectUsuario().get(i).getSensM();
+                TardeF = db.selectUsuario().get(i).getSensT();
+                NoiteF = db.selectUsuario().get(i).getSensN();
                 Meta =  db.selectUsuario().get(i).getMetaGlicemica();
-
+            }
                 if(ManhaC != 0) {
                     //Normalmente faria um if/else, mas agora vou usar o método simples
                     //float atual = Float.parseFloat(editText_glicemia.toString());
-
 
                     String atualT = editText_glicemia.getText().toString();
                     double atual;
@@ -151,11 +153,31 @@ public class NewRefeicao extends AppCompatActivity{
                     } else {
                         atual = Double.parseDouble(editText_glicemia.getText().toString());
                     }
-                    calculo = (total / ManhaC) + ((atual - Meta) / ManhaF);
-                }
-            }
-        }
 
+                    double Sensibilidade;
+                    double relacaoCHO;
+                    switch(periodo){
+                        case "Manhã": Sensibilidade = ManhaF;
+                            relacaoCHO = ManhaC;
+                            break;
+                        case "Tarde": Sensibilidade = TardeF;
+                            relacaoCHO = TardeC;
+                            break;
+                        case "Noite": Sensibilidade = NoiteF;
+                            relacaoCHO = NoiteC;
+                            break;
+                        default: Sensibilidade = relacaoCHO = 0;
+                            break;
+
+                    }
+
+                    calculo = (total / relacaoCHO) + ((atual - Meta) / Sensibilidade);
+                    System.out.println("TESTE MANHAC: " + ManhaC);
+                    System.out.println("TESTE MANHAF: " + ManhaF);
+                    System.out.println("Calculo: " + calculo);
+                }
+        }
+        final double CalcBundle = calculo;
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +188,8 @@ public class NewRefeicao extends AppCompatActivity{
                 bNew.putStringArrayList("alimento", al);
                 bNew.putString("nomeRef", editText_nome.getText().toString());
                 bNew.putString("periodo", txtPeriodo.getText().toString());
-                bNew.putDouble("calculo", calculo);
+                bNew.putString("data", editText_data.getText().toString());
+                bNew.putDouble("calculo", CalcBundle);
 
                 Intent i = new Intent(NewRefeicao.this, DetalhesRefeicaoActivity.class);
                 i.putExtras(bNew);

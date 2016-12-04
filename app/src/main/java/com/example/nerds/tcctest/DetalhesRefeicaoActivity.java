@@ -32,14 +32,16 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
 
         Bundle bDetalhe = getIntent().getExtras();
 
-        //Conversão Java -> XML
-        txtNome.setText(bDetalhe.getString(nome));
-        txtTipo.setText(bDetalhe.getString(tipo));
-        txtUi.setText(bDetalhe.getString("" + ui));
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listAlimentos);
-        //Adapta os valores do listView baseado no ArrayList
-        alimentoListView.setAdapter(arrayAdapter);
-
+        if(bDetalhe!= null) {
+            txtNome.setText(bDetalhe.getString("nomeRef"));
+            txtTipo.setText(bDetalhe.getString("periodo"));
+            String convCalculo = String.valueOf(bDetalhe.getDouble("calculo"));
+            txtUi.setText(convCalculo);
+            listAlimentos = bDetalhe.getStringArrayList("alimento");
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listAlimentos);
+            //Adapta os valores do listView baseado no ArrayList
+            alimentoListView.setAdapter(arrayAdapter);
+        }
 
     }
 }
