@@ -88,7 +88,7 @@ public class NewRefeicao extends AppCompatActivity{
             this.periodo = periodo; //Para uso de recuperação
             txtPeriodo.setText(periodo);
         }
-        else if(bCalc != null) {
+        if(bCalc != null) {
             alimentos = bCalc.getStringArrayList("alimento");
             String nome = bCalc.getString("nomeAli");
                 // 1°) Nome - fica salvo justamente na ListView
@@ -100,7 +100,8 @@ public class NewRefeicao extends AppCompatActivity{
             editText_data.setText(bCalc.getString("data"));
             System.out.println(bCalc.getString("data"));
             txtPeriodo.setText(bCalc.getString("periodo"));
-            double tot = bCalc.getDouble("total");
+            total = bCalc.getDouble("total");
+            double tot;
             /*2°) gCarb - vai se juntar a soma de carboidratos */
             float carb = bCalc.getFloat("carb");
             System.out.println("CARBOIDRATOS de " + nome + ": " + carb);
@@ -108,18 +109,20 @@ public class NewRefeicao extends AppCompatActivity{
             /*3°) porcao - será usado para cálculo mais correto do carboidrato */
             int porc = bCalc.getInt("porcao");
             System.out.println("NÚMEROS DE PORÇÕES: " + porc);
-            tot = (carb * porc);
-            System.out.println("PÓS PASSAGEM: " + tot);
+            total = (carb * porc);
+            System.out.println("PÓS PASSAGEM: " + total);
             //Adaptando os dados da Array na ListView
             if (alimentos != null) {
                 ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
                 ref_ListAlimentos.setAdapter(arrayAdapter);
             }
-            total = total + tot;
+        }else{
+            //TESTE - Para passar as informações para o Bundle
+            total = 0;//total + (bCalc.getFloat("carb", 0) * bCalc.getInt("porcao", 0));
         }
         btnSalvar = (Button) findViewById(R.id.ref_btnSalvar);
         btnAdd = (Button) findViewById(R.id.ref_btnNewAlimento);
-
+        System.out.println("TOTAL FORA DO IF/ELSE: " + total);
         double ManhaC, TardeC, NoiteC, ManhaF, TardeF, NoiteF;
         int Meta;
         ManhaC = TardeC = NoiteC = ManhaF = TardeF = NoiteF = Meta = 0;
@@ -171,6 +174,8 @@ public class NewRefeicao extends AppCompatActivity{
             }
         });
 
+        final double TotalBundle = total;
+        System.out.println("SISTEMA GAMBIARRA DE TOTAL PARA BUNDLE: " + TotalBundle);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,8 +186,8 @@ public class NewRefeicao extends AppCompatActivity{
                 bNew.putString("nomeRef", editText_nome.getText().toString());
                 bNew.putString("periodo", txtPeriodo.getText().toString());
                 bNew.putString("data", editText_data.getText().toString());
-                System.out.println("PASSADO PARA O BUNDLE " + total);
-                bNew.putDouble("total", total);
+                System.out.println("PASSADO PARA O BUNDLE " + TotalBundle);
+                bNew.putDouble("total", TotalBundle);
 
                  Intent i = new Intent(NewRefeicao.this, SelecaoActivity.class);
                 i.putExtras(bNew);
