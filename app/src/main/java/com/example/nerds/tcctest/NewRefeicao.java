@@ -35,9 +35,6 @@ public class NewRefeicao extends AppCompatActivity{
     private EditText editText_nome, editText_glicemia;
     private Button btnSalvar, btnAdd; //Botões para funcionalidades
 
-    //Pegando SharedPreferences
-    SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
-    SharedPreferences.Editor ed = sharedPreferences.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +50,10 @@ public class NewRefeicao extends AppCompatActivity{
             this.onRestoreInstanceState(savedInstanceState);
 
         } */
+
+        //Pegando SharedPreferences
+        final SharedPreferences sharedPreferences = getSharedPreferences(FirstAccess.PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPreferences.edit();
 
         //Iniciando Bundle com informações pegas da CalcActivity
         Bundle bCalc = getIntent().getBundleExtra("bCalc");
