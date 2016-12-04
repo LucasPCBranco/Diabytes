@@ -34,6 +34,9 @@
         <activity android:name=".NewRefeicao"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".ConfiguracoesActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".SearchResultsActivity"
                   android:screenOrientation="portrait">
 
