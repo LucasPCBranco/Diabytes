@@ -119,7 +119,6 @@ public class NewRefeicao extends AppCompatActivity{
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos);
             ref_ListAlimentos.setAdapter(arrayAdapter);
         }
-
         btnSalvar = (Button) findViewById(R.id.ref_btnSalvar);
         btnAdd = (Button) findViewById(R.id.ref_btnNewAlimento);
 
@@ -211,29 +210,11 @@ public class NewRefeicao extends AppCompatActivity{
 
     public void onPause(){
         super.onPause();
-       /* SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCIA, 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("periodo", txtPeriodo.toString());
-        //editor.putDouble("calculo", calculo);
-        editor.putString("nome", editText_nome.toString());
-        //Esquematização de ArrayList para String. Processo será revertido através de sistema similar
-        editor.putString("alimentos", TextUtils.join(",", alimentos));
-
-        System.out.println("onPause() utilizado"); */
 
         }
 
     public void onStop(){
         super.onStop();
-       /* SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCIA, 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("periodo", txtPeriodo.toString());
-        //editor.putDouble("calculo", calculo);
-        editor.putString("nome", editText_nome.toString());
-        //Esquematização de ArrayList para String. Processo será revertido através de sistema similar
-        editor.putString("alimentos", TextUtils.join(",", alimentos));
-
-        System.out.println("onStop() utilizado"); */
     }
 
     public void onResume(){
