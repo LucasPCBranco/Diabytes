@@ -40,7 +40,7 @@ public class CalcActivity extends AppCompatActivity {
         numPorcao.setWrapSelectorWheel(true);
 
         //Para conseguir as informações para RECEBER A POSIÇÃO CLICADA, é necessário:
-        Bundle bMain = getIntent().getExtras();
+        final Bundle bMain = getIntent().getExtras();
 
         if(bMain != null) {
             /*Caso consiga encontrar algo na Bundle, ou seja, se for derivada de um click em um
@@ -53,7 +53,6 @@ public class CalcActivity extends AppCompatActivity {
             //Sistema extenso de conversão Float para String
             calc = bd.selectAlimentos().get(posicao).getgCarb();
             textCarb.setText(String.valueOf(calc));
-
         }
 
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
@@ -62,22 +61,25 @@ public class CalcActivity extends AppCompatActivity {
 
                 /* Futuramente, aqui será apenas para a AlimentoActivity (assim que não der merda) */
 
-                Bundle b = new Bundle();
                 //Gravando mais um Bundle - Para uso da NewRefeicao (Activity)
                 String nome = textNome.getText().toString();
-                b.putString("nome", nome);
+                bMain.putString("nomeAli", nome);
                 //GAMBIARRA MASTER ABAIXO - De TextView para String para Float, sendo que a priori, é uma float mesmo
                 try {
-                    b.putFloat("carb", calc);
+                    bMain.putFloat("carb", calc);
                 }catch (NumberFormatException ex){
                     ex.printStackTrace();
                 }
-                b.putInt("porcao", numPorcao.getValue());
+                bMain.putInt("porcao", numPorcao.getValue());
+
+                Intent i = new Intent(CalcActivity.this, NewRefeicao.class);
                 //Dessa forma, a tela NewRefeicao recebe os dados. Será que funciona?
-                Intent i = NavUtils.getParentActivityIntent(CalcActivity.this);
-                i.putExtra("bCalc", b);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                NavUtils.navigateUpTo(CalcActivity.this, i);
+                //Intent i = NavUtils.getParentActivityIntent(CalcActivity.this);
+                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                //NavUtils.navigateUpTo(CalcActivity.this, i);
+                i.setFlags(Intent.FILL_IN_DATA);
+                i.putExtra("bCalc", bMain);
+                startActivity(i);
             }
         });
         botaoCancelar.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,8 @@ public class SelecaoActivity extends AppCompatActivity {
         btnTACO = (Button) findViewById(R.id.slc_btnTACO);
         btnMeus = (Button) findViewById(R.id.slc_btnMeus);
 
+        final Bundle bNew = getIntent().getExtras();
+
         btnTACO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +36,7 @@ public class SelecaoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Abre MeusAlimentos - No momento, chama-se MainActivity
                 Intent i = new Intent(SelecaoActivity.this, MainActivity.class);
+                i.putExtras(bNew);
                 startActivity(i);
             }
         });
