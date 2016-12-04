@@ -147,10 +147,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
 
-            case R.id.menu_2:
-                /*Configurações oficial*/
+            /*case R.id.menu_2:
+                /*Configurações oficial
                 startActivity(new Intent(MainActivity.this, ConfiguracoesActivity.class));
-                break;
+                break;*/
         }
 
         return super.onOptionsItemSelected(item);

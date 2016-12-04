@@ -52,11 +52,23 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
             alimentoListView.setAdapter(arrayAdapter);
         }
 
+        final String nomeB = nome;
+        final String dataB = bDetalhe.getString("data");
+        final ArrayList<String> listB = listAlimentos;
+        final String periodo = tipo;
+        final double resultado = ui;
+
         buttonVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBLocal db = new DBLocal(DetalhesRefeicaoActivity.this);
-
+                Refeicao r = new Refeicao();
+                r.setNome(nomeB);
+                r.setData(dataB);
+                r.setAlimentos(listB);
+                r.setPeriodo(periodo);
+                r.setUi(resultado);
+                db.insertRefeicao(r);
             }
         });
 

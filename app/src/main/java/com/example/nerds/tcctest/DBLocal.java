@@ -227,7 +227,7 @@ public class DBLocal extends SQLiteOpenHelper{
             contentValues.put(NOME_R, refeicao.getNome());
             contentValues.put(DATA, refeicao.getData());
             //Conversão -> ArrayList para String
-            ArrayList<Alimento> a = refeicao.getAlimentos();
+            ArrayList<String> a = refeicao.getAlimentos();
             JSONObject json = new JSONObject();
             json.put("uniqueArrays", new JSONArray(a));
             String conv = json.toString();
@@ -259,10 +259,9 @@ public class DBLocal extends SQLiteOpenHelper{
                 r.setData(cur.getString(cur.getColumnIndex(DATA)));
                 //Conversão String -> ArrayList<Alimento>
                 JSONArray jsonArray = new JSONArray(cur.getString(cur.getColumnIndex(LIST)));
-                ArrayList<Alimento> a = new ArrayList<Alimento>();
+                ArrayList<String> a = new ArrayList<String>();
                 for(int i = 0; i < jsonArray.length(); i++){
-                    Alimento al = new Alimento();
-                    al.setNome(jsonArray.getString(i));
+                    String al = jsonArray.getString(i);
                     a.add(al);
                 }
                 r.setAlimentos(a);

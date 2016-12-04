@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class Refeicao {
     //Classe Refeicao: armazena tipo de refeição, alimentos envolvidos (?) e horário da refeição, além da insulina.
     private String nome, periodo, data; //Futuro? "Data" será mais preciso.
-    private ArrayList<Alimento> alimentos; //Isso aqui pode dar ruim no futuro
+    private ArrayList<String> alimentos; //Isso aqui pode dar ruim no futuro
     private double ui;
 
 
@@ -22,9 +22,9 @@ public class Refeicao {
         this.ui = ui;
     }
 
-    public ArrayList<Alimento> getAlimentos() { return alimentos; }
+    public ArrayList<String> getAlimentos() { return alimentos; }
     /* Set diferente - Adiciona o alimento necessário para EXIBIÇÃO*/
-    public void setAlimentos(ArrayList<Alimento> alimento) { this.alimentos = alimento; }
+    public void setAlimentos(ArrayList<String> alimento) { this.alimentos = alimento; }
 
     public String getData() { return data; }
     public void setData (String data) { this.data = data; }
