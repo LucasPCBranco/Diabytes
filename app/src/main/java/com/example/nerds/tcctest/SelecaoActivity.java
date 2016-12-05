@@ -35,7 +35,7 @@ public class SelecaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Abre MeusAlimentos - No momento, chama-se MainActivity
-                Intent i = new Intent(SelecaoActivity.this, MainActivity.class);
+                Intent i = new Intent(SelecaoActivity.this, MeusAlimentos.class);
                 i.putExtras(bNew);
                 startActivity(i);
             }

@@ -2,7 +2,6 @@ package com.example.nerds.tcctest;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -36,7 +35,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,23 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
     SearchView searchView = null;
 
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         sessionManager = new SessionManager(this);
         if(sessionManager.isConfig()){
             abrirPrimeiroAcesso();
             finish();
         }else{
-        /* Verifica se é ou não a primeira vez que o app abriu. Se for, abre a outra intent*/
+        setContentView(R.layout.activity_refeicoes);
 
-        setContentView(R.layout.activity_meus_alimentos);
-
-        //session.verificaAcesso();
-
-        //Definindo a toolbar
+        //Setando a toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(my_toolbar);
 
@@ -79,56 +70,36 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.tbTitle);
         getSupportActionBar().setIcon(R.drawable.ic_toolbar);
 
-        final Bundle b = getIntent().getExtras();
-
-        //Atribui o valor do listView ao que será exibido na tela
-        listView = (ListView) findViewById(R.id.listView_alimentos);
+        //Está como ListView_alimentos, porque o layout é (ATÉ SEGUNDA ORDEM) o mesmo
+        listView = (ListView) findViewById(R.id.listView_refeicoes);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //Baseado na posição em i do Banco de Dados no onResume(), chegamos a:
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Cria um Bundle que salva as info's da posição para ser enviado para outra Activity
                 //A posição passada como parâmetro é atribuído ao Bundle
+                Bundle b = new Bundle();
                 b.putInt("posicao", position);
-
-                //Cria a transição entre a MainActivity com a tela de transição (TESTE COM nova)
-                Intent i = new Intent(MainActivity.this, CalcActivity.class);
+                //Cria a transição entre as telas
+                Intent i = new Intent(MainActivity.this, DetalhesRefeicaoActivity.class);
                 //Insere no intent o Bundle
                 i.putExtras(b);
-
                 //Chama a nova Activity (A MUDAR)
                 startActivity(i);
 
             }
         });
-        }
     }
+    }
+    @Override
+
 
         /*Alterar para mRVAlimentos (RecyclerView) - corrigir erro do setOnItemClickListener no RecyclerView */
 
     //EDIT Colocar esse método em comentários para utilizar da ATPSNA para testar outras telas diretamente
 
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        //Insere menu_new ao Menu(toolbar) da Activity principal
         getMenuInflater().inflate(R.menu.menu_new, menu);
-
-        //Get Search item from action bar and Get Search service
-        /*MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
-            searchView.setIconified(false);
-        } */
-
         return true;
-        //SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        //SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        //return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -147,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
 
-            /*case R.id.menu_2:
-                /*Configurações oficial
-                startActivity(new Intent(MainActivity.this, ConfiguracoesActivity.class));
-                break;*/
+            case R.id.menu_2:
+                Intent iD = new Intent(MainActivity.this, ConfiguracoesActivity.class);
+                startActivity(iD);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -309,29 +280,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    @Override
     protected void onResume() {
-
-        /* ESSA PARTE ABAIXO IRÁ PERTENCER A OUTRA ACTIVITY EM BREVE.*/
         super.onResume();
+        System.out.println("onResume() no HISTORICO utilizado");
         //Chamará o recurso do DB (insert, select, etc)
         DBLocal bd = new DBLocal(this);
         //Criação de uma ArrayList do SELECT
-        ArrayList<String> listaAlimentos = new ArrayList<String>();
+        ArrayList<String> listaRefeicao = new ArrayList<String>();
         //Usando for, vai criando uma posição ArrayList para cada Select presente
-        for (int i = 0; i < bd.selectAlimentos().size(); i++) {
-            if(bd.selectAlimentos().size() > 0){
-            listaAlimentos.add(bd.selectAlimentos().get(i).getNome());
-            //Irá adaptar a entrada de um item na listView através de um Array
-            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaAlimentos);
-            //Adapta os valores do listView baseado no ArrayList
-            listView.setAdapter(arrayAdapter);
-        }else {
-
+        for (int i = 0; i < bd.selectRefeicoes().size(); i++) {
+            if(bd.selectRefeicoes().size() > 0){
+                System.out.println("LISTINHA DO SUCESSO: " + bd.selectRefeicoes().get(i).getNome());
+                listaRefeicao.add(bd.selectRefeicoes().get(i).getNome());
+                //Irá adaptar a entrada de um item na listView através de um Array
+                ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaRefeicao);
+                //Adapta os valores do listView baseado no ArrayList
+                listView.setAdapter(arrayAdapter);
+            }else {
+                System.out.println("As refeições estão em branco :(");
             }
         }
     }
+
 
     //Método para abrir a tela de primeiro acesso, caso necessário
     private void abrirPrimeiroAcesso(){

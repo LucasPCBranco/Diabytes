@@ -51,7 +51,7 @@
         <activity android:name=".DetalhesRefeicaoActivity"></activity>
         <activity android:name=".TipoRefeicaoActivity"></activity>
         <activity android:name=".SelecaoActivity"></activity>
-        <activity android:name=".HistoricoMainActivity"></activity>
+        <activity android:name=".MeusAlimentos"></activity>
     </application>
 
 </manifest>

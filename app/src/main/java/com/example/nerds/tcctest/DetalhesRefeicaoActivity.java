@@ -16,9 +16,9 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
     private TextView textNome;
     private String nome, tipo, data;
     private double ui;
-    private TextView txtNome, txtTipo, txtUi;
+    private TextView txtNome, txtTipo, txtUi, txtData;
     private ListView alimentoListView;
-    private Button buttonVoltar, buttonExcluir;
+    private Button buttonVoltar;
     ArrayList<String> listAlimentos = new ArrayList<String>();
 
 
@@ -31,9 +31,9 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
         txtNome = (TextView) findViewById(R.id.textNome);
         txtTipo = (TextView) findViewById(R.id.textTipo);
         txtUi = (TextView) findViewById(R.id.textUI);
+        txtData = (TextView) findViewById(R.id.textData);
         alimentoListView = (ListView) findViewById(R.id.listView);
         buttonVoltar = (Button) findViewById(R.id.button);
-        buttonExcluir = (Button) findViewById(R.id.button2);
 
         Bundle bDetalhe = getIntent().getExtras();
 
@@ -62,11 +62,13 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
                 nome = db.selectRefeicoes().get(posicao).getNome();
                 tipo = db.selectRefeicoes().get(posicao).getPeriodo();
                 ui = db.selectRefeicoes().get(posicao).getUi();
+                data = db.selectRefeicoes().get(posicao).getData();
                 listAlimentos = db.selectRefeicoes().get(posicao).getAlimentos();
             }
             txtNome.setText(nome);
             txtTipo.setText(tipo);
-            String convCalculo = String.valueOf(ui);
+            txtData.setText(data);
+            String convCalculo = String.valueOf(ui) + " UI";
             txtUi.setText(convCalculo);
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listAlimentos);
             //Adapta os valores do listView baseado no ArrayList
@@ -76,7 +78,7 @@ public class DetalhesRefeicaoActivity extends AppCompatActivity {
         buttonVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetalhesRefeicaoActivity.this, HistoricoMainActivity.class);
+                Intent i = new Intent(DetalhesRefeicaoActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });

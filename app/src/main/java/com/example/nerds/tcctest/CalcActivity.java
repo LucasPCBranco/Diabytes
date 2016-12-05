@@ -85,10 +85,7 @@ public class CalcActivity extends AppCompatActivity {
         botaoCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* Quando clicado em salvar, o usuário retornará a tela Main, que no caso, seria a
-                   de refeições*/
-                //calc = calc()
-                Intent i = new Intent(CalcActivity.this, MainActivity.class);
+                Intent i = new Intent(CalcActivity.this, MeusAlimentos.class);
                 startActivity(i);
             }
         });

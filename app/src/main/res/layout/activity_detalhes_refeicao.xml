@@ -41,6 +41,16 @@
         android:id="@+id/textUI"
         android:layout_marginBottom="30dp"/>
 
+    <TextView
+        android:text="Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/botoes"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/textData" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -55,14 +65,6 @@
             android:layout_weight="1"
             android:id="@+id/button" />
 
-        <Button
-            android:text="@string/excluir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/button2"
-            android:background="@android:color/holo_red_dark"
-            />
     </LinearLayout>
 
 <LinearLayout
@@ -77,6 +79,8 @@
 
 
 </LinearLayout>
+
+
 
 
 </RelativeLayout>
