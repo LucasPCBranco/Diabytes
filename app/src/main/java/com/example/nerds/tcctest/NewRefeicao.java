@@ -99,6 +99,7 @@ public class NewRefeicao extends AppCompatActivity{
             /*Uma vez que está setado, a informação adquirida deve ser usada para REGISTRO e CÁLCULO */
             editText_nome.setText(bCalc.getString("nomeRef"));
             editText_data.setText(bCalc.getString("data"));
+            editText_glicemia.setText(bCalc.getString("glicemia"));
             System.out.println(bCalc.getString("data"));
             txtPeriodo.setText(bCalc.getString("periodo"));
             total = bCalc.getDouble("total");
@@ -179,7 +180,7 @@ public class NewRefeicao extends AppCompatActivity{
 
                         }
 
-                        calculo = (total / relacaoCHO) + ((atual - Meta) / Sensibilidade);
+                        calculo = (total / relacaoCHO) + ((Meta - atual) / Sensibilidade);
                         System.out.println("TESTE MANHAC: " + ManhaC);
                         System.out.println("TESTE MANHAF: " + ManhaF);
                         System.out.println("Calculo: " + calculo);
@@ -221,6 +222,7 @@ public class NewRefeicao extends AppCompatActivity{
                 bNew.putString("data", editText_data.getText().toString());
                 System.out.println("PASSADO PARA O BUNDLE " + TotalBundle);
                 bNew.putDouble("total", TotalBundle);
+                bNew.putString("glicemia", editText_glicemia.getText().toString());
 
                  Intent i = new Intent(NewRefeicao.this, SelecaoActivity.class);
                 i.putExtras(bNew);

@@ -226,18 +226,19 @@ public class DBLocal extends SQLiteOpenHelper{
         try{
             contentValues.put(NOME_R, refeicao.getNome());
             contentValues.put(DATA, refeicao.getData());
-            //Conversão -> ArrayList para String
+            /*Conversão -> ArrayList para String*/
             ArrayList<String> a = refeicao.getAlimentos();
             JSONObject json = new JSONObject();
             json.put("uniqueArrays", new JSONArray(a));
             String conv = json.toString();
+            System.out.println("VALOR INSERIDO COMO STRING EM INSERT: " + conv);
             contentValues.put(LIST, conv);
             contentValues.put(PERIODO, refeicao.getPeriodo());
             contentValues.put(RESULTADO, refeicao.getUi());
             bd.insert(TABLE_R, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
             return true;
         }catch(Exception e){
-            Log.e(TAG_ALIMENTO, "insertAlimento: " +e.getMessage());
+            Log.e(TAG_REFEICAO, "insertRefeicao: " +e.getMessage());
             return false;
         }
 
@@ -258,11 +259,13 @@ public class DBLocal extends SQLiteOpenHelper{
                 r.setNome(cur.getString(cur.getColumnIndex(NOME_R)));
                 r.setData(cur.getString(cur.getColumnIndex(DATA)));
                 //Conversão String -> ArrayList<Alimento>
-                JSONArray jsonArray = new JSONArray(cur.getString(cur.getColumnIndex(LIST)));
+                JSONObject jsonObject = new JSONObject(cur.getString(cur.getColumnIndex(LIST)));
+                 JSONArray A = jsonObject.getJSONArray("uniqueArrays");
                 ArrayList<String> a = new ArrayList<String>();
-                for(int i = 0; i < jsonArray.length(); i++){
-                    String al = jsonArray.getString(i);
-                    a.add(al);
+                for(int i = 0; i < A.length(); i++){
+                    String add = A.getString(i);
+                    System.out.println("ADD VALOR DENTRO DE SELECT ALIMENTOS: " + add);
+                    a.add(add);
                 }
                 r.setAlimentos(a);
                 r.setPeriodo(cur.getString(cur.getColumnIndex(PERIODO)));
@@ -272,7 +275,7 @@ public class DBLocal extends SQLiteOpenHelper{
             }
             return lista;
         }catch(Exception e){
-            Log.e(TAG_ALIMENTO, "selectAlimentos: " + e.getMessage());
+            Log.e(TAG_REFEICAO, "selectRefeicoes: " + e.getMessage());
             return lista;
         }
     }

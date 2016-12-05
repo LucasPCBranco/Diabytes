@@ -24,7 +24,7 @@ public class FirstAccess extends AppCompatActivity {
     float uichoM;
     float uichoT;
     float uichoN;
-    float metaglicemica;
+    int metaglicemica;
     SharedPreferences sharedPreferences;
 
     static final String PREFERENCIAS = "myPref";
@@ -68,7 +68,7 @@ public class FirstAccess extends AppCompatActivity {
                 uichoM = Float.parseFloat(CHOporUIm.getText().toString());
                 uichoT = Float.parseFloat(CHOporUIt.getText().toString());
                 uichoN = Float.parseFloat(CHOporUIn.getText().toString());
-                metaglicemica = Float.parseFloat(metaGlicemica.getText().toString());
+                metaglicemica = Integer.parseInt(metaGlicemica.getText().toString());
 
                 Usuario u = new Usuario();
                 u.setSensM(sensiM);
@@ -78,6 +78,8 @@ public class FirstAccess extends AppCompatActivity {
                 u.setCHOuiM(uichoM);
                 u.setCHOuiT(uichoT);
                 u.setCHOuiN(uichoN);
+
+                u.setMetaGlicemica(metaglicemica);
 
                 db.insertUsuario(u);
 
