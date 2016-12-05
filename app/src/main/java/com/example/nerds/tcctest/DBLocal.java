@@ -202,7 +202,7 @@ public class DBLocal extends SQLiteOpenHelper{
             contentValues.put(CHOUIN, usuario.getCHOuiN());
 
             contentValues.put(META, usuario.getMetaGlicemica());
-            bd.update(TABLE_U, contentValues, "WHERE META = " + META, null);
+            bd.update(TABLE_U, contentValues, "META = " + usuario.getMetaGlicemica(), null);
 
             System.out.println("META CFG.: " + META);
             return true;

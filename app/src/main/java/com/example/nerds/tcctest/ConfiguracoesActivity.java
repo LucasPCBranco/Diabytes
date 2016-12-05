@@ -60,7 +60,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //Atribuindo valores para as variáveis.
-                if(newFatorM != null || !newFatorM.equals("")) {cfg_sensiM = Float.parseFloat(newFatorM.getText().toString());}
+                if(!newFatorM.getText().toString().equals("")) {cfg_sensiM = Float.parseFloat(newFatorM.getText().toString());} else { cfg_sensiM = 0;}
                 if(newFatorT != null || !newFatorT.equals("")) {cfg_sensiT = Float.parseFloat(newFatorT.getText().toString());}
                 if(newFatorN != null || !newFatorN.equals("")) {cfg_sensiN = Float.parseFloat(newFatorN.getText().toString());}
                 if(newCHOm != null || !newCHOm.equals("")) {cfg_uichoM = Float.parseFloat(newCHOm.getText().toString());}
