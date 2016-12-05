@@ -80,7 +80,6 @@ public class FirstAccess extends AppCompatActivity {
                 u.setCHOuiN(uichoN);
 
                 u.setMetaGlicemica(metaglicemica);
-
                 db.insertUsuario(u);
 
                /* ed.putFloat("fatorM", sensiM);
@@ -102,7 +101,6 @@ public class FirstAccess extends AppCompatActivity {
             }
         });
     }
-
 
 }
 
