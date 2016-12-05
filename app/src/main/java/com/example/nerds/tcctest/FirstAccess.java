@@ -58,6 +58,9 @@ public class FirstAccess extends AppCompatActivity {
 
         final DBLocal db = new DBLocal(this);
 
+
+        System.out.println("PRIMEIRO ACESSO META: " + metaglicemica);
+
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
