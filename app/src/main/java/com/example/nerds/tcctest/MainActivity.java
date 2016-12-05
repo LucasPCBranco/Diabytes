@@ -143,14 +143,13 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.newAlimento:
                 //Nova Refeição
-                Intent i = new Intent(MainActivity.this, TipoRefeicaoActivity.class);
-                startActivity(i);
+                startActivity(new Intent(MainActivity.this, TipoRefeicaoActivity.class));
                 break;
 
-            /*case R.id.menu_2:
-                /*Configurações oficial
+            case R.id.menu_2:
+                //Configurações oficial
                 startActivity(new Intent(MainActivity.this, ConfiguracoesActivity.class));
-                break;*/
+                break;
         }
 
         return super.onOptionsItemSelected(item);

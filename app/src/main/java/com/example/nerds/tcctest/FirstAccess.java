@@ -24,7 +24,7 @@ public class FirstAccess extends AppCompatActivity {
     float uichoM;
     float uichoT;
     float uichoN;
-    float metaglicemica;
+    int metaglicemica;
     SharedPreferences sharedPreferences;
 
     static final String PREFERENCIAS = "myPref";
@@ -58,6 +58,9 @@ public class FirstAccess extends AppCompatActivity {
 
         final DBLocal db = new DBLocal(this);
 
+
+        System.out.println("PRIMEIRO ACESSO META: " + metaglicemica);
+
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +71,7 @@ public class FirstAccess extends AppCompatActivity {
                 uichoM = Float.parseFloat(CHOporUIm.getText().toString());
                 uichoT = Float.parseFloat(CHOporUIt.getText().toString());
                 uichoN = Float.parseFloat(CHOporUIn.getText().toString());
-                metaglicemica = Float.parseFloat(metaGlicemica.getText().toString());
+                metaglicemica = Integer.parseInt(metaGlicemica.getText().toString());
 
                 Usuario u = new Usuario();
                 u.setSensM(sensiM);
@@ -79,7 +82,9 @@ public class FirstAccess extends AppCompatActivity {
                 u.setCHOuiT(uichoT);
                 u.setCHOuiN(uichoN);
 
-                System.out.println("PRIMEIRO ACESSO: " + u);
+                u.setMetaGlicemica(metaglicemica);
+
+                System.out.println("PRIMEIRO ACESSO META2: " + metaglicemica);
                 db.insertUsuario(u);
 
                /* ed.putFloat("fatorM", sensiM);
