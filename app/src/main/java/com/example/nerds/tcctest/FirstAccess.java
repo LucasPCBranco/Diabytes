@@ -79,6 +79,7 @@ public class FirstAccess extends AppCompatActivity {
                 u.setCHOuiT(uichoT);
                 u.setCHOuiN(uichoN);
 
+                System.out.println("PRIMEIRO ACESSO: " + u);
                 db.insertUsuario(u);
 
                /* ed.putFloat("fatorM", sensiM);

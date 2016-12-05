@@ -72,7 +72,9 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                 if(cfg_uichoT != 0) {u.setCHOuiT(cfg_uichoT);}
                 if(cfg_uichoN != 0) {u.setCHOuiN(cfg_uichoN);}
 
-                //db.updateUsuario(u);
+                System.out.println("CONFIGURAÇÕES: " + u);
+
+                db.updateUsuario(u);
 
                 Intent i = new Intent(ConfiguracoesActivity.this, MainActivity.class);
                 startActivity(i);

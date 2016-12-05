@@ -177,12 +177,39 @@ public class DBLocal extends SQLiteOpenHelper{
 
             contentValues.put(META, usuario.getMetaGlicemica());
             bd.insert(TABLE_U, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
+
+            System.out.println("META F.A.: " + META);
             return true;
         } catch (Exception e) {
             Log.e(TAG_USUARIO, "insertUsuario: " + e.getMessage());
             return false;
         }
 
+    }
+
+    public boolean updateUsuario(Usuario usuario) {
+
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        try {
+            contentValues.put(FATORM, usuario.getSensM());
+            contentValues.put(FATORT, usuario.getSensT());
+            contentValues.put(FATORN, usuario.getSensN());
+
+            contentValues.put(CHOUIM, usuario.getCHOuiM());
+            contentValues.put(CHOUIT, usuario.getCHOuiT());
+            contentValues.put(CHOUIN, usuario.getCHOuiN());
+
+            contentValues.put(META, usuario.getMetaGlicemica());
+            bd.update(TABLE_U, contentValues, "WHERE META = " + META, null);
+
+            System.out.println("META CFG.: " + META);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG_USUARIO, "updateUsuario: " + e.getMessage());
+            return false;
+        }
     }
 
     public ArrayList<Usuario> selectUsuario() {
