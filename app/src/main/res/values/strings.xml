@@ -6,9 +6,9 @@
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
     <string name="tbTitle">Diabytes</string>
-    <string name="menu_1">Configurações</string>
-    <string name="menu_2">Sobre nós</string>
-    <string name="searchable">searchable</string>
+    <string name="menu_1">Novo Alimento</string>
+    <string name="menu_2">Configurações</string>
+    <string name="searchable">Search...</string>
     <string name="menu_search">Search</string>
     <string name="continuar">Continuar</string>
     <string name="txtfatorsensiManha">Insira seu fator de sensibilidade(Manhã)</string>
@@ -17,8 +17,11 @@
     <string name="txt_UIporCHO_M">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Manhã)</string>
     <string name="txt_UIporCHO_T">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Tarde)</string>
     <string name="txt_UIporCHO_N">Quanto 1 unidade de insulina(UI) cobre de carboidrato? (Noite)</string>
+    <string name="ci_txtMsg">Obrigado por escolher nosso aplicativo!Para realizar a sugestão de insulina, precisamos de algumas informações:</string>
+    <string name="periodo">Período não definido</string>
     <string name="txttipoRefeic">Selecione o tipo de Refeição</string>
     <string name="textDetalhes">Detalhes</string>
+    <string name="refeicaoperiodo">Não selecionado</string>
     <string name="gPorcao">Porção (g)</string>
     <string name="metaGlicemica">Qual é a meta glicêmica indicada pelo seu médico?</string>
     <string name="novoFator">Novo Fator de Sensibilidade:</string>
@@ -27,4 +30,6 @@
     <string name="selecionarAli">Escolha o Tipo de Alimento</string>
     <string name="AlimentosBD">TABELA TACO</string>
     <string name="meusAlimentos">Meus Alimentos</string>
+    <string name="voltar">Voltar</string>
+    <string name="excluir">EXCLUIR</string>
 </resources>

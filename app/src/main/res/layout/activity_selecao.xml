@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/AlimentosBD"
+        android:id="@+id/slc_btnTACO"
         android:textSize="20dp"
         android:layout_weight="0.5"
         android:background="@color/colorPrimary"/>
@@ -23,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/meusAlimentos"
+        android:id="@+id/slc_btnMeus"
         android:textSize="20dp"
         android:layout_weight="0.5"
         android:background="@color/colorPrimaryDark"/>

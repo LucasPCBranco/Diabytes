@@ -5,12 +5,9 @@ package com.example.nerds.tcctest;
  */
 public class Usuario {
     //Dados inseridos pelo usuário na primeira vez que ele entrar no app; (editável?)
-    private int id;
     private double sensM, sensT, sensN;
-
-    public int getId() {
-        return id;
-    }
+    private double CHOuiM, CHOuiT, CHOuiN;
+    private int metaGlicemica;
 
     public double getSensM() {
         return sensM;
@@ -24,8 +21,20 @@ public class Usuario {
         return sensN;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public double getCHOuiM(){
+        return CHOuiM;
+    }
+
+    public double getCHOuiT() {
+        return CHOuiT;
+    }
+
+    public double getCHOuiN() {
+        return CHOuiN;
+    }
+
+    public int getMetaGlicemica(){
+        return metaGlicemica;
     }
 
     public void setSensM(double sensM) {
@@ -38,5 +47,21 @@ public class Usuario {
 
     public void setSensN(double sensN) {
         this.sensN = sensN;
+    }
+
+    public void setCHOuiM(double CHOuiM) {
+        this.CHOuiM = CHOuiM;
+    }
+
+    public void setCHOuiT(double CHOuiT) {
+        this.CHOuiT = CHOuiT;
+    }
+
+    public void setCHOuiN(double CHOuiN) {
+        this.CHOuiN = CHOuiN;
+    }
+
+    public void setMetaGlicemica(int metaGlicemica){
+        this.metaGlicemica = metaGlicemica;
     }
 }

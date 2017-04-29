@@ -8,22 +8,38 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
             <meta-data
                 android:name="android.app.default.searchable"
                 android:value=".SearchResultsActivity" />
-
         </activity>
-        <activity android:name=".NewAlimentoActivity" />
-        <activity android:name=".CalcActivity" />
+        <activity android:name=".NewAlimentoActivity"
+                  android:screenOrientation="portrait" />
 
-        <activity android:name=".SearchResultsActivity">
+        <activity android:name=".CalcActivity"
+                  android:screenOrientation="portrait"
+            android:parentActivityName=".NewRefeicao"/>
+
+        <activity android:name=".FirstAccess"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".NewRefeicao"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ConfiguracoesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".SearchResultsActivity"
+                  android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -32,6 +48,10 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity android:name=".DetalhesRefeicaoActivity"></activity>
+        <activity android:name=".TipoRefeicaoActivity"></activity>
+        <activity android:name=".SelecaoActivity"></activity>
+        <activity android:name=".MeusAlimentos"></activity>
     </application>
 
 </manifest>

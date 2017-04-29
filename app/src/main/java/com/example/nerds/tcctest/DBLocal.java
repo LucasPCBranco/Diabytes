@@ -8,19 +8,48 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DBLocal extends SQLiteOpenHelper{
 
     private static final String DB = "mydb";
+
+    private static final String TABLE_A = "alimento";
+    private static final String TABLE_U = "usuario";
+    private static final String TABLE_R = "refeicao";
+
     //Tabela Alimentos
-    private static final String TABLE = "alimento";
     private static final String NOME = "nome";
     private static final String PORCAO = "porcao";
     private static final String CARB = "gcarb";
     private static final String PORC = "gPorcao";
-    private static final String TAG = "DBLocal";
 
-    //Antes tinha aqui um tbUsuario, mas é desnecessário
+    //Tabela Usuario
+    private static final String FATORM = "fatorSensiM";
+    private static final String FATORT = "fatorSensiT";
+    private static final String FATORN = "fatorSensiN";
+
+    private static final String CHOUIM = "chouiM";
+    private static final String CHOUIT = "chouiT";
+    private static final String CHOUIN = "chouiN";
+
+    private static final String META = "metaGlicemica";
+
+    //Tabela Refeição
+    private static final String NOME_R = "nomeRef";
+    private static final String DATA = "data";
+    private static final String LIST = "stringAlimentos";
+    private static final String PERIODO = "periodo";
+    private static final String RESULTADO = "calculo";
+
+    private static final String TAG_ALIMENTO = "Alimento";
+    private static final String TAG_USUARIO = "Usuario";
+    private static final String TAG_REFEICAO = "Refeicao";
+
 
     public DBLocal(Context context) {
         /* Normalmente, os parâmetros são context, name, factory e version.
@@ -34,13 +63,25 @@ public class DBLocal extends SQLiteOpenHelper{
         //Mais para fins de teste, eu concatenei os valores das tabelas.
 
         //tbAlimento
-        db.execSQL("CREATE TABLE " + TABLE + "(id INTEGER PRIMARY KEY, nome TEXT, "
+        db.execSQL("CREATE TABLE " + TABLE_A + "(id INTEGER PRIMARY KEY, nome TEXT, "
                 +"porcao TEXT, gcarb REAL, gPorcao REAL) ");
+
+        //tbUsuario
+        db.execSQL("CREATE TABLE " + TABLE_U + " (" + FATORM + " REAL, " + FATORT + " REAL, "
+                + FATORN + " REAL, " + CHOUIM + " REAL, " + CHOUIT + " REAL, " + CHOUIN + " REAL, "
+                + META + " INTEGER)");
+
+        db.execSQL("CREATE TABLE " + TABLE_R + " ( " + NOME_R + " TEXT, " + DATA + " TEXT," + LIST
+         + " TEXT, " + PERIODO + " TEXT, "  + RESULTADO + " REAL)");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_U);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_A);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_R);
+        onCreate(db);
     }
 
     public boolean insertAlimento (Alimento alimento){
@@ -53,10 +94,10 @@ public class DBLocal extends SQLiteOpenHelper{
             contentValues.put(PORCAO, alimento.getPorcao());
             contentValues.put(CARB, alimento.getgCarb());
             contentValues.put(PORC, alimento.getgPorcao());
-            bd.insert(TABLE, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
+            bd.insert(TABLE_A, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
             return true;
         }catch(Exception e){
-            Log.e(TAG, "insertAlimento: " +e.getMessage());
+            Log.e(TAG_ALIMENTO, "insertAlimento: " +e.getMessage());
             return false;
         }
 
@@ -68,7 +109,7 @@ public class DBLocal extends SQLiteOpenHelper{
         ArrayList<Alimento> lista = new ArrayList<Alimento>();
         System.out.println(lista.size());
         try{
-        Cursor cur = bd.rawQuery("SELECT * FROM " + TABLE, null);
+        Cursor cur = bd.rawQuery("SELECT * FROM " + TABLE_A, null);
         //Pega o primeiro resultado
         cur.moveToFirst();
         //Enquanto não for o último dado
@@ -86,7 +127,7 @@ public class DBLocal extends SQLiteOpenHelper{
         }
         return lista;
     }catch(Exception e){
-            Log.e(TAG, "selectAlimentos: " + e.getMessage());
+            Log.e(TAG_ALIMENTO, "selectAlimentos: " + e.getMessage());
             return lista;
         }
     }
@@ -98,7 +139,7 @@ public class DBLocal extends SQLiteOpenHelper{
         ArrayList<Alimento> lista = new ArrayList<Alimento>();
         try{
             //Cursor concatenado para se adequar ao parâmetro inserido pelo usuário
-            Cursor cur = sqlite.rawQuery("SELECT * FROM" + TABLE + "WHERE " + NOME + "LIKE = '%" + param + "%'", null);
+            Cursor cur = sqlite.rawQuery("SELECT * FROM" + TABLE_A + "WHERE " + NOME + "LIKE = '%" + param + "%'", null);
             cur.moveToFirst();
 
             while(cur.isAfterLast() == false){
@@ -118,4 +159,153 @@ public class DBLocal extends SQLiteOpenHelper{
             return null;
         }
     }
+
+    //Métodos para a classe Usuario
+    public boolean insertUsuario(Usuario usuario) {
+
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            //Tenta criar valores baseado no objeto Alimento
+            contentValues.put(FATORM, usuario.getSensM());
+            contentValues.put(FATORT, usuario.getSensT());
+            contentValues.put(FATORN, usuario.getSensN());
+
+            contentValues.put(CHOUIM, usuario.getCHOuiM());
+            contentValues.put(CHOUIT, usuario.getCHOuiT());
+            contentValues.put(CHOUIN, usuario.getCHOuiN());
+
+            contentValues.put(META, usuario.getMetaGlicemica());
+            bd.insert(TABLE_U, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
+
+            System.out.println("META F.A.: " + META);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG_USUARIO, "insertUsuario: " + e.getMessage());
+            return false;
+        }
+
+    }
+
+    public boolean updateUsuario(Usuario usuario) {
+
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        try {
+            contentValues.put(FATORM, usuario.getSensM());
+            contentValues.put(FATORT, usuario.getSensT());
+            contentValues.put(FATORN, usuario.getSensN());
+
+            contentValues.put(CHOUIM, usuario.getCHOuiM());
+            contentValues.put(CHOUIT, usuario.getCHOuiT());
+            contentValues.put(CHOUIN, usuario.getCHOuiN());
+
+            contentValues.put(META, usuario.getMetaGlicemica());
+            bd.update(TABLE_U, contentValues, META + " = " + usuario.getMetaGlicemica(), null);
+
+            System.out.println("META CFG.: " + META);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG_USUARIO, "updateUsuario: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public ArrayList<Usuario> selectUsuario() {
+
+        SQLiteDatabase bd = this.getReadableDatabase();
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        System.out.println("Lista de USUÁRIOS: " + lista.size());
+        try {
+            Cursor cur = bd.rawQuery("SELECT * FROM " + TABLE_U, null);
+            //Pega o primeiro resultado
+            cur.moveToFirst();
+            //Enquanto não for o último dado
+            while (cur.isAfterLast() == false) {
+                //Cria um objeto para ser inserido na ArrayList
+                Usuario u = new Usuario();
+            /* Seta de acordo com o cursor*/
+                u.setSensM(cur.getFloat(cur.getColumnIndex(FATORM)));
+                u.setSensT(cur.getFloat(cur.getColumnIndex(FATORT)));
+                u.setSensN(cur.getFloat(cur.getColumnIndex(FATORN)));
+
+                u.setCHOuiM(cur.getFloat(cur.getColumnIndex(CHOUIM)));
+                u.setCHOuiT(cur.getFloat(cur.getColumnIndex(CHOUIT)));
+                u.setCHOuiN(cur.getFloat(cur.getColumnIndex(CHOUIN)));
+
+                u.setMetaGlicemica(cur.getInt(cur.getColumnIndex(META)));
+                lista.add(u);
+                cur.moveToNext(); //Após o fim das informações, move-se à próxima
+            }
+            return lista;
+        } catch (Exception e) {
+            Log.e(TAG_USUARIO, "selectUsuario: " + e.getMessage());
+            return lista;
+        }
+    }
+
+    //Métodos para a classe Refeição
+    public boolean insertRefeicao (Refeicao refeicao){
+
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try{
+            contentValues.put(NOME_R, refeicao.getNome());
+            contentValues.put(DATA, refeicao.getData());
+            /*Conversão -> ArrayList para String*/
+            ArrayList<String> a = refeicao.getAlimentos();
+            JSONObject json = new JSONObject();
+            json.put("uniqueArrays", new JSONArray(a));
+            String conv = json.toString();
+            System.out.println("VALOR INSERIDO COMO STRING EM INSERT: " + conv);
+            contentValues.put(LIST, conv);
+            contentValues.put(PERIODO, refeicao.getPeriodo());
+            contentValues.put(RESULTADO, refeicao.getUi());
+            bd.insert(TABLE_R, null, contentValues); //Na ordem: tabela, TableHack (?), valores a serem add
+            return true;
+        }catch(Exception e){
+            Log.e(TAG_REFEICAO, "insertRefeicao: " +e.getMessage());
+            return false;
+        }
+
+    }
+
+    public ArrayList<Refeicao> selectRefeicoes(){
+
+        SQLiteDatabase bd = this.getReadableDatabase();
+        ArrayList<Refeicao> lista = new ArrayList<Refeicao>();
+        System.out.println(lista.size());
+        try{
+            Cursor cur = bd.rawQuery("SELECT * FROM " + TABLE_R, null);
+            //Pega o primeiro resultado
+            cur.moveToFirst();
+            //Enquanto não for o último dado
+            while(cur.isAfterLast() == false){
+                Refeicao r = new Refeicao();
+                r.setNome(cur.getString(cur.getColumnIndex(NOME_R)));
+                r.setData(cur.getString(cur.getColumnIndex(DATA)));
+                //Conversão String -> ArrayList<Alimento>
+                JSONObject jsonObject = new JSONObject(cur.getString(cur.getColumnIndex(LIST)));
+                 JSONArray A = jsonObject.getJSONArray("uniqueArrays");
+                ArrayList<String> a = new ArrayList<String>();
+                for(int i = 0; i < A.length(); i++){
+                    String add = A.getString(i);
+                    System.out.println("ADD VALOR DENTRO DE SELECT ALIMENTOS: " + add);
+                    a.add(add);
+                }
+                r.setAlimentos(a);
+                r.setPeriodo(cur.getString(cur.getColumnIndex(PERIODO)));
+                r.setUi(cur.getDouble(cur.getColumnIndex(RESULTADO)));
+                lista.add(r);
+                cur.moveToNext(); //Após o fim das informações, move-se à próxima
+            }
+            return lista;
+        }catch(Exception e){
+            Log.e(TAG_REFEICAO, "selectRefeicoes: " + e.getMessage());
+            return lista;
+        }
+    }
+
 }
+
