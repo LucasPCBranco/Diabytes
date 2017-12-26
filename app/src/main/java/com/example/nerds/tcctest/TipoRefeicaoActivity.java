@@ -26,7 +26,7 @@ public class TipoRefeicaoActivity extends AppCompatActivity {
         botaoManha = (Button) findViewById(R.id.button_Manha);
         botaoTarde = (Button) findViewById(R.id.button_Tarde);
         botaoNoite = (Button) findViewById(R.id.button_Noite);
-        botaoVoltar = (Button) findViewById(R.id.button_Voltar);
+        //botaoVoltar = (Button) findViewById(R.id.button_Voltar);
 
 
         //Definindo a toolbar

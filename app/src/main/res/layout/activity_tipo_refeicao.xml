@@ -8,17 +8,6 @@
     <include layout="@layout/toolbar"
         android:id="@+id/my_toolbar"/>
 
-    <TextView
-        android:text="@string/txttipoRefeic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_tipoRefeic"
-        android:textSize="26sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="2sp" />
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,49 +17,37 @@
         android:weightSum="2">
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:weightSum="2"
+            android:weightSum="3"
             android:background="#FFFFFF"
             android:layout_margin="2dp">
 
             <Button
-                android:textAlignment="gravity"
-                android:layout_width="0dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:id="@+id/button_Manha"
                 android:background="@drawable/manha"/>
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:id="@+id/button_Tarde"
                 android:background="@drawable/tarde" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"  >
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:id="@+id/button_Noite"
-                android:background="@drawable/noite" />
-
-           <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/button_Voltar"
-                android:background="@drawable/voltar" />
+                android:background="@drawable/noite" />
         </TableRow>
+
 
     </TableLayout>
 
